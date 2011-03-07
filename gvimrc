@@ -12,6 +12,15 @@ set go-=T
 " Fullscreen takes up entire screen
 set fuoptions=maxhorz,maxvert
 
+" close a buffer without its associated window
+macmenu &File.Close\ Window key=<nop>
+nmap <D-W> :Bclose<CR>
+imap <D-W> <Esc>:Bclose<CR>
+
+" these two don't work for some reason, not sure why
+"nmap <C-D-W> :Bclose!<CR>
+"imap <C-D-W> <Esc>:Bclose!<CR>
+
 " TextMate-style indentation
 nmap <D-[> <<
 nmap <D-]> >>

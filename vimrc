@@ -99,9 +99,6 @@ let g:miniBufExplModSelTarget = 1
 "set display+=lastline
 "" this would use the visual bell (instead of audible I guess?)
 "set vb
-"" unfortunately pretty awkward file-closing shortcuts
-"nmap <C-w><C-w> :Bclose<CR>
-"nmap <C-w><C-q> :Bclose!<CR>
 
 " *** filetype-specific stuff ***
 
