@@ -17,6 +17,9 @@ set antialias
 set lines=60
 set columns=115
 
+" don't break visual mode with the arrow keys
+behave xterm
+
 " no scrollbars or toolbar
 set go-=l
 set go-=L
