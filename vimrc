@@ -34,6 +34,11 @@ set laststatus=2
 " This is likely a bludgeon to solve some other issue, but it works
 set noequalalways
 
+" Gundo configuration
+nnoremap <D-u> :GundoToggle<CR>
+let g:gundo_right=1
+let g:gundo_help=0
+
 " NERDTree configuration
 let NERDTreeIgnore=['\.rbc$', '\~$']
 map <Leader>n :NERDTreeToggle<CR>
@@ -141,9 +146,11 @@ map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 " Command mode: Ctrl+P
 cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 
-
-
-
+" Show syntax highlighting groups for word under cursor
+function! <SID>SynStack()
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+nmap <C-S-P> :call <SID>SynStack()<CR>
 
 runtime macros/matchit.vim
 call pathogen#runtime_append_all_bundles()
