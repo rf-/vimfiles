@@ -10,14 +10,6 @@
 " [1] http://railscasts.com/about 
 " [2] http://www.vim.org/scripts/script.php?script_id=2536
 
-"set guifont=Menlo:h10
-"set linespace=2
-"set antialias
-
-set guifont=Monaco:h10
-set linespace=0
-set noantialias
-
 set background=dark
 hi clear
 if exists("syntax_on")

@@ -1,5 +1,20 @@
 " personal preferences, obvs
-color ryandarkaa
+color wombat
+set transparency=0
+
+"set guifont=Menlo:h10
+"set linespace=2
+"set antialias
+
+"set guifont=Monaco:h10
+"set linespace=0
+"set noantialias
+
+set guifont=Monaco:h10
+set linespace=0
+set antialias
+
+set lines=60
 set columns=115
 
 " no scrollbars or toolbar
