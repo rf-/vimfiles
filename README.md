@@ -43,16 +43,16 @@ switch among them independently.
 
 Use :split to split the window horizontally and :vsplit to split it vertically.
 
-Ctrl-tab switches which file is shown in the current window. Ctrl-<arrow key>
+`Ctrl-Tab` switches which file is shown in the current window. `Ctrl-<arrow key>`
 moves the cursor between your open windows.
 
 When you have more than one file open, MiniBufExpl will pop open at the top to
 show them and highlight the ones that are open. You can double-click on a file
 up there to open it in the current window, or move the cursor up there and hit
-enter on a file name, or just use ctrl-tab instead.
+enter on a file name.
 
-To close a window without closing the file, hit cmd-w. To close a file without
-closing the window (much more common/desirable for me), hit cmd-shift-w.
+To close a window without closing the file, hit `Cmd-W`. To close a file without
+closing the window, hit `Cmd-Shift-W`.
 
 Remember that you can drag borders with the mouse to resize windows.
 Occasionally it'll get confused and make NERDTree huge or put things in weird
@@ -66,7 +66,7 @@ directories within NERDTree by hitting `C` (change NERDTree's root directory) or
 `cd` (change vim's working directory). In general, you can use `:cd <directory>`
 to do both.
 
-Hit cmd-t to do TextMate-style fuzzy filename matching within the project, and
+Hit `Cmd-T` to do TextMate-style fuzzy filename matching within the project, and
 then enter to open the one you want from the list. `:CommandTFlush` resets the
 index so you can find newly added files.
 
@@ -74,7 +74,7 @@ Alternately, you can open any file non-fuzzily by typing :e <filename>, or do
 the same thing with your current location autofilled by typing \e. Here, as
 everywhere, tab completion is a really good idea.
 
-Hit cmd-shift-f to do TextMate-style regex search within the project (or just
+Hit `Cmd-Shift-F` to do TextMate-style regex search within the project (or just
 type `:Ack`). This is a thin layer on top of the Ack command-line tool, so there
 are some annoying things about it. One is that you have to quote your search
 string if it has spaces in it. Another is that vim tries to do weird
@@ -86,7 +86,7 @@ find things like 'foo(' without worrying about escaping the parenthesis.
 ### Snipmate
 
 This is like TextMate's snippets. I don't consciously use it very often, but
-it's kind of nice that you can just type 'def<Tab>' or whatever and get some
+it's kind of nice that you can just type `def<Tab>` or whatever and get some
 boilerplate filled in.
 
 ### Tab completion
@@ -98,7 +98,7 @@ typing.
 
 ### Conque-Shell
 
-Cmd-E opens a shell in your current directory.
+`Cmd-E` opens a shell in your current directory.
 
 ### HexHighlight
 
@@ -108,7 +108,7 @@ look like blocks of the appropriate color.
 
 ### Gundo.vim
 
-This is awesome. You can hit cmd-u to see a tree representation of the undo
+This is awesome. You can hit `Cmd-U` to see a tree representation of the undo
 history of the current file and revisit previous revisions. That means that it's
 impossible to lose any work without closing the file. If you hit undo like fifty
 times in a row and then accidentally make a change, you can just bring up gundo
