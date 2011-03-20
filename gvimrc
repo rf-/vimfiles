@@ -2,6 +2,13 @@
 color wombat
 set transparency=0
 
+set lines=60
+set columns=115
+
+set guifont=Monaco:h10
+set linespace=0
+set antialias
+
 "set guifont=Menlo:h10
 "set linespace=2
 "set antialias
@@ -9,13 +16,6 @@ set transparency=0
 "set guifont=Monaco:h10
 "set linespace=0
 "set noantialias
-
-set guifont=Monaco:h10
-set linespace=0
-set antialias
-
-set lines=60
-set columns=115
 
 " don't break visual mode with the arrow keys
 behave xterm
@@ -30,15 +30,6 @@ set go-=T
 " Fullscreen takes up entire screen
 set fuoptions=maxhorz,maxvert
 
-" close a buffer without its associated window
-macmenu &File.Close\ Window key=<nop>
-nmap <D-W> :Bclose<CR>
-imap <D-W> <Esc>:Bclose<CR>
-
-" these two don't work for some reason, not sure why
-"nmap <C-D-W> :Bclose!<CR>
-"imap <C-D-W> <Esc>:Bclose!<CR>
-
 " Command-R + Return to execute current file
 nmap <D-r> :!% 
 
@@ -48,31 +39,12 @@ nmap <D-]> >>
 vmap <D-[> <gv
 vmap <D-]> >gv
 
-" Command-/ to toggle comments
-map <D-/> <plug>NERDCommenterToggle<CR>
-
-" Command-T for CommandT
-macmenu &File.New\ Tab key=<nop>
-map <D-t> :CommandT<CR>
-imap <D-t> <Esc>:CommandT<CR>
-
 " Command-Return for fullscreen
 macmenu Window.Toggle\ Full\ Screen\ Mode key=<D-CR>
 
-" Command-Shift-F for Ack
-map <D-F> :Ack<space>
-imap <D-F> <Esc>:Ack<space>
 
-" Command-e for ConqueTerm
-map <D-e> :call StartTerm()<CR>
+" (everything from here down is NERDtree stuff from Janus basically)
 
-" ConqueTerm wrapper
-function StartTerm()
-  execute 'ConqueTerm ' . $SHELL . ' --login'
-  setlocal listchars=tab:\ \ 
-endfunction
-
-" Project Tree
 autocmd VimEnter * call s:CdIfDirectory(expand("<amatch>"))
 autocmd FocusGained * call s:UpdateNERDTree()
 autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()

@@ -22,7 +22,7 @@ set incsearch
 set ignorecase
 set smartcase
 
-" Tab completion
+" Tab completion and Command-T ignores
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,test/fixtures/*,vendor/gems/*,.idea
 
@@ -33,18 +33,6 @@ set laststatus=2
 " equalalways behavior to be triggered the next time CommandT is used.
 " This is likely a bludgeon to solve some other issue, but it works
 set noequalalways
-
-" Gundo configuration
-nnoremap <D-u> :GundoToggle<CR>
-let g:gundo_right=1
-let g:gundo_help=0
-
-" NERDTree configuration
-let NERDTreeIgnore=['\.rbc$', '\~$']
-map <Leader>n :NERDTreeToggle<CR>
-
-" Command-T configuration
-let g:CommandTMaxHeight=20
 
 " Put modified buffers into the 'background' without vim complaining
 set hidden
@@ -86,26 +74,8 @@ vnoremap <Up> gk
 inoremap <Down> <C-o>gj
 inoremap <Up> <C-o>gk
 
-" C-Tab to switch buffers in the current window
-let g:miniBufExplMapCTabSwitchBufs = 1
-inoremap <C-TAB> <Esc><C-TAB>
-inoremap <C-S-TAB> <Esc><C-S-TAB>
-
-" ctrl + arrow keys move from window to window
-let g:miniBufExplMapWindowNavArrows = 1
-
-" no idea what this does, but I put it in so I guess it's cool
-let g:miniBufExplModSelTarget = 1
-
-" stuff I don't currently use
-"" wrapping
-"set wrap
-"set linebreak
-"set display+=lastline
-"" this would use the visual bell (instead of audible I guess?)
-"set vb
-
-" *** filetype-specific stuff ***
+" when there's wrapping, show what you can instead of not showing incomplete lines
+set display+=lastline
 
 function s:setupWrapping()
   set wrap
@@ -119,10 +89,10 @@ function s:setupMarkup()
 endfunction
 
 " make uses real tabs
-au FileType make                                     set noexpandtab
+au FileType make set noexpandtab
 
 " Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
-au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru}    set ft=ruby
+au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru} set ft=ruby
 
 " md, markdown, and mk are markdown and define buffer-local preview
 au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} call s:setupMarkup()
@@ -130,13 +100,10 @@ au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} call s:setupMarkup()
 au BufRead,BufNewFile *.txt call s:setupWrapping()
 
 " make python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
-au FileType python  set tabstop=4 textwidth=79
+au FileType python set tabstop=4 textwidth=79
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
-
-" load the plugin and indent settings for the detected filetype
-filetype plugin indent on
 
 " Opens an edit command with the path of the currently edited file filled in
 " Normal mode: <Leader>e
@@ -152,25 +119,31 @@ function! <SID>SynStack()
 endfunc
 nmap <C-S-P> :call <SID>SynStack()<CR>
 
-runtime macros/matchit.vim
+filetype off
 
 " Vundle + bundles
 set rtp+=~/.vim/vundle.git/
 call vundle#rc()
 
-Bundle "https://github.com/vim-scripts/ack.vim.git"
+Bundle "https://github.com/vim-scripts/matchit.zip.git"
+runtime macros/matchit.vim
+
+Bundle "https://github.com/vim-scripts/minibufexpl.vim.git"
+let g:miniBufExplMapCTabSwitchBufs = 1  " C-Tab to switch buffers in the current window (in insert mode too)
+inoremap <C-TAB> <Esc><C-TAB>
+inoremap <C-S-TAB> <Esc><C-S-TAB>
+let g:miniBufExplMapWindowNavArrows = 1 " ctrl + arrow keys move from window to window
+let g:miniBufExplModSelTarget = 1       " no idea what this does, but I put it in so I guess it's cool
+
+" lots of NERDtree-specific stuff in gvimrc too
+Bundle "https://github.com/vim-scripts/The-NERD-tree.git"
+let NERDTreeIgnore=['\.rbc$', '\~$']
+map <Leader>n :NERDTreeToggle<CR>
+
+Bundle "https://github.com/juvenn/mustache.vim.git"
 Bundle "https://github.com/vim-scripts/actionscript.vim--Leider.git"
 Bundle "https://github.com/vim-scripts/Align.git"
-Bundle "https://github.com/rwfitzge/vim-bclose.git"
-Bundle "https://github.com/vim-scripts/Command-T.git"
-Bundle "https://github.com/vim-scripts/Conque-Shell.git"
-Bundle "https://github.com/rwfitzge/gundo.vim.git"
 Bundle "https://github.com/vim-scripts/hexHighlight.vim.git"
-Bundle "https://github.com/vim-scripts/matchit.zip.git"
-Bundle "https://github.com/vim-scripts/minibufexpl.vim.git"
-Bundle "https://github.com/juvenn/mustache.vim.git"
-Bundle "https://github.com/vim-scripts/The-NERD-Commenter.git"
-Bundle "https://github.com/vim-scripts/The-NERD-tree.git"
 Bundle "https://github.com/msanders/snipmate.vim.git"
 Bundle "https://github.com/ervandew/supertab.git"
 Bundle "https://github.com/kchmck/vim-coffee-script.git"
@@ -186,7 +159,41 @@ Bundle "https://github.com/nelstrom/vim-textobj-rubyblock.git"
 Bundle "https://github.com/kana/vim-textobj-user.git"
 Bundle "https://github.com/vim-scripts/ZoomWin.git"
 
-" I forget why this has to go at the end
-filetype off
+" this isn't in gvimrc because I wanted to keep the config with the bundles
+" and I think vundler only reads the vimrc file
+if has("gui_macvim")
+  Bundle "https://github.com/vim-scripts/ack.vim.git"
+  map <D-F> :Ack<space>
+  imap <D-F> <Esc>:Ack<space>
+
+  Bundle "https://github.com/rwfitzge/vim-bclose.git"
+  macmenu &File.Close\ Window key=<nop>
+  nmap <D-W> :Bclose<CR>
+  imap <D-W> <Esc>:Bclose<CR>
+  "nmap <C-D-W> :Bclose!<CR>
+  "imap <C-D-W> <Esc>:Bclose!<CR>
+
+  Bundle "https://github.com/vim-scripts/Command-T.git"
+  macmenu &File.New\ Tab key=<nop>
+  map <D-t> :CommandT<CR>
+  imap <D-t> <Esc>:CommandT<CR>
+  let g:CommandTMaxHeight=20
+
+  Bundle "https://github.com/vim-scripts/Conque-Shell.git"
+  function StartTerm()
+    execute 'ConqueTerm ' . $SHELL . ' --login'
+    setlocal listchars=tab:\ \ 
+  endfunction
+  map <D-e> :call StartTerm()<CR>
+
+  Bundle "https://github.com/rwfitzge/gundo.vim.git"
+  nnoremap <D-u> :GundoToggle<CR>
+  let g:gundo_right=1
+  let g:gundo_help=0
+
+  Bundle "https://github.com/vim-scripts/The-NERD-Commenter.git"
+  map <D-/> <plug>NERDCommenterToggle<CR>
+endif
+
 filetype plugin indent on
 

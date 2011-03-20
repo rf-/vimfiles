@@ -19,7 +19,7 @@ This is based pretty heavily on [Janus](https://github.com/carlhuda/janus).
        git submodule init
        git submodule update
 
- * Install bundles by running `:BundleInstall` in vim. This will generate a ton
+ * Install bundles by running `:BundleInstall` in MacVim. This will generate a ton
    of errors. It's OK.
 
  * Install the native C part of Command-T.
