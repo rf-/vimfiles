@@ -161,6 +161,7 @@ call vundle#rc()
 Bundle "https://github.com/vim-scripts/ack.vim.git"
 Bundle "https://github.com/vim-scripts/actionscript.vim--Leider.git"
 Bundle "https://github.com/vim-scripts/Align.git"
+Bundle "https://github.com/rwfitzge/vim-bclose.git"
 Bundle "https://github.com/vim-scripts/Command-T.git"
 Bundle "https://github.com/vim-scripts/Conque-Shell.git"
 Bundle "https://github.com/rwfitzge/gundo.vim.git"
