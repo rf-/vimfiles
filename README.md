@@ -1,4 +1,4 @@
-This is based pretty heavily on Janus (https://github.com/carlhuda/janus).
+This is based pretty heavily on [Janus](https://github.com/carlhuda/janus).
 
 ## Installation
 
@@ -111,7 +111,7 @@ impossible to lose any work without closing the file. If you hit undo like fifty
 times in a row and then accidentally make a change, you can just bring up gundo
 and find the point you want to go back to.
 
-For more details: http://sjl.bitbucket.org/gundo.vim/
+For more details check out the [BitBucket repo](http://sjl.bitbucket.org/gundo.vim/).
 
 ### Align
 
@@ -122,12 +122,12 @@ you want to line up by>`.
 
 ### Other key bindings
 
-Cmd-[ and ] shift indentation, just like TextMate.
+`Cmd-[` and `Cmd-]` shift indentation, just like TextMate.
 
-Cmd-/ toggles commentedness on your current line (or selected lines), which
+`Cmd-/` toggles commentedness on your current line (or selected lines), which
 might be like TextMate, I forget.
 
-Cmd-enter is full screen, like every other Mac program.
+`Cmd-Enter` is full screen, like every other Mac program.
 
 Typing `jj` in insert mode is the same as hitting escape, which some people
 like, but I always forget to use it.
