@@ -16,7 +16,22 @@ Installation:
 
     sudo cpan App::Ack
 
-* Probably do vimtutor on the command line if you haven't already. Gotta get the basics down.
+* Install vundle.
+
+    cd ~/.vim
+    git submodule init
+    git submodule update
+
+* Install bundles by running ':BundleInstall' in vim. This will generate a ton of
+  errors. It's OK.
+
+* Install the native C part of Command-T.
+
+    cd ~/.vim/bundle/Command-T/ruby/command-t
+    /usr/bin/ruby extconf.rb
+    make
+
+* Restart MacVim.
 
 Stuff you can do that is different from normal (Mac)Vim, off the top of my head:
 
@@ -128,10 +143,4 @@ Stuff you can do that is different from normal (Mac)Vim, off the top of my head:
   The default color right now is wombat, but there are more in the colors directory. All the ones that come
   with vim are really really bad, but the ones I've included are better imo.
   ('ryandark' is a modified version of railscasts.)
-
-* Adding more stuff
-
-  I've been putting colors into the colors folder directly since it is less dumb than having a separate folder
-  for each color file, but most things you can just clone straight off github into the bundle folder
-  (because of pathogen).
 

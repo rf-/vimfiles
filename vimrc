@@ -153,8 +153,39 @@ endfunc
 nmap <C-S-P> :call <SID>SynStack()<CR>
 
 runtime macros/matchit.vim
-call pathogen#runtime_append_all_bundles()
+
+" Vundle + bundles
+set rtp+=~/.vim/vundle.git/
+call vundle#rc()
+
+Bundle "https://github.com/vim-scripts/ack.vim.git"
+Bundle "https://github.com/vim-scripts/actionscript.vim--Leider.git"
+Bundle "https://github.com/vim-scripts/Align.git"
+Bundle "https://github.com/vim-scripts/Command-T.git"
+Bundle "https://github.com/vim-scripts/Conque-Shell.git"
+Bundle "https://github.com/rwfitzge/gundo.vim.git"
+Bundle "https://github.com/vim-scripts/hexHighlight.vim.git"
+Bundle "https://github.com/vim-scripts/matchit.zip.git"
+Bundle "https://github.com/vim-scripts/minibufexpl.vim.git"
+Bundle "https://github.com/juvenn/mustache.vim.git"
+Bundle "https://github.com/vim-scripts/The-NERD-Commenter.git"
+Bundle "https://github.com/vim-scripts/The-NERD-tree.git"
+Bundle "https://github.com/msanders/snipmate.vim.git"
+Bundle "https://github.com/ervandew/supertab.git"
+Bundle "https://github.com/kchmck/vim-coffee-script.git"
+Bundle "https://github.com/tpope/vim-fugitive.git"
+Bundle "https://github.com/tpope/vim-git.git"
+Bundle "https://github.com/tpope/vim-haml.git"
+Bundle "https://github.com/vim-scripts/vim-indent-object.git"
+Bundle "https://github.com/pangloss/vim-javascript.git"
+Bundle "https://github.com/tpope/vim-rails.git"
+Bundle "https://github.com/tpope/vim-repeat.git"
+Bundle "https://github.com/tpope/vim-surround.git"
+Bundle "https://github.com/nelstrom/vim-textobj-rubyblock.git"
+Bundle "https://github.com/kana/vim-textobj-user.git"
+Bundle "https://github.com/vim-scripts/ZoomWin.git"
 
 " I forget why this has to go at the end
 filetype off
 filetype plugin indent on
+
