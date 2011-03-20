@@ -39,6 +39,9 @@ imap <D-W> <Esc>:Bclose<CR>
 "nmap <C-D-W> :Bclose!<CR>
 "imap <C-D-W> <Esc>:Bclose!<CR>
 
+" Command-R + Return to execute current file
+nmap <D-r> :!% 
+
 " TextMate-style indentation
 nmap <D-[> <<
 nmap <D-]> >>
