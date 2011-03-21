@@ -42,6 +42,9 @@ vmap <D-]> >gv
 " Command-Return for fullscreen
 macmenu Window.Toggle\ Full\ Screen\ Mode key=<D-CR>
 
+" Clear shortcuts
+macmenu &File.New\ Tab key=<nop>
+macmenu &File.Close\ Window key=<nop>
 
 " (everything from here down is NERDtree stuff from Janus basically)
 

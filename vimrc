@@ -167,14 +167,12 @@ if has("gui_macvim")
   imap <D-F> <Esc>:Ack<space>
 
   Bundle "https://github.com/rwfitzge/vim-bclose.git"
-  macmenu &File.Close\ Window key=<nop>
   nmap <D-W> :Bclose<CR>
   imap <D-W> <Esc>:Bclose<CR>
   "nmap <C-D-W> :Bclose!<CR>
   "imap <C-D-W> <Esc>:Bclose!<CR>
 
   Bundle "https://github.com/vim-scripts/Command-T.git"
-  macmenu &File.New\ Tab key=<nop>
   map <D-t> :CommandT<CR>
   imap <D-t> <Esc>:CommandT<CR>
   let g:CommandTMaxHeight=20
