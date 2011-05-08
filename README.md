@@ -6,27 +6,27 @@ This is based pretty heavily on [Janus](https://github.com/carlhuda/janus).
  * Make this your .vim folder.
  * Symlink gvimrc and vimrc to the right places.
 
-       ln -s ~/.vim/gvimrc ~/.gvimrc
-       ln -s ~/.vim/vimrc ~/.vimrc
+         ln -s ~/.vim/gvimrc ~/.gvimrc
+         ln -s ~/.vim/vimrc ~/.vimrc
 
  * Install Ack.
 
-       sudo cpan App::Ack
+         sudo cpan App::Ack
 
  * Install vundle.
 
-       cd ~/.vim
-       git submodule init
-       git submodule update
+         cd ~/.vim
+         git submodule init
+         git submodule update
 
  * Install bundles by running `:BundleInstall` in MacVim. This will generate a ton
    of errors. It's OK.
 
  * Install the native C part of Command-T.
 
-       cd ~/.vim/bundle/Command-T/ruby/command-t
-       /usr/bin/ruby extconf.rb
-       make
+         cd ~/.vim/bundle/Command-T/ruby/command-t
+         /usr/bin/ruby extconf.rb
+         make
 
  * Restart MacVim.
 
