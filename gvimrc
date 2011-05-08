@@ -1,6 +1,11 @@
 " personal preferences, obvs
-color wombat
-set transparency=0
+
+color railscast
+set transparency=2
+
+"let g:solarized_style='light'
+"color solarized
+"set transparency=3
 
 set lines=60
 set columns=115
@@ -21,11 +26,8 @@ set antialias
 behave xterm
 
 " no scrollbars or toolbar
-set go-=l
-set go-=L
-set go-=r
-set go-=R
-set go-=T
+set go=egm
+"set go-=l set go-=L set go-=r set go-=R set go-=T 
 
 " Fullscreen takes up entire screen
 set fuoptions=maxhorz,maxvert

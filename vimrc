@@ -51,8 +51,8 @@ set nomodeline
 color desert
 
 " Directories for swp files
-set backupdir=~/.vim/backup
-set directory=~/.vim/backup
+set backupdir=~/.vim/backup//
+set directory=~/.vim/backup//
 
 " Turn off jslint errors by default
 let g:JSLintHighlightErrorLine = 0
@@ -65,6 +65,9 @@ runtime! macros/matchit.vim
 
 " map 'jj' to leave insert mode
 imap jj <Esc>
+
+" map <C-h> to remove search highlights
+map <C-h> :noh<CR>
 
 " Arrow keys scroll by visible lines, not absolute lines
 nnoremap <Down> gj
@@ -88,9 +91,6 @@ function s:setupMarkup()
   map <buffer> <Leader>p :Mm <CR>
 endfunction
 
-" make uses real tabs
-au FileType make set noexpandtab
-
 " Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
 au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru} set ft=ruby
 
@@ -98,9 +98,6 @@ au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru} set ft=r
 au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} call s:setupMarkup()
 
 au BufRead,BufNewFile *.txt call s:setupWrapping()
-
-" make python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
-au FileType python set tabstop=4 textwidth=79
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -144,6 +141,7 @@ Bundle "https://github.com/juvenn/mustache.vim.git"
 Bundle "https://github.com/vim-scripts/actionscript.vim--Leider.git"
 Bundle "https://github.com/vim-scripts/Align.git"
 Bundle "https://github.com/vim-scripts/hexHighlight.vim.git"
+Bundle "https://github.com/vim-scripts/indenthaskell.vim.git"
 Bundle "https://github.com/msanders/snipmate.vim.git"
 Bundle "https://github.com/ervandew/supertab.git"
 Bundle "https://github.com/kchmck/vim-coffee-script.git"
@@ -175,7 +173,7 @@ if has("gui_macvim")
   Bundle "https://github.com/vim-scripts/Command-T.git"
   map <D-t> :CommandT<CR>
   imap <D-t> <Esc>:CommandT<CR>
-  let g:CommandTMaxHeight=20
+  let g:CommandTMaxHeight=30
 
   Bundle "https://github.com/vim-scripts/Conque-Shell.git"
   function StartTerm()
@@ -195,3 +193,8 @@ endif
 
 filetype plugin indent on
 
+au FileType make set noexpandtab
+au FileType python set tabstop=4 textwidth=79
+au FileType actionscript set shiftwidth=4 softtabstop=4
+au FileType javascript set shiftwidth=4 softtabstop=4
+au FileType css set shiftwidth=4 softtabstop=4
