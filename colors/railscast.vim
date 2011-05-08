@@ -4,11 +4,6 @@
 " Maintainer:  Josh O'Rourke <jorourke23@gmail.com> 
 " License:     public domain
 "
-" A GUI Only port of the RailsCasts TextMate theme [1] to Vim.
-" Some parts of this theme were borrowed from the well-documented Lucius theme [2].
-" 
-" [1] http://railscasts.com/about 
-" [2] http://www.vim.org/scripts/script.php?script_id=2536
 
 set background=dark
 hi clear
@@ -18,29 +13,32 @@ endif
 let g:colors_name = "railscast"
 
 " Colors
-" Brown        #BC9458
+" Brown        #bc9458
 " Dark Blue    #7eb4db
-" Dark Green   #519F50
+" Dark Green   #519f50
 " Dark Orange  #f27a18
-" Light Blue   #D0D0FF
+" Light Blue   #d0d0ff
 " Light Green  #d5fa7d
 " Tan          #ffd88b
 " Red          #e4301d
 
-hi Normal                    guifg=white   guibg=#0b0b0b
-hi Cursor                    guibg=#FFFFFF
-hi CursorLine                guibg=#333435
-hi LineNr                    guifg=#888888 guibg=#171717
-hi NonText                   guifg=black
-hi MatchParen                guifg=white   guibg=#3b3b3b gui=bold
-hi Search                    guifg=black   guibg=#5A647E
-hi Visual                    guibg=#5A647E
+hi Normal       guifg=#dddddd   guibg=#1b1b1b
+hi Cursor       guibg=#ffffff
+hi CursorLine   guibg=#333435
+hi LineNr       guifg=#888888 guibg=#171717
+hi NonText      guifg=black
+hi MatchParen   guifg=white   guibg=#3b3b3b gui=bold
+hi Search       guifg=black   guibg=#5a647e
+hi Visual       guibg=#5a647e
+hi StatusLine   guifg=#f6f3e8 guibg=#444444 gui=italic
+hi StatusLineNC guifg=#857b6f guibg=#444444 gui=NONE
+hi VertSplit    guifg=#444444 guibg=#444444 gui=NONE
+hi Title        guifg=#f6f3e8 guibg=NONE    gui=bold
 
-hi VertSplit guifg=gray guibg=gray
 " Folds
 " -----
 " line used for closed folds
-hi Folded                    guifg=#F6F3E8 guibg=#444444 gui=NONE
+hi Folded       guifg=#a0a8b0 guibg=#384048 gui=NONE
 
 " Misc
 " ----
@@ -107,11 +105,10 @@ hi PreProc                   guifg=#f27a18 gui=NONE
 "rubyControl, rubyAccess, rubyEval
 "case, begin, do, for, if unless, while, until else, etc.
 hi Statement                 guifg=#f27a18 gui=NONE
+hi RubyDefine                guifg=#f27a18 gui=NONE
 
 "rubyString
 hi String                    guifg=#d5fa7d
-
-hi Title                     guifg=#FFFFFF
 
 "rubyConstant
 hi Type                      guifg=#DA4939 gui=NONE
