@@ -61,7 +61,7 @@ dragging the borders back to where they should be.
 
 ### NERDTree and other project management
 
-Hit \n to bring up a tree view of your current directory. You can change
+Hit \\n to bring up a tree view of your current directory. You can change
 directories within NERDTree by hitting `C` (change NERDTree's root directory) or
 `cd` (change vim's working directory). In general, you can use `:cd <directory>`
 to do both.
@@ -71,7 +71,7 @@ then enter to open the one you want from the list. `:CommandTFlush` resets the
 index so you can find newly added files.
 
 Alternately, you can open any file non-fuzzily by typing :e <filename>, or do
-the same thing with your current location autofilled by typing \e. Here, as
+the same thing with your current location autofilled by typing \\e. Here, as
 everywhere, tab completion is a really good idea.
 
 Hit `Cmd-Shift-F` to do TextMate-style regex search within the project (or just
