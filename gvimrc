@@ -3,7 +3,7 @@
 color railscast
 set transparency=2
 
-"let g:solarized_style='light'
+let g:solarized_style='light'
 "color solarized
 "set transparency=3
 
