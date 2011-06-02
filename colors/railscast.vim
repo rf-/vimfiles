@@ -64,6 +64,7 @@ hi Todo                      guifg=#BC9458 guibg=NONE gui=italic
 "rubyPseudoVariable
 "nil, self, symbols, etc
 hi Constant                  guifg=#7eb4db
+hi RubySymbol                guifg=#7eb4db guibg=#262c30
 
 "rubyClass, rubyModule, rubyDefine
 "def, end, include, etc
@@ -94,7 +95,7 @@ hi Keyword                   guifg=#f27a18
 hi Macro                     guifg=#f27a18 gui=NONE
 
 "rubyInteger
-hi Number                    guifg=#d5fa7d
+hi Number                    guifg=#d5fa7d guibg=#242620
 
 " #if, #else, #endif
 hi PreCondit                 guifg=#f27a18 gui=NONE
@@ -108,7 +109,8 @@ hi Statement                 guifg=#f27a18 gui=NONE
 hi RubyDefine                guifg=#f27a18 gui=NONE
 
 "rubyString
-hi String                    guifg=#d5fa7d
+hi String                    guifg=#d5fa7d guibg=#242620
+hi RubyStringEscape          guifg=#f27a18 guibg=#242620
 
 "rubyConstant
 hi Type                      guifg=#DA4939 gui=NONE
