@@ -13,14 +13,11 @@ This is based pretty heavily on [Janus](https://github.com/carlhuda/janus).
 
          sudo cpan App::Ack
 
- * Install vundle.
+ * Install bundles as submodules.
 
          cd ~/.vim
          git submodule init
          git submodule update
-
- * Install bundles by running `:BundleInstall` in MacVim. This will generate a ton
-   of errors. It's OK.
 
  * Install the native C part of Command-T.
 
