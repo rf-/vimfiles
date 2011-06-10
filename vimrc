@@ -34,7 +34,7 @@ set laststatus=2
 " This is likely a bludgeon to solve some other issue, but it works
 set noequalalways
 
-" Put modified buffers into the 'background' without vim complaining
+" Put modified buffers into the background without vim complaining
 set hidden
 
 " Remember last location in file
@@ -54,10 +54,7 @@ color desert
 set backupdir=~/.vim/backup//
 set directory=~/.vim/backup//
 
-" Turn off jslint errors by default
-let g:JSLintHighlightErrorLine = 0
-
-" MacVIM shift+arrow-keys behavior (required in .vimrc)
+" MacVIM shift+arrow-keys behavior (has to be in .vimrc)
 let macvim_hig_shift_movement = 1
 
 " % to bounce from do to end etc.
@@ -116,85 +113,25 @@ function! <SID>SynStack()
 endfunc
 nmap <C-S-P> :call <SID>SynStack()<CR>
 
+" pathogen + bundle settings
 filetype off
+call pathogen#runtime_append_all_bundles()
 
-" Vundle + bundles
-set rtp+=~/.vim/vundle.git/
-call vundle#rc()
-
-Bundle "https://github.com/vim-scripts/matchit.zip.git"
-runtime macros/matchit.vim
-
-Bundle "https://github.com/vim-scripts/minibufexpl.vim.git"
+" minibufexpl
 let g:miniBufExplMapCTabSwitchBufs = 1  " C-Tab to switch buffers in the current window (in insert mode too)
 inoremap <C-TAB> <Esc><C-TAB>
 inoremap <C-S-TAB> <Esc><C-S-TAB>
 let g:miniBufExplMapWindowNavArrows = 1 " ctrl + arrow keys move from window to window
 let g:miniBufExplModSelTarget = 1       " no idea what this does, but I put it in so I guess it's cool
 
-" lots of NERDtree-specific stuff in gvimrc too
-Bundle "https://github.com/vim-scripts/The-NERD-tree.git"
+" nerdtree (lots of NERDtree-specific stuff in gvimrc too)
 let NERDTreeIgnore=['\.rbc$', '\~$']
 map <Leader>n :NERDTreeToggle<CR>
-
-Bundle "https://github.com/juvenn/mustache.vim.git"
-Bundle "https://github.com/vim-scripts/actionscript.vim--Leider.git"
-Bundle "https://github.com/vim-scripts/Align.git"
-Bundle "https://github.com/vim-scripts/hexHighlight.vim.git"
-Bundle "https://github.com/vim-scripts/indenthaskell.vim.git"
-Bundle "https://github.com/msanders/snipmate.vim.git"
-Bundle "https://github.com/ervandew/supertab.git"
-Bundle "https://github.com/kchmck/vim-coffee-script.git"
-Bundle "https://github.com/tpope/vim-fugitive.git"
-Bundle "https://github.com/tpope/vim-git.git"
-Bundle "https://github.com/tpope/vim-haml.git"
-Bundle "https://github.com/vim-scripts/vim-indent-object.git"
-Bundle "https://github.com/pangloss/vim-javascript.git"
-Bundle "https://github.com/tpope/vim-rails.git"
-Bundle "https://github.com/tpope/vim-repeat.git"
-Bundle "https://github.com/tpope/vim-surround.git"
-Bundle "https://github.com/nelstrom/vim-textobj-rubyblock.git"
-Bundle "https://github.com/kana/vim-textobj-user.git"
-Bundle "https://github.com/vim-scripts/ZoomWin.git"
-
-" this isn't in gvimrc because I wanted to keep the config with the bundles
-" and I think vundler only reads the vimrc file
-if has("gui_macvim")
-  Bundle "https://github.com/vim-scripts/ack.vim.git"
-  map <D-F> :Ack<space>
-  imap <D-F> <Esc>:Ack<space>
-
-  Bundle "https://github.com/rwfitzge/vim-bclose.git"
-  nmap <D-W> :Bclose<CR>
-  imap <D-W> <Esc>:Bclose<CR>
-  "nmap <C-D-W> :Bclose!<CR>
-  "imap <C-D-W> <Esc>:Bclose!<CR>
-
-  Bundle "https://github.com/vim-scripts/Command-T.git"
-  map <D-t> :CommandT<CR>
-  imap <D-t> <Esc>:CommandT<CR>
-  let g:CommandTMaxHeight=30
-
-  Bundle "https://github.com/vim-scripts/Conque-Shell.git"
-  function StartTerm()
-    execute 'ConqueTerm ' . $SHELL . ' --login'
-    setlocal listchars=tab:\ \ 
-  endfunction
-  map <D-e> :call StartTerm()<CR>
-
-  Bundle "https://github.com/rwfitzge/gundo.vim.git"
-  nnoremap <D-u> :GundoToggle<CR>
-  let g:gundo_right=1
-  let g:gundo_help=0
-
-  Bundle "https://github.com/vim-scripts/The-NERD-Commenter.git"
-  map <D-/> <plug>NERDCommenterToggle<CR>
-endif
 
 filetype plugin indent on
 
 au FileType make set noexpandtab
-au FileType python set tabstop=4 textwidth=79
+au FileType python set shiftwidth=4 softtabstop=4 textwidth=79
 au FileType actionscript set shiftwidth=4 softtabstop=4
 au FileType javascript set shiftwidth=4 softtabstop=4
 au FileType css set shiftwidth=4 softtabstop=4
