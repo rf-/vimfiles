@@ -110,6 +110,7 @@ hi RubyDefine                guifg=#f27a18 gui=NONE
 
 "rubyString
 hi String                    guifg=#d5fa7d guibg=#242620
+hi RubyStringDelimiter       guifg=#d5fa7d guibg=#242620
 hi RubyStringEscape          guifg=#f27a18 guibg=#242620
 
 "rubyConstant
