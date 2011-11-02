@@ -97,3 +97,6 @@
 [submodule "bundle/vibrantink"]
 	path = bundle/vibrantink
 	url = https://github.com/vim-scripts/vibrantink.git
+[submodule "bundle/YankRing"]
+	path = bundle/YankRing
+	url = git@github.com:rwfitzge/YankRing.vim.git
