@@ -64,9 +64,6 @@
 [submodule "bundle/zoomwin"]
 	path = bundle/zoomwin
 	url = https://github.com/vim-scripts/ZoomWin.git
-[submodule "bundle/ri-browser"]
-	path = bundle/ri-browser
-	url = https://github.com/vim-scripts/ri-browser.git
 [submodule "bundle/ack"]
 	path = bundle/ack
 	url = https://github.com/vim-scripts/ack.vim.git
@@ -85,3 +82,18 @@
 [submodule "bundle/nerdcommenter"]
 	path = bundle/nerdcommenter
 	url = https://github.com/vim-scripts/The-NERD-Commenter.git
+[submodule "bundle/drawit"]
+	path = bundle/drawit
+	url = https://github.com/vim-scripts/DrawIt.git
+[submodule "bundle/VimClojure"]
+	path = bundle/VimClojure
+	url = https://github.com/vim-scripts/VimClojure.git
+[submodule "bundle/seoul"]
+	path = bundle/seoul
+	url = https://github.com/vim-scripts/seoul.git
+[submodule "bundle/vividchalk"]
+	path = bundle/vividchalk
+	url = https://github.com/vim-scripts/vividchalk.vim.git
+[submodule "bundle/vibrantink"]
+	path = bundle/vibrantink
+	url = https://github.com/vim-scripts/vibrantink.git
