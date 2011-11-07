@@ -2,25 +2,24 @@
 
 color railscast
 set transparency=2
+set guifont=Menlo:h11 linespace=2
+set antialias
 
-let g:solarized_style='light'
-"color solarized
-"set transparency=3
+map <Leader>1 :set guifont=Menlo:h11 linespace=2
+map <Leader>2 :set guifont=Monaco:h11 linespace=0
+map <Leader>3 :set guifont=Monaco:h10 linespace=0
+
+map <Leader>4 :color louver:set transparency=3
+map <Leader>5 :color mayansmoke:set transparency=2
+map <Leader>6 :color pyte:set transparency=2
+map <Leader>7 :let g:solarized_style='light':color solarized:set transparency=3
+map <Leader>8 :let g:solarized_style='dark':color solarized:set transparency=3
+map <Leader>9 :color molokai:set transparency=2
+map <Leader>0 :color railscast:set transparency=2
+map <Leader>- :color wombat:set transparency=2
 
 set lines=60
 set columns=115
-
-set guifont=Monaco:h10
-set linespace=0
-set antialias
-
-"set guifont=Menlo:h10
-"set linespace=2
-"set antialias
-
-"set guifont=Monaco:h10
-"set linespace=0
-"set noantialias
 
 " don't break visual mode with the arrow keys
 behave xterm
