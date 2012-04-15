@@ -134,3 +134,24 @@
 	path = bundle/YankRing
 	url = git@github.com:rwfitzge/YankRing.vim.git
 	ignore = untracked
+[submodule "bundle/sorceror"]
+	path = bundle/sorceror
+	url = https://github.com/vim-scripts/Sorcerer.git
+[submodule "bundle/sorcerer"]
+	path = bundle/sorcerer
+	url = https://github.com/vim-scripts/Sorcerer.git
+[submodule "bundle/vim-slim"]
+	path = bundle/vim-slim
+	url = https://github.com/bbommarito/vim-slim.git
+[submodule "bundle/vim-markdown"]
+	path = bundle/vim-markdown
+	url = https://github.com/tpope/vim-markdown.git
+[submodule "bundle/vim-orgmode"]
+	path = bundle/vim-orgmode
+	url = https://github.com/jceb/vim-orgmode.git
+[submodule "bundle/utl"]
+	path = bundle/utl
+	url = https://github.com/vim-scripts/utl.vim.git
+[submodule "bundle/speeddating"]
+	path = bundle/speeddating
+	url = https://github.com/tpope/vim-speeddating.git

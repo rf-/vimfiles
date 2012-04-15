@@ -1,13 +1,18 @@
 " personal preferences, obvs
 
-color railscast
-set transparency=2
-set guifont=Menlo:h11 linespace=2
+"color railscast
+"set transparency=2
+
+let g:solarized_style='light'
+color solarized
+set transparency=3
+set guifont=Menlo:h11
+set linespace=2
 set antialias
 
-map <Leader>1 :set guifont=Menlo:h11 linespace=2
-map <Leader>2 :set guifont=Monaco:h11 linespace=0
-map <Leader>3 :set guifont=Monaco:h10 linespace=0
+map <Leader>1 :set guifont=Menlo:h11:set linespace=2
+map <Leader>2 :set guifont=Monaco:h11:set linespace=0
+map <Leader>3 :set guifont=Monaco:h10:set linespace=0
 
 map <Leader>4 :color louver:set transparency=3
 map <Leader>5 :color mayansmoke:set transparency=2
@@ -44,7 +49,8 @@ vmap <D-]> >gv
 macmenu Window.Toggle\ Full\ Screen\ Mode key=<D-CR>
 
 " Clear shortcuts
-macmenu &File.New\ Tab key=<nop>
+macmenu &File.New\ Tab key=<D-N>
+macmenu &File.Open\ Tab\.\.\. key=<nop>
 macmenu &File.Close\ Window key=<nop>
 
 " Persistent undo across opens of a given file
@@ -64,7 +70,9 @@ imap <D-W> <Esc>:Bclose<CR>
 " commandt
 map <D-t> :CommandT<CR>
 imap <D-t> <Esc>:CommandT<CR>
-let g:CommandTMaxHeight=30
+map <D-T> :CommandTBuffer<CR>
+imap <D-T> <Esc>:CommandTBuffer<CR>
+let g:CommandTMaxHeight=20
 
 " conqueshell
 function StartTerm()
@@ -84,7 +92,7 @@ map <D-/> <plug>NERDCommenterToggle<CR>
 " (everything from here down is NERDtree stuff from Janus basically)
 
 autocmd VimEnter * call s:CdIfDirectory(expand("<amatch>"))
-autocmd FocusGained * call s:UpdateNERDTree()
+"autocmd FocusGained * call s:UpdateNERDTree()
 autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
 
 " Close all open buffers on entering a window if the only
@@ -174,7 +182,7 @@ function ChangeDirectory(dir, ...)
   execute "cd " . fnameescape(a:dir)
   let stay = exists("a:1") ? a:1 : 1
 
-  NERDTree
+  "NERDTree
 
   if !stay
     wincmd p

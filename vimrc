@@ -16,11 +16,22 @@ set softtabstop=2
 set expandtab
 set list listchars=tab:\ \ ,trail:·
 
+" Normalize the behavior of Y to match other capital letters
+" nnoremap 
+
+" History and undo
+set history=1000
+set undolevels=2000
+
 " Searching
 set hlsearch
 set incsearch
 set ignorecase
 set smartcase
+
+" Leaders
+let mapleader = "\\"
+let maplocalleader = "-"
 
 " Tab completion and Command-T ignores
 set wildmode=list:longest,list:full
@@ -43,10 +54,6 @@ if has("autocmd")
     \| exe "normal g'\"" | endif
 endif
 
-" Don't use modelines because who cares
-set modelines=0
-set nomodeline
-
 " Default color scheme for console vim
 color desert
 
@@ -62,6 +69,12 @@ runtime! macros/matchit.vim
 
 " map 'jj' to leave insert mode
 imap jj <Esc>
+imap kj <Esc>
+imap jk <Esc>
+
+" quick macros!
+nnoremap <Space> @q
+nnoremap <S-Space> qq
 
 " map <C-h> to remove search highlights
 map <C-h> :noh<CR>
@@ -73,6 +86,17 @@ vnoremap <Down> gj
 vnoremap <Up> gk
 inoremap <Down> <C-o>gj
 inoremap <Up> <C-o>gk
+
+" Evaluate arbitrary Ruby one-liners
+map <C-e> yyV:!ruby -e "puts <C-r>0"<CR>
+imap <C-e> <Esc><C-e>
+
+" Execute arbitrary selections in Ruby
+vmap <C-e> :!ruby<CR>
+
+" Switch buffers by number with M-Tab
+map <M-TAB> :b
+imap <M-TAB> <Esc><M-TAB>
 
 " when there's wrapping, show what you can instead of not showing incomplete lines
 set display+=lastline
@@ -113,6 +137,9 @@ function! <SID>SynStack()
 endfunc
 nmap <C-S-P> :call <SID>SynStack()<CR>
 
+" w!! -> sudo write
+cmap w!! w !sudo tee % >/dev/null
+
 " pathogen + bundle settings
 filetype off
 call pathogen#runtime_append_all_bundles()
@@ -121,7 +148,18 @@ call pathogen#runtime_append_all_bundles()
 let g:miniBufExplMapCTabSwitchBufs = 1  " C-Tab to switch buffers in the current window (in insert mode too)
 inoremap <C-TAB> <Esc><C-TAB>
 inoremap <C-S-TAB> <Esc><C-S-TAB>
-let g:miniBufExplMapWindowNavArrows = 1 " ctrl + arrow keys move from window to window
+
+let g:miniBufExplMapWindowNavArrows = 1 " ctrl + arrow keys move from window to window, also ctrl + hjkl
+" disabled since c-h is currently for clearing highlights
+"nnoremap <C-h> <C-w>h
+"nnoremap <C-j> <C-w>j
+"nnoremap <C-k> <C-w>k
+"nnoremap <C-l> <C-w>l
+"inoremap <C-h> <Esc><C-h>
+"inoremap <C-j> <Esc><C-j>
+"inoremap <C-k> <Esc><C-k>
+"inoremap <C-l> <Esc><C-l>
+
 let g:miniBufExplModSelTarget = 1       " no idea what this does, but I put it in so I guess it's cool
 
 " nerdtree (lots of NERDtree-specific stuff in gvimrc too)
@@ -135,3 +173,35 @@ au FileType python set shiftwidth=4 softtabstop=4 textwidth=79
 au FileType actionscript set shiftwidth=4 softtabstop=4
 au FileType javascript set shiftwidth=4 softtabstop=4
 au FileType css set shiftwidth=4 softtabstop=4
+au FileType scss set shiftwidth=4 softtabstop=4
+au FileType actionscript set smartindent noexpandtab tabstop=4 shiftwidth=4
+
+function! TextEnableCodeSnip(filetype,start,end,textSnipHl) abort
+  let ft=toupper(a:filetype)
+  let group='textGroup'.ft
+  if exists('b:current_syntax')
+    let s:current_syntax=b:current_syntax
+    " Remove current syntax definition, as some syntax files (e.g. cpp.vim)
+    " do nothing if b:current_syntax is defined.
+    unlet b:current_syntax
+  endif
+  execute 'syntax include @'.group.' syntax/'.a:filetype.'.vim'
+  try
+    execute 'syntax include @'.group.' after/syntax/'.a:filetype.'.vim'
+  catch
+  endtry
+  if exists('s:current_syntax')
+    let b:current_syntax=s:current_syntax
+  else
+    unlet b:current_syntax
+  endif
+  execute 'syntax region textSnip'.ft.'
+  \ matchgroup='.a:textSnipHl.'
+  \ start="'.a:start.'" end="'.a:end.'"
+  \ contains=@'.group
+endfunction
+
+au FileType org call TextEnableCodeSnip('sh',         '=sh=',   '=end=', 'SpecialComment')
+au FileType org call TextEnableCodeSnip('ruby',       '=ruby=', '=end=', 'SpecialComment')
+au FileType org call TextEnableCodeSnip('javascript', '=js=',   '=end=', 'SpecialComment')
+au FileType org call TextEnableCodeSnip('sql',        '=sql=',  '=end=', 'SpecialComment')
