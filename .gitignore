@@ -1,4 +1,7 @@
 .DS_Store
+bundle/*
 backup/*
 undo/*
 .netrwhist
+
+!bundle/vundle

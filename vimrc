@@ -1,4 +1,11 @@
 set nocompatible
+filetype off
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+Bundle 'gmarik/vundle'
+
+Bundle 'tpope/vim-fugitive'
 
 " The basics
 set number
@@ -168,5 +175,6 @@ au FileType javascript set shiftwidth=4 softtabstop=4
 au FileType css set shiftwidth=4 softtabstop=4
 au FileType scss set shiftwidth=4 softtabstop=4
 au FileType actionscript set smartindent noexpandtab tabstop=4 softtabstop=4 shiftwidth=4
-"
 "au BufRead,BufNewFile *.txt call s:setupWrapping()
+
+filetype plugin indent on
