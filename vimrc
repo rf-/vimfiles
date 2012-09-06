@@ -1,11 +1,4 @@
 set nocompatible
-filetype off
-
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-Bundle 'gmarik/vundle'
-
-Bundle 'tpope/vim-fugitive'
 
 " The basics
 set number
@@ -37,22 +30,8 @@ set incsearch
 set ignorecase
 set smartcase
 
-" Leaders
-"let mapleader = "\\"
-"let maplocalleader = "-"
-
-" Tab completion and Command-T ignores
-"set wildmode=list:longest,list:full
-"set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,test/fixtures/*,vendor/gems/*,.idea
-
 " Show the status bar
 set laststatus=2
-
-"" Remember last location in file
-"if has("autocmd")
-"  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
-"    \| exe "normal g'\"" | endif
-"endif
 
 " Default color scheme for console vim
 color desert
@@ -63,9 +42,6 @@ set directory=~/.vim/backup//
 
 " MacVIM shift+arrow-keys behavior (has to be in .vimrc)
 let macvim_hig_shift_movement = 1
-
-"" % to bounce from do to end etc.
-"runtime! macros/matchit.vim
 
 " Abbreviations etc.
 imap <C-l>  => 
@@ -98,9 +74,19 @@ imap <C-e> <Esc><C-e>
 " Execute arbitrary selections in Ruby
 vmap <C-e> :!ruby<CR>
 
-" Switch buffers by number with M-Tab
-map <M-TAB> :b
-imap <M-TAB> <Esc><M-TAB>
+"" Remember last location in file
+"if has("autocmd")
+"  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+"    \| exe "normal g'\"" | endif
+"endif
+
+" Leaders
+"let mapleader = "\\"
+"let maplocalleader = "-"
+
+" Tab completion and Command-T ignores
+"set wildmode=list:longest,list:full
+"set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,test/fixtures/*,vendor/gems/*,.idea
 
 "function s:setupWrapping()
 "  set wrap
@@ -164,6 +150,9 @@ imap <M-TAB> <Esc><M-TAB>
 "
 "au FileType atlas set filetype=actionscript
 
+"" % to bounce from do to end etc.
+"runtime! macros/matchit.vim
+
 "" File Types
 
 " Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
@@ -176,5 +165,16 @@ au FileType css set shiftwidth=4 softtabstop=4
 au FileType scss set shiftwidth=4 softtabstop=4
 au FileType actionscript set smartindent noexpandtab tabstop=4 softtabstop=4 shiftwidth=4
 "au BufRead,BufNewFile *.txt call s:setupWrapping()
+
+"" Vundle
+
+filetype off
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+Bundle 'gmarik/vundle'
+
+Bundle 'tpope/vim-fugitive'
+Bundle 'mileszs/ack.vim'
 
 filetype plugin indent on
