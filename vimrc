@@ -72,6 +72,9 @@ imap jj <Esc>
 imap kj <Esc>
 imap jk <Esc>
 
+" map <C-l> in insert mode to add a hashrocket
+imap <C-l>  => 
+
 " quick macros!
 nnoremap <Space> @q
 nnoremap <S-Space> qq
@@ -170,11 +173,10 @@ filetype plugin indent on
 
 au FileType make set noexpandtab
 au FileType python set shiftwidth=4 softtabstop=4 textwidth=79
-au FileType actionscript set shiftwidth=4 softtabstop=4
 au FileType javascript set shiftwidth=4 softtabstop=4
 au FileType css set shiftwidth=4 softtabstop=4
 au FileType scss set shiftwidth=4 softtabstop=4
-au FileType actionscript set smartindent noexpandtab tabstop=4 shiftwidth=4
+au FileType actionscript set smartindent noexpandtab tabstop=4 softtabstop=4 shiftwidth=4
 
 function! TextEnableCodeSnip(filetype,start,end,textSnipHl) abort
   let ft=toupper(a:filetype)
@@ -205,3 +207,5 @@ au FileType org call TextEnableCodeSnip('sh',         '=sh=',   '=end=', 'Specia
 au FileType org call TextEnableCodeSnip('ruby',       '=ruby=', '=end=', 'SpecialComment')
 au FileType org call TextEnableCodeSnip('javascript', '=js=',   '=end=', 'SpecialComment')
 au FileType org call TextEnableCodeSnip('sql',        '=sql=',  '=end=', 'SpecialComment')
+
+au FileType atlas set filetype=actionscript

@@ -12,12 +12,12 @@ set antialias
 
 map <Leader>1 :set guifont=Menlo:h11:set linespace=2
 map <Leader>2 :set guifont=Monaco:h11:set linespace=0
-map <Leader>3 :set guifont=Monaco:h10:set linespace=0
+map <Leader>3 :set guifont="Luxi Mono Regular":h12:set linespace=1
 
 map <Leader>4 :color louver:set transparency=3
 map <Leader>5 :color mayansmoke:set transparency=2
 map <Leader>6 :color pyte:set transparency=2
-map <Leader>7 :let g:solarized_style='light':color solarized:set transparency=3
+map <Leader>7 :let g:solarized_style='light':color solarized:hi ColorColumn guibg=#f7f1dc:set transparency=3
 map <Leader>8 :let g:solarized_style='dark':color solarized:set transparency=3
 map <Leader>9 :color molokai:set transparency=2
 map <Leader>0 :color railscast:set transparency=2
