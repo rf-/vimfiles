@@ -172,9 +172,38 @@ filetype off
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
+
 Bundle 'gmarik/vundle'
 
-Bundle 'tpope/vim-fugitive'
 Bundle 'mileszs/ack.vim'
+  map <D-F> :Ack<space>
+  imap <D-F> <Esc>:Ack<space>
+
+Bundle 'rf-/vim-bclose'
+  nmap <D-W> :Bclose<CR>
+  imap <D-W> <Esc>:Bclose<CR>
+  "nmap <C-D-W> :Bclose!<CR>
+  "imap <C-D-W> <Esc>:Bclose!<CR>
+
+Bundle 'Command-T'
+  let g:CommandTMaxHeight=20
+  map <D-t> :CommandTBuffer<CR>
+  imap <D-t> <Esc>:CommandTBuffer<CR>
+  map <D-T> :CommandT<CR>
+  imap <D-T> <Esc>:CommandT<CR>
+
+Bundle 'fugitive.vim'
+
+Bundle 'Gundo'
+  nnoremap <D-u> :GundoToggle<CR>
+  let g:gundo_right=1
+  let g:gundo_help=0
+
+Bundle 'rails.vim'
+
+Bundle 'Solarized'
+
+Bundle 'The-NERD-Commenter'
+  map <D-/> <plug>NERDCommenterToggle<CR>
 
 filetype plugin indent on

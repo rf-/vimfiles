@@ -14,7 +14,6 @@ behave xterm
 
 " no scrollbars or toolbar
 set go=egm
-"set go-=l set go-=L set go-=r set go-=R set go-=T
 
 " Fullscreen takes up entire screen
 set fuoptions=maxhorz,maxvert
@@ -33,38 +32,13 @@ macmenu &File.New\ Tab key=<D-N>
 macmenu &File.Open\ Tab\.\.\. key=<nop>
 macmenu &File.Close\ Window key=<nop>
 
-"" ack
-"map <D-F> :Ack<space>
-"imap <D-F> <Esc>:Ack<space>
-"
-"" bclose
-"nmap <D-W> :Bclose<CR>
-"imap <D-W> <Esc>:Bclose<CR>
-""nmap <C-D-W> :Bclose!<CR>
-""imap <C-D-W> <Esc>:Bclose!<CR>
-"
-"" commandt
-"map <D-t> :CommandT<CR>
-"imap <D-t> <Esc>:CommandT<CR>
-"map <D-T> :CommandTBuffer<CR>
-"imap <D-T> <Esc>:CommandTBuffer<CR>
-"let g:CommandTMaxHeight=20
-"
-"" conqueshell
+
 "function StartTerm()
 "  execute 'ConqueTerm ' . $SHELL . ' --login'
 "  setlocal listchars=tab:\ \ 
 "endfunction
 "map <D-e> :call StartTerm()<CR>
-"
-"" gundo
-"nnoremap <D-u> :GundoToggle<CR>
-"let g:gundo_right=1
-"let g:gundo_help=0
-"
-"" nerdcommenter
-"map <D-/> <plug>NERDCommenterToggle<CR>
-"
+
 "" (everything from here down is NERDtree stuff from Janus basically)
 "
 "autocmd VimEnter * call s:CdIfDirectory(expand("<amatch>"))
