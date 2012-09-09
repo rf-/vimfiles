@@ -14,11 +14,11 @@ snippet ead
 		${3}
 	<% end %>
 snippet rp
-	<%= render :partial => '${1:item}' %>
+	<%= render partial: '${1:item}' %>
 snippet rpl
-	<%= render :partial => '${1:item}', :locals => { :${2:name} => '${3:value}'$4 } %>
+	<%= render partial: '${1:item}', locals: {${2:name}: '${3:value}'$4} %>
 snippet rpc
-	<%= render :partial => '${1:item}', :collection => ${2:items} %>
+	<%= render partial: '${1:item}', collection: ${2:items} %>
 snippet yield
 	<%= yield ${1::content_symbol} %>${2}
 snippet conf

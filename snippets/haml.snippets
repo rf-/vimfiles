@@ -1,0 +1,58 @@
+snippet t
+	%table
+		%tr
+			%th
+				${1:headers}
+		%tr
+			%td
+				${2:headers}
+snippet ul
+	%ul
+		%li
+			${1:item}
+		%li
+snippet rp
+	= render partial: '${1:partial}'
+snippet rpl
+	= render partial: '${1:partial}', locals: {}
+snippet rpc
+	= render partial: '${1:partial}', collection: @$1
+snippet ead
+	- ${1}.each do |${2}|
+		${3}
+snippet conf
+	- content_for :${1:head} do
+		${2}
+snippet ct
+	= content_tag '${1:DIV}', ${2:content}${3:,options}
+snippet ff
+	= form_for @${1:model} do |f|
+		${2}
+snippet ffcb
+	= ${1:f}.check_box :${2:attribute}
+snippet ffff
+	= ${1:f}.file_field :${2:attribute}
+snippet ffhf
+	= ${1:f}.hidden_field :${2:attribute}
+snippet ffl
+	= ${1:f}.label :${2:attribute}, '${3:$2}'
+snippet ffpf
+	= ${1:f}.password_field :${2:attribute}
+snippet ffrb
+	= ${1:f}.radio_button :${2:attribute}, :${3:tag_value}
+snippet ffs
+	= ${1:f}.submit "${2:submit}"
+snippet ffta
+	= ${1:f}.text_area :${2:attribute}
+snippet fftf
+	= ${1:f}.text_field :${2:attribute}
+snippet fields
+	= fields_for :${1:model}, @$1 do |${2:f}|
+		${3}
+snippet it
+	= image_tag "${1}"${2}
+snippet lim
+	= link_to ${1:model}.${2:name}, ${3:$1}_path(${4:$1})
+snippet lt
+	= link_to "${1:name}", ${2:dest}
+
