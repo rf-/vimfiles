@@ -33,9 +33,6 @@ set smartcase
 " Show the status bar
 set laststatus=2
 
-" Default color scheme for console vim
-color desert
-
 " Directories for swp files
 set backupdir=~/.vim/backup//
 set directory=~/.vim/backup//
@@ -137,6 +134,7 @@ Bundle 'wincent/Command-T'
   map <D-T> :CommandT<CR>
   imap <D-T> <Esc>:CommandT<CR>
 
+Bundle 'tpope/vim-git'
 Bundle 'tpope/vim-fugitive'
   nmap \gs :Gstatus<CR>
   imap \gs <Esc>\gs
@@ -144,6 +142,14 @@ Bundle 'tpope/vim-fugitive'
   nmap \gc :Gcommit<CR>
   imap \gc <Esc>\gc
   vmap \gc <Esc>\gc
+
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-unimpaired'
+
+Bundle 'tpope/vim-haml'
+Bundle 'tpope/vim-markdown'
+Bundle 'bbommarito/vim-slim'
 
 Bundle 'sjl/gundo.vim'
   nnoremap <D-u> :GundoToggle<CR>
@@ -153,6 +159,8 @@ Bundle 'sjl/gundo.vim'
 Bundle 'tpope/vim-rails'
 
 Bundle 'Solarized'
+  let g:solarized_style='light'
+  color solarized
 
 Bundle 'scrooloose/nerdcommenter'
   map <D-/> <plug>NERDCommenterToggle<CR>

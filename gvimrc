@@ -1,4 +1,3 @@
-let g:solarized_style='light'
 color Tomorrow-Night-Eighties
 set transparency=3
 set guifont=Pragmata:h13
