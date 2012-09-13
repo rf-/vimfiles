@@ -91,22 +91,6 @@ endf
 command! -nargs=1 PasteRegister :call PasteRegister(<f-args>)
 nmap \p :registers<CR>:PasteRegister 
 
-"" File Types
-
-" Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
-au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru} set ft=ruby
-
-" Wrapping for text files
-au BufRead,BufNewFile *.txt set wrap wm=2 textwidth=72
-
-au FileType atlas set filetype=actionscript
-au FileType make set noexpandtab
-au FileType python set shiftwidth=4 softtabstop=4 textwidth=79
-au FileType javascript set shiftwidth=4 softtabstop=4
-au FileType css set shiftwidth=4 softtabstop=4
-au FileType scss set shiftwidth=4 softtabstop=4
-au FileType actionscript set smartindent noexpandtab tabstop=4 softtabstop=4 shiftwidth=4
-
 "" Vundle
 
 filetype off
@@ -115,6 +99,13 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
+
+Bundle 'wincent/Command-T'
+  let g:CommandTMaxHeight=20
+  map <D-t> :CommandTBuffer<CR>
+  imap <D-t> <Esc>:CommandTBuffer<CR>
+  map <D-T> :CommandT<CR>
+  imap <D-T> <Esc>:CommandT<CR>
 
 Bundle 'chriskempson/base16-vim'
 Bundle 'kchmck/vim-coffee-script'
@@ -126,13 +117,6 @@ Bundle 'mileszs/ack.vim'
 Bundle 'rf-/vim-bclose'
   nmap <D-W> :Bclose<CR>
   imap <D-W> <Esc>:Bclose<CR>
-
-Bundle 'wincent/Command-T'
-  let g:CommandTMaxHeight=20
-  map <D-t> :CommandTBuffer<CR>
-  imap <D-t> <Esc>:CommandTBuffer<CR>
-  map <D-T> :CommandT<CR>
-  imap <D-T> <Esc>:CommandT<CR>
 
 Bundle 'tpope/vim-git'
 Bundle 'tpope/vim-fugitive'
@@ -187,6 +171,9 @@ Bundle 'fholgado/minibufexpl.vim'
   " No idea what this does, but I put it in so I guess it's cool
   let g:miniBufExplModSelTarget = 1
 
+  " Fix horrific speed issue
+  let g:miniBufExplCheckDupeBufs = 0
+
 Bundle 'scrooloose/nerdtree'
   let NERDTreeIgnore=['\.rbc$', '\~$']
   map <Leader>n :NERDTreeToggle<CR>
@@ -195,4 +182,23 @@ Bundle 'tomtom/tlib_vim'
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'garbas/vim-snipmate'
 
+Bundle 'pangloss/vim-javascript'
+Bundle 'briancollins/vim-jst'
+
 filetype plugin indent on
+
+"" File Types
+
+" Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
+au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru} set ft=ruby
+
+" Wrapping for text files
+au BufRead,BufNewFile *.txt set wrap wm=2 textwidth=72
+
+au FileType atlas set filetype=actionscript
+au FileType make set noexpandtab
+au FileType python set shiftwidth=4 softtabstop=4 textwidth=79
+au FileType javascript set shiftwidth=4 softtabstop=4
+au FileType css set shiftwidth=4 softtabstop=4
+au FileType scss set shiftwidth=4 softtabstop=4
+au FileType actionscript set smartindent noexpandtab tabstop=4 softtabstop=4 shiftwidth=4
