@@ -5,6 +5,7 @@ set number
 set ruler
 set hidden
 syntax on
+color Tomorrow
 
 " Set encoding
 set encoding=utf-8
@@ -144,7 +145,6 @@ Bundle 'tpope/vim-rails'
 
 Bundle 'Solarized'
   let g:solarized_style='light'
-  color solarized
 
 Bundle 'scrooloose/nerdcommenter'
   map <D-/> <plug>NERDCommenterToggle<CR>
