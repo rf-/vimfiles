@@ -49,7 +49,7 @@ nnoremap <Space> @s
 nnoremap <S-Space> qs
 
 " Map \h to remove search highlights
-map \h :noh<CR>
+map <Leader>h :noh<CR>
 
 " Arrow keys scroll by visible lines, not absolute lines
 nnoremap <Down> gj
@@ -85,12 +85,12 @@ set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*,.idea
 " % to bounce from do to end etc.
 runtime! macros/matchit.vim
 
-" <C-z> to see registers and pick by number
+" \p to see registers and pick by number
 function! PasteRegister(register)
   silent exec "normal \"" . a:register . "p"
 endf
 command! -nargs=1 PasteRegister :call PasteRegister(<f-args>)
-nmap \p :registers<CR>:PasteRegister 
+nmap <Leader>p :registers<CR>:PasteRegister 
 
 "" Vundle
 
@@ -121,12 +121,12 @@ Bundle 'rf-/vim-bclose'
 
 Bundle 'tpope/vim-git'
 Bundle 'tpope/vim-fugitive'
-  nmap \gs :Gstatus<CR>
-  imap \gs <Esc>\gs
-  vmap \gs <Esc>\gs
-  nmap \gc :Gcommit<CR>
-  imap \gc <Esc>\gc
-  vmap \gc <Esc>\gc
+  nmap <Leader>gs :Gstatus<CR>
+  imap <Leader>gs <Esc>\gs
+  vmap <Leader>gs <Esc>\gs
+  nmap <Leader>gc :Gcommit<CR>
+  imap <Leader>gc <Esc>\gc
+  vmap <Leader>gc <Esc>\gc
 
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
