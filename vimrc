@@ -131,6 +131,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
+Bundle 'tpope/vim-speeddating'
 
 Bundle 'tpope/vim-haml'
 Bundle 'tpope/vim-markdown'
@@ -154,8 +155,8 @@ Bundle 'ervandew/supertab'
 Bundle 'fholgado/minibufexpl.vim'
   " C-Tab to switch buffers in the current window (in insert mode too)
   let g:miniBufExplMapCTabSwitchBufs = 1
-  inoremap <C-TAB> <Esc><C-TAB>
-  inoremap <C-S-TAB> <Esc><C-S-TAB>
+  imap <C-TAB> <Esc><C-TAB>
+  imap <C-S-TAB> <Esc><C-S-TAB>
 
   " ctrl + arrow keys move from window to window
   let g:miniBufExplMapWindowNavArrows = 1
@@ -163,10 +164,10 @@ Bundle 'fholgado/minibufexpl.vim'
   nnoremap <C-j> <C-w>j
   nnoremap <C-k> <C-w>k
   nnoremap <C-l> <C-w>l
-  inoremap <C-h> <Esc><C-h>
-  inoremap <C-j> <Esc><C-j>
-  inoremap <C-k> <Esc><C-k>
-  inoremap <C-l> <Esc><C-l>
+  imap <C-h> <Esc><C-h>
+  imap <C-j> <Esc><C-j>
+  imap <C-k> <Esc><C-k>
+  imap <C-l> <Esc><C-l>
 
   " No idea what this does, but I put it in so I guess it's cool
   let g:miniBufExplModSelTarget = 1
@@ -184,6 +185,22 @@ Bundle 'garbas/vim-snipmate'
 
 Bundle 'pangloss/vim-javascript'
 Bundle 'briancollins/vim-jst'
+
+Bundle 'majutsushi/tagbar'
+  map <Leader>t :TagbarToggle<CR>
+
+Bundle 'jpalardy/vim-slime'
+  let g:slime_target = 'tmux'
+
+Bundle 'utl.vim'
+"Bundle 'jceb/vim-orgmode'
+Bundle 'xolox/vim-notes'
+  let g:notes_directory = '~/.vim/notes'
+
+Bundle 'mjbrownie/swapit'
+  let g:swap_lists = [
+    \{'name':'todo_done', 'options':
+    \['TODO', 'DONE']}]
 
 filetype plugin indent on
 
