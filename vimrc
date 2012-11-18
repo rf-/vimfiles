@@ -65,6 +65,9 @@ set display+=lastline
 " Allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
+" Round indent operations to shiftwidth
+set shiftround
+
 " Evaluate arbitrary Ruby one-liners
 map <C-e> yyV:!ruby -e "puts <C-r>0"<CR>
 imap <C-e> <Esc><C-e>
@@ -178,6 +181,7 @@ Bundle 'fholgado/minibufexpl.vim'
 Bundle 'scrooloose/nerdtree'
   let NERDTreeIgnore=['\.rbc$', '\~$']
   map <Leader>n :NERDTreeToggle<CR>
+  map <Leader>N :NERDTree<CR>
 
 Bundle 'tomtom/tlib_vim'
 Bundle 'MarcWeber/vim-addon-mw-utils'
@@ -201,6 +205,8 @@ Bundle 'mjbrownie/swapit'
   let g:swap_lists = [
     \{'name':'todo_done', 'options':
     \['TODO', 'DONE']}]
+
+Bundle 'jnwhiteh/vim-golang'
 
 filetype plugin indent on
 
