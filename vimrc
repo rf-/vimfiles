@@ -68,11 +68,11 @@ set backspace=indent,eol,start
 " Round indent operations to shiftwidth
 set shiftround
 
-" Evaluate arbitrary Ruby one-liners
+" Evaluate current line as a Ruby expression
 map <C-e> yyV:!ruby -e "puts <C-r>0"<CR>
 imap <C-e> <Esc><C-e>
 
-" Execute arbitrary selections in Ruby
+" Run selection as a Ruby script
 vmap <C-e> :!ruby<CR>
 
 " Remember last location in file
@@ -94,6 +94,9 @@ function! PasteRegister(register)
 endf
 command! -nargs=1 PasteRegister :call PasteRegister(<f-args>)
 nmap <Leader>p :registers<CR>:PasteRegister 
+
+" Open splits to the right and below
+set splitright splitbelow
 
 "" Vundle
 
@@ -207,6 +210,8 @@ Bundle 'mjbrownie/swapit'
     \['TODO', 'DONE']}]
 
 Bundle 'jnwhiteh/vim-golang'
+
+Bundle 'noahfrederick/Hemisu'
 
 filetype plugin indent on
 
