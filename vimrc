@@ -5,7 +5,7 @@ set number
 set ruler
 set hidden
 syntax on
-color Tomorrow
+color Tomorrow-Night-Eighties
 
 " Set encoding
 set encoding=utf-8
@@ -107,15 +107,14 @@ call vundle#rc()
 
 Bundle 'gmarik/vundle'
 
+"" Navigation and search
+
 Bundle 'wincent/Command-T'
   let g:CommandTMaxHeight=20
   map <D-t> :CommandTBuffer<CR>
   imap <D-t> <Esc>:CommandTBuffer<CR>
   map <D-T> :CommandT<CR>
   imap <D-T> <Esc>:CommandT<CR>
-
-Bundle 'chriskempson/base16-vim'
-Bundle 'kchmck/vim-coffee-script'
 
 Bundle 'mileszs/ack.vim'
   map <D-F> :Ack<space>
@@ -124,39 +123,6 @@ Bundle 'mileszs/ack.vim'
 Bundle 'rf-/vim-bclose'
   nmap <D-W> :Bclose<CR>
   imap <D-W> <Esc>:Bclose<CR>
-
-Bundle 'tpope/vim-git'
-Bundle 'tpope/vim-fugitive'
-  nmap <Leader>gs :Gstatus<CR>
-  imap <Leader>gs <Esc>\gs
-  vmap <Leader>gs <Esc>\gs
-  nmap <Leader>gc :Gcommit<CR>
-  imap <Leader>gc <Esc>\gc
-  vmap <Leader>gc <Esc>\gc
-
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-unimpaired'
-Bundle 'tpope/vim-speeddating'
-
-Bundle 'tpope/vim-haml'
-Bundle 'tpope/vim-markdown'
-Bundle 'bbommarito/vim-slim'
-
-Bundle 'sjl/gundo.vim'
-  nnoremap <D-u> :GundoToggle<CR>
-  let g:gundo_right=1
-  let g:gundo_help=0
-
-Bundle 'tpope/vim-rails'
-
-Bundle 'Solarized'
-  let g:solarized_style='light'
-
-Bundle 'scrooloose/nerdcommenter'
-  map <D-/> <plug>NERDCommenterToggle<CR>
-
-Bundle 'ervandew/supertab'
 
 Bundle 'fholgado/minibufexpl.vim'
   " C-Tab to switch buffers in the current window (in insert mode too)
@@ -186,15 +152,57 @@ Bundle 'scrooloose/nerdtree'
   map <Leader>n :NERDTreeToggle<CR>
   map <Leader>N :NERDTree<CR>
 
+Bundle 'majutsushi/tagbar'
+  map <Leader>t :TagbarToggle<CR>
+
+"" Syntax, etc.
+
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'tpope/vim-git'
+Bundle 'tpope/vim-haml'
+Bundle 'tpope/vim-markdown'
+Bundle 'bbommarito/vim-slim'
+Bundle 'pangloss/vim-javascript'
+Bundle 'briancollins/vim-jst'
+Bundle 'jnwhiteh/vim-golang'
+Bundle 'digitaltoad/vim-jade'
+
+"" Color schemes
+
+Bundle 'chriskempson/base16-vim'
+Bundle 'noahfrederick/Hemisu'
+Bundle 'Solarized'
+  let g:solarized_style='light'
+
+"" Misc.
+
+Bundle 'tpope/vim-fugitive'
+  nmap <Leader>gs :Gstatus<CR>
+  imap <Leader>gs <Esc>\gs
+  vmap <Leader>gs <Esc>\gs
+  nmap <Leader>gc :Gcommit<CR>
+  imap <Leader>gc <Esc>\gc
+  vmap <Leader>gc <Esc>\gc
+
+Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-unimpaired'
+Bundle 'tpope/vim-speeddating'
+
+Bundle 'sjl/gundo.vim'
+  nnoremap <D-u> :GundoToggle<CR>
+  let g:gundo_right=1
+  let g:gundo_help=0
+
+Bundle 'scrooloose/nerdcommenter'
+  map <D-/> <plug>NERDCommenterToggle<CR>
+
+Bundle 'ervandew/supertab'
+
 Bundle 'tomtom/tlib_vim'
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'garbas/vim-snipmate'
-
-Bundle 'pangloss/vim-javascript'
-Bundle 'briancollins/vim-jst'
-
-Bundle 'majutsushi/tagbar'
-  map <Leader>t :TagbarToggle<CR>
 
 Bundle 'jpalardy/vim-slime'
   let g:slime_target = 'tmux'
@@ -208,10 +216,6 @@ Bundle 'mjbrownie/swapit'
   let g:swap_lists = [
     \{'name':'todo_done', 'options':
     \['TODO', 'DONE']}]
-
-Bundle 'jnwhiteh/vim-golang'
-
-Bundle 'noahfrederick/Hemisu'
 
 filetype plugin indent on
 
