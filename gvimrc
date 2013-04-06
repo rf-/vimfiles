@@ -1,8 +1,7 @@
-color Tomorrow-Night-Eighties
+color Tomorrow-Night
 set guifont=Pragmata:h13
 set linespace=0
 set antialias
-set colorcolumn=80
 
 set lines=60
 set columns=115
@@ -16,12 +15,6 @@ set go=egm
 " Fullscreen takes up entire screen
 set fuoptions=maxhorz,maxvert
 
-" TextMate-style indentation
-nmap <D-[> <<
-nmap <D-]> >>
-vmap <D-[> <gv
-vmap <D-]> >gv
-
 " Command-Return for fullscreen
 macmenu Window.Toggle\ Full\ Screen\ Mode key=<D-CR>
 
@@ -29,3 +22,8 @@ macmenu Window.Toggle\ Full\ Screen\ Mode key=<D-CR>
 macmenu &File.New\ Tab key=<D-N>
 macmenu &File.Open\ Tab\.\.\. key=<nop>
 macmenu &File.Close\ Window key=<nop>
+
+" Font size shortcuts
+map <Leader>fs :set guifont=Pragmata:h13<CR>
+map <Leader>fm :set guifont=Pragmata:h16<CR>
+map <Leader>fl :set guifont=Pragmata:h18<CR>

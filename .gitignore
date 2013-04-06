@@ -6,3 +6,4 @@ undo/*
 notes/*
 
 !bundle/vundle
+!bundle/paredit

@@ -5,7 +5,15 @@ set number
 set ruler
 set hidden
 syntax on
-color Tomorrow-Night-Eighties
+color Tomorrow
+hi SignColumn ctermbg=255
+set colorcolumn=80
+
+" Mouse support in the terminal
+if !has("gui_running")
+  set mouse=a
+  set ttymouse=xterm2
+end
 
 " Set encoding
 set encoding=utf-8
@@ -21,9 +29,12 @@ set list listchars=tab:\ \ ,trail:·
 " Normalize the behavior of Y to match other capital letters
 nnoremap Y y$
 
-" History and undo
+" History and persistent undo
 set history=1000
+set undofile
+set undodir=~/.vim/undo
 set undolevels=2000
+set undoreload=20000
 
 " Searching
 set hlsearch
@@ -40,9 +51,6 @@ set directory=~/.vim/backup//
 
 " MacVIM shift+arrow-keys behavior (has to be in .vimrc)
 let macvim_hig_shift_movement = 1
-
-" Abbreviations etc.
-imap <C-l>  => 
 
 " Quick macros!
 nnoremap <Space> @s
@@ -64,9 +72,6 @@ set display+=lastline
 
 " Allow backspacing over everything in insert mode
 set backspace=indent,eol,start
-
-" Round indent operations to shiftwidth
-set shiftround
 
 " Evaluate current line as a Ruby expression
 map <C-e> yyV:!ruby -e "puts <C-r>0"<CR>
@@ -95,8 +100,22 @@ endf
 command! -nargs=1 PasteRegister :call PasteRegister(<f-args>)
 nmap <Leader>p :registers<CR>:PasteRegister 
 
-" Open splits to the right and below
-set splitright splitbelow
+" TextMate-style indentation
+nmap <D-[> <<
+nmap <D-]> >>
+vmap <D-[> <gv
+vmap <D-]> >gv
+nmap <Leader>[ <<
+nmap <Leader>] >>
+vmap <Leader>[ <gv
+vmap <Leader>] >gv
+
+" Disable annoying :only bindings
+map <C-w>o <Nop>
+map <C-w><C-o> <Nop>
+
+" Fix highlighting in SignColumn
+highlight clear SignColumn
 
 "" Vundle
 
@@ -115,10 +134,12 @@ Bundle 'wincent/Command-T'
   imap <D-t> <Esc>:CommandTBuffer<CR>
   map <D-T> :CommandT<CR>
   imap <D-T> <Esc>:CommandT<CR>
+  map <Leader>t :CommandTBuffer<CR>
+  map <Leader>T :CommandT<CR>
 
-Bundle 'mileszs/ack.vim'
-  map <D-F> :Ack<space>
-  imap <D-F> <Esc>:Ack<space>
+Bundle 'epmatsw/ag.vim'
+  map <D-F> :Ag<space>
+  imap <D-F> <Esc>:Ag<space>
 
 Bundle 'rf-/vim-bclose'
   nmap <D-W> :Bclose<CR>
@@ -153,7 +174,7 @@ Bundle 'scrooloose/nerdtree'
   map <Leader>N :NERDTree<CR>
 
 Bundle 'majutsushi/tagbar'
-  map <Leader>t :TagbarToggle<CR>
+  map <Leader>b :TagbarToggle<CR>
 
 "" Syntax, etc.
 
@@ -166,6 +187,7 @@ Bundle 'pangloss/vim-javascript'
 Bundle 'briancollins/vim-jst'
 Bundle 'jnwhiteh/vim-golang'
 Bundle 'digitaltoad/vim-jade'
+Bundle 'guns/vim-clojure-static'
 
 "" Color schemes
 
@@ -173,8 +195,13 @@ Bundle 'chriskempson/base16-vim'
 Bundle 'noahfrederick/Hemisu'
 Bundle 'Solarized'
   let g:solarized_style='light'
+Bundle 'dterei/VimCobaltColourScheme'
 
 "" Misc.
+
+Bundle 'airblade/vim-gitgutter'
+  nmap ]g :GitGutterNextHunk<CR>
+  nmap [g :GitGutterPrevHunk<CR>
 
 Bundle 'tpope/vim-fugitive'
   nmap <Leader>gs :Gstatus<CR>
@@ -196,6 +223,7 @@ Bundle 'sjl/gundo.vim'
   let g:gundo_help=0
 
 Bundle 'scrooloose/nerdcommenter'
+  map <Leader>/ <plug>NERDCommenterToggle<CR>
   map <D-/> <plug>NERDCommenterToggle<CR>
 
 Bundle 'ervandew/supertab'
@@ -207,15 +235,17 @@ Bundle 'garbas/vim-snipmate'
 Bundle 'jpalardy/vim-slime'
   let g:slime_target = 'tmux'
 
+let g:paredit_leader = '\'
+Bundle 'https://bitbucket.org/kovisoft/paredit'
+
 Bundle 'utl.vim'
-"Bundle 'jceb/vim-orgmode'
 Bundle 'xolox/vim-notes'
   let g:notes_directory = '~/.vim/notes'
 
 Bundle 'mjbrownie/swapit'
-  let g:swap_lists = [
-    \{'name':'todo_done', 'options':
-    \['TODO', 'DONE']}]
+  let g:swap_lists = [{'name':'todo_done', 'options': ['TODO', 'DONE']}]
+
+Bundle 'godlygeek/csapprox'
 
 filetype plugin indent on
 
@@ -231,6 +261,7 @@ au FileType atlas set filetype=actionscript
 au FileType make set noexpandtab
 au FileType python set shiftwidth=4 softtabstop=4 textwidth=79
 au FileType javascript set shiftwidth=4 softtabstop=4
+au FileType coffee set shiftwidth=2 softtabstop=2
 au FileType css set shiftwidth=4 softtabstop=4
 au FileType scss set shiftwidth=4 softtabstop=4
 au FileType actionscript set smartindent noexpandtab tabstop=4 softtabstop=4 shiftwidth=4
