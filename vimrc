@@ -67,6 +67,20 @@ vnoremap <Up> gk
 inoremap <Down> <C-o>gj
 inoremap <Up> <C-o>gk
 
+" Map <C-h,j,k,l> to switch between splits, in normal and insert mode
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+inoremap <C-h> <Esc><C-h>
+inoremap <C-j> <Esc><C-j>
+inoremap <C-k> <Esc><C-k>
+inoremap <C-l> <Esc><C-l>
+
+" Tab and Shift-Tab to switch between buffers
+nnoremap <Tab> :bnext<CR>
+nnoremap <S-Tab> :bprevious<CR>
+
 " When there's wrapping, show whatever instead of not showing incomplete lines
 set display+=lastline
 
@@ -99,6 +113,9 @@ function! PasteRegister(register)
 endf
 command! -nargs=1 PasteRegister :call PasteRegister(<f-args>)
 nmap <Leader>p :registers<CR>:PasteRegister 
+
+" \b to see buffers and pick by number
+nmap <Leader>b :buffers<CR>:b
 
 " TextMate-style indentation
 nmap <D-[> <<
@@ -145,36 +162,10 @@ Bundle 'rf-/vim-bclose'
   nmap <D-W> :Bclose<CR>
   imap <D-W> <Esc>:Bclose<CR>
 
-Bundle 'fholgado/minibufexpl.vim'
-  " C-Tab to switch buffers in the current window (in insert mode too)
-  let g:miniBufExplMapCTabSwitchBufs = 1
-  imap <C-TAB> <Esc><C-TAB>
-  imap <C-S-TAB> <Esc><C-S-TAB>
-
-  " ctrl + arrow keys move from window to window
-  let g:miniBufExplMapWindowNavArrows = 1
-  nnoremap <C-h> <C-w>h
-  nnoremap <C-j> <C-w>j
-  nnoremap <C-k> <C-w>k
-  nnoremap <C-l> <C-w>l
-  imap <C-h> <Esc><C-h>
-  imap <C-j> <Esc><C-j>
-  imap <C-k> <Esc><C-k>
-  imap <C-l> <Esc><C-l>
-
-  " No idea what this does, but I put it in so I guess it's cool
-  let g:miniBufExplModSelTarget = 1
-
-  " Fix horrific speed issue
-  let g:miniBufExplCheckDupeBufs = 0
-
 Bundle 'scrooloose/nerdtree'
   let NERDTreeIgnore=['\.rbc$', '\~$']
   map <Leader>n :NERDTreeToggle<CR>
   map <Leader>N :NERDTree<CR>
-
-Bundle 'majutsushi/tagbar'
-  map <Leader>b :TagbarToggle<CR>
 
 "" Syntax, etc.
 
