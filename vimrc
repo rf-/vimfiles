@@ -8,6 +8,14 @@ syntax on
 color Tomorrow
 hi SignColumn ctermbg=255
 set colorcolumn=80
+set showcmd
+
+" Automatically load external changes to files that don't have unsaved changes
+set autoread
+
+" Keep some padding between the cursor and the edge of the screen
+set scrolloff=1
+set sidescrolloff=5
 
 " Mouse support in the terminal
 if !has("gui_running")
@@ -86,6 +94,16 @@ set display+=lastline
 
 " Allow backspacing over everything in insert mode
 set backspace=indent,eol,start
+
+" Don't try to complete included files
+set complete-=i
+
+" Show matching brackets (but not for very long)
+set showmatch
+set matchtime=1
+
+" Insert/remove tabs at beginning of line based on sw instead of ts/sts
+set smarttab
 
 " Evaluate current line as a Ruby expression
 map <C-e> yyV:!ruby -e "puts <C-r>0"<CR>
