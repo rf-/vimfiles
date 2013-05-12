@@ -181,6 +181,7 @@ Bundle 'briancollins/vim-jst'
 Bundle 'jnwhiteh/vim-golang'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'guns/vim-clojure-static'
+Bundle 'vim-ruby/vim-ruby'
 
 "" Color schemes
 
@@ -239,6 +240,7 @@ Bundle 'mjbrownie/swapit'
   let g:swap_lists = [{'name':'todo_done', 'options': ['TODO', 'DONE']}]
 
 Bundle 'godlygeek/csapprox'
+Bundle 'ConradIrwin/vim-bracketed-paste'
 
 filetype plugin indent on
 
