@@ -185,7 +185,7 @@ Bundle 'epmatsw/ag.vim'
   map <D-F> :Ag<space>
   imap <D-F> <Esc>:Ag<space>
   " \a to Ag for word under cursor
-  map <Leader>a "zyw:exe "Ag ".@z.""<CR>
+  map <Leader>a "zyw:exe "Ag! ".@z.""<CR>
 
 Bundle 'rf-/vim-bclose'
   nmap <D-W> :Bclose<CR>
