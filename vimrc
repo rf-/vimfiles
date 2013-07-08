@@ -62,7 +62,6 @@ let macvim_hig_shift_movement = 1
 
 " Quick macros!
 nnoremap <Space> @s
-nnoremap <S-Space> qs
 
 " Map \h to remove search highlights
 map <Leader>h :noh<CR>
