@@ -66,6 +66,16 @@ nnoremap <Space> @s
 " Map \h to remove search highlights
 map <Leader>h :noh<CR>
 
+" Map \r to toggle relative line numbering
+function! ToggleNumbering()
+  if &number
+    set relativenumber
+  else
+    set number
+  endif
+endf
+nmap <silent> <Leader>r :call ToggleNumbering()<CR>
+
 " Arrow keys scroll by visible lines, not absolute lines
 nnoremap <Down> gj
 nnoremap <Up> gk
