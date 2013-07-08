@@ -287,3 +287,4 @@ au FileType coffee set shiftwidth=2 softtabstop=2
 au FileType css set shiftwidth=4 softtabstop=4
 au FileType scss set shiftwidth=4 softtabstop=4
 au FileType actionscript set smartindent noexpandtab tabstop=4 softtabstop=4 shiftwidth=4
+au FileType go set noexpandtab tabstop=4 shiftwidth=4
