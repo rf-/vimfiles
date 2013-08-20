@@ -94,10 +94,6 @@ inoremap <C-j> <Esc><C-j>
 inoremap <C-k> <Esc><C-k>
 inoremap <C-l> <Esc><C-l>
 
-" Tab and Shift-Tab to switch between buffers
-nnoremap <Tab> :bnext<CR>
-nnoremap <S-Tab> :bprevious<CR>
-
 " When there's wrapping, show whatever instead of not showing incomplete lines
 set display+=lastline
 
@@ -217,6 +213,7 @@ Bundle 'noahfrederick/Hemisu'
 Bundle 'Solarized'
   let g:solarized_style='light'
 Bundle 'dterei/VimCobaltColourScheme'
+Bundle 'https://bitbucket.org/kisom/eink.vim.git'
 
 "" Misc.
 
@@ -226,17 +223,14 @@ Bundle 'airblade/vim-gitgutter'
 
 Bundle 'tpope/vim-fugitive'
   nmap <Leader>gs :Gstatus<CR>
-  imap <Leader>gs <Esc>\gs
-  vmap <Leader>gs <Esc>\gs
   nmap <Leader>gc :Gcommit<CR>
-  imap <Leader>gc <Esc>\gc
-  vmap <Leader>gc <Esc>\gc
 
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-speeddating'
+Bundle 'tpope/vim-dispatch'
 
 Bundle 'sjl/gundo.vim'
   nnoremap <D-u> :GundoToggle<CR>
