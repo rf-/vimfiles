@@ -1,4 +1,5 @@
 set nocompatible
+set ambiwidth=single
 
 " The basics
 set number
@@ -197,7 +198,7 @@ Bundle 'kchmck/vim-coffee-script'
 Bundle 'tpope/vim-git'
 Bundle 'tpope/vim-haml'
 Bundle 'tpope/vim-markdown'
-Bundle 'bbommarito/vim-slim'
+Bundle 'slim-template/vim-slim'
 Bundle 'pangloss/vim-javascript'
 Bundle 'briancollins/vim-jst'
 Bundle 'jnwhiteh/vim-golang'
@@ -251,14 +252,16 @@ Bundle 'jpalardy/vim-slime'
 let g:paredit_leader = '\'
 Bundle 'https://bitbucket.org/kovisoft/paredit'
 
-Bundle 'utl.vim'
+Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-notes'
-  let g:notes_directory = '~/.vim/notes'
+  let g:notes_directories = ['~/.vim/notes']
 
 Bundle 'mjbrownie/swapit'
   let g:swap_lists = [{'name':'todo_done', 'options': ['TODO', 'DONE']}]
 
-Bundle 'godlygeek/csapprox'
+let g:vitality_always_assume_iterm = 1
+Bundle 'sjl/vitality.vim'
+
 Bundle 'ConradIrwin/vim-bracketed-paste'
 
 Bundle 'Valloric/YouCompleteMe'
