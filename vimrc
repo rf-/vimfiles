@@ -204,6 +204,7 @@ Bundle 'jnwhiteh/vim-golang'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'guns/vim-clojure-static'
 Bundle 'vim-ruby/vim-ruby'
+Bundle 'wting/rust.vim'
 
 "" Color schemes
 
@@ -284,3 +285,7 @@ au FileType css set shiftwidth=4 softtabstop=4
 au FileType scss set shiftwidth=4 softtabstop=4
 au FileType actionscript set smartindent noexpandtab tabstop=4 softtabstop=4 shiftwidth=4
 au FileType go set noexpandtab tabstop=4 shiftwidth=4
+
+" Different cursor for insert vs normal mode
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
