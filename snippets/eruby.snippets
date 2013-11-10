@@ -1,61 +1,108 @@
 # .erb and .rhmtl files
-
 # Includes html.snippets
-
 # Rails *****************************
-snippet %
-	<% ${1} %>
-snippet =
-	<%= ${1} %>${2}
-snippet end
-	<% end %>${1}
-snippet ead
-	<% ${1}.each do |${2}| %>
-		${3}
-	<% end %>
-snippet rp
-	<%= render partial: '${1:item}' %>
-snippet rpl
-	<%= render partial: '${1:item}', locals: {${2:name}: '${3:value}'$4} %>
-snippet rpc
-	<%= render partial: '${1:item}', collection: ${2:items} %>
-snippet yield
-	<%= yield ${1::content_symbol} %>${2}
-snippet conf
-	<% content_for :${1:head} do %>
-		${2}
-	<% end %>
-snippet ct
-	<%= content_tag '${1:DIV}', ${2:content}${3:,options} %>
-snippet ff
-	<% form_for @${1:model} do |f| %>
-		${2}
-	<% end %>
-snippet ffcb
-	<%= ${1:f}.check_box :${2:attribute} %>
-snippet ffff
-	<%= ${1:f}.file_field :${2:attribute} %>
-snippet ffhf
-	<%= ${1:f}.hidden_field :${2:attribute} %>
-snippet ffl
-	<%= ${1:f}.label :${2:attribute}, '${3:$2}' %>
-snippet ffpf
-	<%= ${1:f}.password_field :${2:attribute} %>
-snippet ffrb
-	<%= ${1:f}.radio_button :${2:attribute}, :${3:tag_value} %>
-snippet ffs
-	<%= ${1:f}.submit "${2:submit}" %>
-snippet ffta
-	<%= ${1:f}.text_area :${2:attribute} %>
-snippet fftf
-	<%= ${1:f}.text_field :${2:attribute} %>
-snippet fields
-	<% fields_for :${1:model}, @$1 do |${2:f}| %>
-		${3}
-	<% end %>
-snippet it
-	<%= image_tag "${1}"${2} %>
-snippet lim
-	<%= link_to ${1:model}.${2:name}, ${3:$1}_path(${4:$1}) %>
-snippet lt
-	<%= link_to "${1:name}", ${2:dest} %>
+snippet % "%"
+<% ${1} %>
+endsnippet
+
+snippet = "="
+<%= ${1} %>${2}
+endsnippet
+
+snippet end "end"
+<% end %>${1}
+endsnippet
+
+snippet ead "ead"
+<% ${1}.each do |${2}| %>
+	${3}
+<% end %>
+endsnippet
+
+snippet rp "rp"
+<%= render partial: '${1:item}' %>
+endsnippet
+
+snippet rpl "rpl"
+<%= render partial: '${1:item}', locals: {${2:name}: '${3:value}'$4} %>
+endsnippet
+
+snippet rpc "rpc"
+<%= render partial: '${1:item}', collection: ${2:items} %>
+endsnippet
+
+snippet yield "yield"
+<%= yield ${1::content_symbol} %>${2}
+endsnippet
+
+snippet conf "conf"
+<% content_for :${1:head} do %>
+	${2}
+<% end %>
+endsnippet
+
+snippet ct "ct"
+<%= content_tag '${1:DIV}', ${2:content}${3:,options} %>
+endsnippet
+
+snippet ff "ff"
+<% form_for @${1:model} do |f| %>
+	${2}
+<% end %>
+endsnippet
+
+snippet ffcb "ffcb"
+<%= ${1:f}.check_box :${2:attribute} %>
+endsnippet
+
+snippet ffff "ffff"
+<%= ${1:f}.file_field :${2:attribute} %>
+endsnippet
+
+snippet ffhf "ffhf"
+<%= ${1:f}.hidden_field :${2:attribute} %>
+endsnippet
+
+snippet ffl "ffl"
+<%= ${1:f}.label :${2:attribute}, '${3:$2}' %>
+endsnippet
+
+snippet ffpf "ffpf"
+<%= ${1:f}.password_field :${2:attribute} %>
+endsnippet
+
+snippet ffrb "ffrb"
+<%= ${1:f}.radio_button :${2:attribute}, :${3:tag_value} %>
+endsnippet
+
+snippet ffs "ffs"
+<%= ${1:f}.submit "${2:submit}" %>
+endsnippet
+
+snippet ffta "ffta"
+<%= ${1:f}.text_area :${2:attribute} %>
+endsnippet
+
+snippet fftf "fftf"
+<%= ${1:f}.text_field :${2:attribute} %>
+endsnippet
+
+snippet fields "fields"
+<% fields_for :${1:model}, @$1 do |${2:f}| %>
+	${3}
+<% end %>
+endsnippet
+
+snippet it "it"
+<%= image_tag "${1}"${2} %>
+endsnippet
+
+snippet lim "lim"
+<%= link_to ${1:model}.${2:name}, ${3:$1}_path(${4:$1}) %>
+endsnippet
+
+snippet lt "lt"
+<%= link_to "${1:name}", ${2:dest} %>
+endsnippet
+
+

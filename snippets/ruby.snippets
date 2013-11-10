@@ -1,392 +1,625 @@
 # #!/usr/bin/env ruby
-snippet #!
-	#!/usr/bin/env ruby
-	# encoding: UTF-8
+snippet #! "#!"
+#!/usr/bin/env ruby
+# encoding: UTF-8
+endsnippet
 
-snippet #E
-	# encoding: UTF-8
+snippet #E "#E"
+# encoding: UTF-8
+endsnippet
 
+snippet #e "#e"
+# encoding: utf-8
+endsnippet
 
-snippet #e
-	# encoding: utf-8
+snippet beg "beg"
+begin
+	${3}
+rescue ${1:Exception} => ${2:e}
+end
+endsnippet
 
+snippet req "req"
+require "${1}"${2}
+endsnippet
 
-snippet beg
-	begin
+snippet case "case"
+case ${1:object}
+when ${2:condition}
+	${3}
+end
+endsnippet
+
+snippet when "when"
+when ${1:condition}
+	${2}
+endsnippet
+
+snippet def "def"
+def ${1:method_name}
+	${2}
+end
+endsnippet
+
+snippet if "if"
+if ${1:condition}
+	${2}
+end
+endsnippet
+
+snippet ife "ife"
+if ${1:condition}
+	${2}
+else
+	${3}
+end
+endsnippet
+
+snippet elsif "elsif"
+elsif ${1:condition}
+	${2}
+endsnippet
+
+snippet unless "unless"
+unless ${1:condition}
+	${2}
+end
+endsnippet
+
+snippet while "while"
+while ${1:condition}
+	${2}
+end
+endsnippet
+
+snippet for "for"
+for ${1:e} in ${2:c}
+	${3}
+end
+endsnippet
+
+snippet until "until"
+until ${1:condition}
+	${2}
+end
+endsnippet
+
+snippet cla "class .. end"
+class ${1:`!v substitute(Filename(), '\(_\|^\)\(.\)', '\u\2', 'g')`}
+	${2}
+end
+endsnippet
+
+snippet cla "class .. initialize .. end"
+class ${1:`!v substitute(Filename(), '\(_\|^\)\(.\)', '\u\2', 'g')`}
+	def initialize(${2:args})
 		${3}
-	rescue ${1:Exception} => ${2:e}
 	end
-snippet req
-	require "${1}"${2}
-snippet case
-	case ${1:object}
-	when ${2:condition}
-		${3}
+end
+endsnippet
+
+snippet cla "class .. < ParentClass .. initialize .. end"
+class ${1:`!v substitute(Filename(), '\(_\|^\)\(.\)', '\u\2', 'g')`} < ${2:ParentClass}
+	def initialize(${3:args})
+		${4}
 	end
-snippet when
-	when ${1:condition}
-		${2}
-snippet def
-	def ${1:method_name}
-		${2}
+end
+endsnippet
+
+snippet cla "ClassName = Struct .. do .. end"
+${1:`!v substitute(Filename(), '\(_\|^\)\(.\)', '\u\2', 'g')`} = Struct.new(:${2:attr_names}) do
+	def ${3:method_name}
+		${4}
 	end
-snippet if
-	if ${1:condition}
-		${2}
-	end
-snippet ife
-	if ${1:condition}
-		${2}
-	else
-		${3}
-	end
-snippet elsif
-	elsif ${1:condition}
-		${2}
-snippet unless
-	unless ${1:condition}
-		${2}
-	end
-snippet while
-	while ${1:condition}
-		${2}
-	end
-snippet for
-	for ${1:e} in ${2:c}
-		${3}
-	end
-snippet until
-	until ${1:condition}
-		${2}
-	end
-snippet cla class .. end
-	class ${1:`substitute(Filename(), '\(_\|^\)\(.\)', '\u\2', 'g')`}
-		${2}
-	end
-snippet cla class .. initialize .. end
-	class ${1:`substitute(Filename(), '\(_\|^\)\(.\)', '\u\2', 'g')`}
-		def initialize(${2:args})
-			${3}
-		end
-	end
-snippet cla class .. < ParentClass .. initialize .. end
-	class ${1:`substitute(Filename(), '\(_\|^\)\(.\)', '\u\2', 'g')`} < ${2:ParentClass}
-		def initialize(${3:args})
-			${4}
-		end
-	end
-snippet cla ClassName = Struct .. do .. end
-	${1:`substitute(Filename(), '\(_\|^\)\(.\)', '\u\2', 'g')`} = Struct.new(:${2:attr_names}) do
-		def ${3:method_name}
-			${4}
-		end
-	end
-snippet cla class BlankSlate .. initialize .. end
-	class ${1:BlankSlate}
-		instance_methods.each { |meth| undef_method(meth) unless meth =~ /\A__/ }
-	end
-snippet cla class << self .. end
-	class << ${1:self}
-		${2}
-	end
+end
+endsnippet
+
+snippet cla "class BlankSlate .. initialize .. end"
+class ${1:BlankSlate}
+	instance_methods.each { |meth| undef_method(meth) unless meth =~ /\A__/ }
+end
+endsnippet
+
+snippet cla "class << self .. end"
+class << ${1:self}
+	${2}
+end
+endsnippet
+
 # class .. < DelegateClass .. initialize .. end
-snippet cla-
-	class ${1:`substitute(Filename(), '\(_\|^\)\(.\)', '\u\2', 'g')`} < DelegateClass(${2:ParentClass})
-		def initialize(${3:args})
-			super(${4:del_obj})
-
-			${5}
-		end
+snippet cla- "cla-"
+class ${1:`!v substitute(Filename(), '\(_\|^\)\(.\)', '\u\2', 'g')`} < DelegateClass(${2:ParentClass})
+	def initialize(${3:args})
+		super(${4:del_obj})
+		${5}
 	end
-snippet mod module .. end
-	module ${1:`substitute(Filename(), '\(_\|^\)\(.\)', '\u\2', 'g')`}
+end
+endsnippet
+
+snippet mod "module .. end"
+module ${1:`!v substitute(Filename(), '\(_\|^\)\(.\)', '\u\2', 'g')`}
+	${2}
+end
+endsnippet
+
+snippet mod "module .. module_function .. end"
+module ${1:`!v substitute(Filename(), '\(_\|^\)\(.\)', '\u\2', 'g')`}
+	module_function
+	${2}
+end
+endsnippet
+
+snippet mod "module .. ClassMethods .. end"
+module ${1:`!v substitute(Filename(), '\(_\|^\)\(.\)', '\u\2', 'g')`}
+	module ClassMethods
 		${2}
 	end
-snippet mod module .. module_function .. end
-	module ${1:`substitute(Filename(), '\(_\|^\)\(.\)', '\u\2', 'g')`}
-		module_function
-
-		${2}
+	module InstanceMethods
 	end
-snippet mod module .. ClassMethods .. end
-	module ${1:`substitute(Filename(), '\(_\|^\)\(.\)', '\u\2', 'g')`}
-		module ClassMethods
-			${2}
-		end
-
-		module InstanceMethods
-
-		end
-
-		def self.included(receiver)
-			receiver.extend         ClassMethods
-			receiver.send :include, InstanceMethods
-		end
+	def self.included(receiver)
+		receiver.extend         ClassMethods
+		receiver.send :include, InstanceMethods
 	end
+end
+endsnippet
+
 # attr_reader
-snippet r
-	attr_reader :${1:attr_names}
+snippet r "r"
+attr_reader :${1:attr_names}
+endsnippet
+
 # attr_writer
-snippet w
-	attr_writer :${1:attr_names}
+snippet w "w"
+attr_writer :${1:attr_names}
+endsnippet
+
 # attr_accessor
-snippet rw
-	attr_accessor :${1:attr_names}
-snippet atp
-	attr_protected :${1:attr_names}
-snippet ata
-	attr_accessible :${1:attr_names}
+snippet rw "rw"
+attr_accessor :${1:attr_names}
+endsnippet
+
+snippet atp "atp"
+attr_protected :${1:attr_names}
+endsnippet
+
+snippet ata "ata"
+attr_accessible :${1:attr_names}
+endsnippet
+
 # include Enumerable
-snippet Enum
-	include Enumerable
+snippet Enum "Enum"
+include Enumerable
+def each(&block)
+	${1}
+end
+endsnippet
 
-	def each(&block)
-		${1}
-	end
 # include Comparable
-snippet Comp
-	include Comparable
+snippet Comp "Comp"
+include Comparable
+def <=>(other)
+	${1}
+end
+endsnippet
 
-	def <=>(other)
-		${1}
-	end
 # extend Forwardable
-snippet Forw
-	extend Forwardable
-# def self
-snippet defs
-	def self.${1:class_method_name}
-		${2}
-	end
-# def method_missing
-snippet defmm
-	def method_missing(meth, *args, &blk)
-		${1}
-	end
-snippet defd
-	def_delegator :${1:@del_obj}, :${2:del_meth}, :${3:new_name}
-snippet defds
-	def_delegators :${1:@del_obj}, :${2:del_methods}
-snippet am
-	alias_method :${1:new_name}, :${2:old_name}
-snippet array
-	Array.new(${1:10}) { |${2:i}| ${3} }
-snippet hash
-	Hash.new { |${1:hash}, ${2:key}| $1[$2] = ${3} }
-snippet file File.foreach() { |line| .. }
-	File.foreach(${1:"path/to/file"}) { |${2:line}| ${3} }
-snippet file File.read()
-	File.read(${1:"path/to/file"})${2}
-snippet Dir
-	Dir[${1:"glob/**/*.rb"}]${2}
-snippet zip
-	zip(${1:enums}) { |${2:row}| ${3} }
-snippet ste
-	step(${1:2}) { |${2:n}| ${3} }
-snippet tim
-	times { |${1:n}| ${2} }
-snippet loo
-	loop { ${1} }
-snippet ea
-	each { |${1:e}| ${2} }
-snippet ead
-	each do |${1:e}|
-		${2}
-	end
-snippet eald
-	each_line do |${1:line}|
-		${2}
-	end
-snippet eawi
-	each_with_index { |${1:e}, ${2:i}| ${3} }
-snippet eawid
-	each_with_index do |${1:e},${2:i}|
-		${3}
-	end
-snippet map
-	map { |${1:e}| ${2} }
-snippet mapd
-	map do |${1:e}|
-		${2}
-	end
-snippet sor
-	sort { |a, b| ${1} }
-snippet sorb
-	sort_by { |${1:e}| ${2} }
-snippet all
-	all? { |${1:e}| ${2} }
-snippet any
-	any? { |${1:e}| ${2} }
-snippet col
-	collect { |${1:e}| ${2} }
-snippet cold
-	collect do |${1:e}|
-		${2}
-	end
-snippet det
-	detect { |${1:e}| ${2} }
-snippet detd
-	detect do |${1:e}|
-		${2}
-	end
-snippet fet
-	fetch(${1:name}) { |${2:key}| ${3} }
-snippet fin
-	find { |${1:e}| ${2} }
-snippet find
-	find do |${1:e}|
-		${2}
-	end
-snippet gre
-	grep(${1:/pattern/}) { |${2:match}| ${3} }
-snippet sub
-	${1:g}sub(${2:/pattern/}) { |${3:match}| ${4} }
-snippet sca
-	scan(${1:/pattern/}) { |${2:match}| ${3} }
-snippet scad
-	scan(${1:/pattern/}) do |${2:match}|
-		${3}
-	end
-snippet max
-	max { |a, b| ${1} }
-snippet min
-	min { |a, b| ${1} }
-snippet par
-	partition { |${1:e}| ${2} }
-snippet pard
-	partition do |${1:e}|
-		${2}
-	end
-snippet rej
-	reject { |${1:e}| ${2} }
-snippet rejd
-	reject do |${1:e}|
-		${2}
-	end
-snippet sel
-	select { |${1:e}| ${2} }
-snippet seld
-	select do |${1:e}|
-		${2}
-	end
-snippet lam
-	lambda { |${1:args}| ${2} }
-snippet do
-	do
-		${1}
-	end
-snippet dov
-	do |${1:variable}|
-		${2}
-	end
-snippet :
-	:${1:key} => ${2:"value"}${3}
-# Benchmark.bmbm do .. end
-snippet bm
-	require 'benchmark'
+snippet Forw "Forw"
+extend Forwardable
+endsnippet
 
-	TESTS = ${1:10_000}
-	Benchmark.bmbm do |results|
-		${2}
-	end
-snippet rep
-	results.report("${1:name}:") { TESTS.times { ${2} }}
-snippet b
-	{ |${1:var}| ${2} }
+# def self
+snippet defs "defs"
+def self.${1:class_method_name}
+	${2}
+end
+endsnippet
+
+# def method_missing
+snippet defmm "defmm"
+def method_missing(meth, *args, &blk)
+	${1}
+end
+endsnippet
+
+snippet defd "defd"
+def_delegator :${1:@del_obj}, :${2:del_meth}, :${3:new_name}
+endsnippet
+
+snippet defds "defds"
+def_delegators :${1:@del_obj}, :${2:del_methods}
+endsnippet
+
+snippet am "am"
+alias_method :${1:new_name}, :${2:old_name}
+endsnippet
+
+snippet array "array"
+Array.new(${1:10}) { |${2:i}| ${3} }
+endsnippet
+
+snippet hash "hash"
+Hash.new { |${1:hash}, ${2:key}| $1[$2] = ${3} }
+endsnippet
+
+snippet file "File.foreach() { |line| .. }"
+File.foreach(${1:"path/to/file"}) { |${2:line}| ${3} }
+endsnippet
+
+snippet file "File.read()"
+File.read(${1:"path/to/file"})${2}
+endsnippet
+
+snippet Dir "Dir"
+Dir[${1:"glob/**/*.rb"}]${2}
+endsnippet
+
+snippet zip "zip"
+zip(${1:enums}) { |${2:row}| ${3} }
+endsnippet
+
+snippet ste "ste"
+step(${1:2}) { |${2:n}| ${3} }
+endsnippet
+
+snippet tim "tim"
+times { |${1:n}| ${2} }
+endsnippet
+
+snippet loo "loo"
+loop { ${1} }
+endsnippet
+
+snippet ea "ea"
+each { |${1:e}| ${2} }
+endsnippet
+
+snippet ead "ead"
+each do |${1:e}|
+	${2}
+end
+endsnippet
+
+snippet eald "eald"
+each_line do |${1:line}|
+	${2}
+end
+endsnippet
+
+snippet eawi "eawi"
+each_with_index { |${1:e}, ${2:i}| ${3} }
+endsnippet
+
+snippet eawid "eawid"
+each_with_index do |${1:e},${2:i}|
+	${3}
+end
+endsnippet
+
+snippet map "map"
+map { |${1:e}| ${2} }
+endsnippet
+
+snippet mapd "mapd"
+map do |${1:e}|
+	${2}
+end
+endsnippet
+
+snippet sor "sor"
+sort { |a, b| ${1} }
+endsnippet
+
+snippet sorb "sorb"
+sort_by { |${1:e}| ${2} }
+endsnippet
+
+snippet all "all"
+all? { |${1:e}| ${2} }
+endsnippet
+
+snippet any "any"
+any? { |${1:e}| ${2} }
+endsnippet
+
+snippet col "col"
+collect { |${1:e}| ${2} }
+endsnippet
+
+snippet cold "cold"
+collect do |${1:e}|
+	${2}
+end
+endsnippet
+
+snippet det "det"
+detect { |${1:e}| ${2} }
+endsnippet
+
+snippet detd "detd"
+detect do |${1:e}|
+	${2}
+end
+endsnippet
+
+snippet fet "fet"
+fetch(${1:name}) { |${2:key}| ${3} }
+endsnippet
+
+snippet fin "fin"
+find { |${1:e}| ${2} }
+endsnippet
+
+snippet find "find"
+find do |${1:e}|
+	${2}
+end
+endsnippet
+
+snippet gre "gre"
+grep(${1:/pattern/}) { |${2:match}| ${3} }
+endsnippet
+
+snippet sub "sub"
+${1:g}sub(${2:/pattern/}) { |${3:match}| ${4} }
+endsnippet
+
+snippet sca "sca"
+scan(${1:/pattern/}) { |${2:match}| ${3} }
+endsnippet
+
+snippet scad "scad"
+scan(${1:/pattern/}) do |${2:match}|
+	${3}
+end
+endsnippet
+
+snippet max "max"
+max { |a, b| ${1} }
+endsnippet
+
+snippet min "min"
+min { |a, b| ${1} }
+endsnippet
+
+snippet par "par"
+partition { |${1:e}| ${2} }
+endsnippet
+
+snippet pard "pard"
+partition do |${1:e}|
+	${2}
+end
+endsnippet
+
+snippet rej "rej"
+reject { |${1:e}| ${2} }
+endsnippet
+
+snippet rejd "rejd"
+reject do |${1:e}|
+	${2}
+end
+endsnippet
+
+snippet sel "sel"
+select { |${1:e}| ${2} }
+endsnippet
+
+snippet seld "seld"
+select do |${1:e}|
+	${2}
+end
+endsnippet
+
+snippet lam "lam"
+lambda { |${1:args}| ${2} }
+endsnippet
+
+snippet do "do"
+do
+	${1}
+end
+endsnippet
+
+snippet dov "dov"
+do |${1:variable}|
+	${2}
+end
+endsnippet
+
+snippet : ":"
+:${1:key} => ${2:"value"}${3}
+endsnippet
+
+# Benchmark.bmbm do .. end
+snippet bm "bm"
+require 'benchmark'
+TESTS = ${1:10_000}
+Benchmark.bmbm do |results|
+	${2}
+end
+endsnippet
+
+snippet rep "rep"
+results.report("${1:name}:") { TESTS.times { ${2} }}
+endsnippet
+
+snippet b "b"
+{ |${1:var}| ${2} }
+endsnippet
 
 #############################################
 # Rails snippets - for pure Ruby, see above #
 #############################################
-snippet flash
-	flash[:${1:notice}] = "${2}"
-snippet log
-	Rails.logger.${1:debug} ${2}
-snippet logd
-	logger.debug { "${1:message}" }${2}
-snippet loge
-	logger.error { "${1:message}" }${2}
-snippet logf
-	logger.fatal { "${1:message}" }${2}
-snippet logi
-	logger.info { "${1:message}" }${2}
-snippet logw
-	logger.warn { "${1:message}" }${2}
-snippet oa
-	order("${1:field}")
-snippet od
-	order("${1:field} DESC")
-snippet pa
-	params[:${1:id}]${2}
-snippet rf
-	render :file => "${1:filepath}"
-snippet rfu
-	render :file => "${1:filepath}", :use_full_path => ${2:false}
-snippet ri
-	render :inline => "${1:<%= 'hello' %>}"
-snippet ril
-	render :inline => "${1:<%= 'hello' %>}", :locals => { ${2::name} => "${3:value}"${4} }
-snippet rit
-	render :inline => "${1:<%= 'hello' %>}", :type => ${2::rxml}
-snippet rjson
-	render :json => ${1:text to render}
-snippet rl
-	render :layout => "${1:layoutname}"
-snippet rn
-	render :nothing => ${1:true}
-snippet rns
-	render :nothing => ${1:true}, :status => ${2:401}
-snippet rp
-	render :partial => "${1:item}"
-snippet rpc
-	render :partial => "${1:item}", :collection => ${2:@$1s}
-snippet rpl
-	render :partial => "${1:item}", :locals => { :${2:$1} => ${3:@$1}
-snippet rpo
-	render :partial => "${1:item}", :object => ${2:@$1}
-snippet rps
-	render :partial => "${1:item}", :status => ${2:500}
-snippet rt
-	render :text => "${1:text to render}"
-snippet rtl
-	render :text => "${1:text to render}", :layout => "${2:layoutname}"
-snippet rtlt
-	render :text => "${1:text to render}", :layout => ${2:true}
-snippet rts
-	render :text => "${1:text to render}", :status => ${2:401}
-snippet sha1
-	Digest::SHA1.hexdigest(${1:string})
-snippet wc
-	where(${1:"conditions"}${2:, bind_var})
-snippet wh
-	where(${1:field} => ${2:value})
-snippet it
-	it "${1:spec_name}" do
-		${2}
-	end
-snippet itp
-	it "${1:spec_name}"
+snippet flash "flash"
+flash[:${1:notice}] = "${2}"
+endsnippet
+
+snippet log "log"
+Rails.logger.${1:debug} ${2}
+endsnippet
+
+snippet logd "logd"
+logger.debug { "${1:message}" }${2}
+endsnippet
+
+snippet loge "loge"
+logger.error { "${1:message}" }${2}
+endsnippet
+
+snippet logf "logf"
+logger.fatal { "${1:message}" }${2}
+endsnippet
+
+snippet logi "logi"
+logger.info { "${1:message}" }${2}
+endsnippet
+
+snippet logw "logw"
+logger.warn { "${1:message}" }${2}
+endsnippet
+
+snippet oa "oa"
+order("${1:field}")
+endsnippet
+
+snippet od "od"
+order("${1:field} DESC")
+endsnippet
+
+snippet pa "pa"
+params[:${1:id}]${2}
+endsnippet
+
+snippet rf "rf"
+render :file => "${1:filepath}"
+endsnippet
+
+snippet rfu "rfu"
+render :file => "${1:filepath}", :use_full_path => ${2:false}
+endsnippet
+
+snippet ri "ri"
+render :inline => "${1:<%= 'hello' %>}"
+endsnippet
+
+snippet ril "ril"
+render :inline => "${1:<%= 'hello' %>}", :locals => { ${2::name} => "${3:value}"${4} }
+endsnippet
+
+snippet rit "rit"
+render :inline => "${1:<%= 'hello' %>}", :type => ${2::rxml}
+endsnippet
+
+snippet rjson "rjson"
+render :json => ${1:text to render}
+endsnippet
+
+snippet rl "rl"
+render :layout => "${1:layoutname}"
+endsnippet
+
+snippet rn "rn"
+render :nothing => ${1:true}
+endsnippet
+
+snippet rns "rns"
+render :nothing => ${1:true}, :status => ${2:401}
+endsnippet
+
+snippet rp "rp"
+render :partial => "${1:item}"
+endsnippet
+
+snippet rpc "rpc"
+render :partial => "${1:item}", :collection => ${2:@$1s}
+endsnippet
+
+snippet rpl "rpl"
+render :partial => "${1:item}", :locals => { :${2:$1} => ${3:@$1}
+endsnippet
+
+snippet rpo "rpo"
+render :partial => "${1:item}", :object => ${2:@$1}
+endsnippet
+
+snippet rps "rps"
+render :partial => "${1:item}", :status => ${2:500}
+endsnippet
+
+snippet rt "rt"
+render :text => "${1:text to render}"
+endsnippet
+
+snippet rtl "rtl"
+render :text => "${1:text to render}", :layout => "${2:layoutname}"
+endsnippet
+
+snippet rtlt "rtlt"
+render :text => "${1:text to render}", :layout => ${2:true}
+endsnippet
+
+snippet rts "rts"
+render :text => "${1:text to render}", :status => ${2:401}
+endsnippet
+
+snippet sha1 "sha1"
+Digest::SHA1.hexdigest(${1:string})
+endsnippet
+
+snippet wc "wc"
+where(${1:"conditions"}${2:, bind_var})
+endsnippet
+
+snippet wh "wh"
+where(${1:field} => ${2:value})
+endsnippet
+
+snippet it "it"
+it "${1:spec_name}" do
 	${2}
-snippet desc
-	describe ${1:class_name} do
-		${2}
-	end
-snippet cont
-	context "${1:message}" do
-		${2}
-	end
-snippet bef
-	before do
-		${1}
-	end
-snippet aft
-	after do
-		${1}
-	end
-snippet befa
-	before :all do
-		${1}
-	end
-snippet afta
-	after :all do
-		${1}
-	end
+end
+endsnippet
+
+snippet itp "itp"
+it "${1:spec_name}"
+${2}
+endsnippet
+
+snippet desc "desc"
+describe ${1:class_name} do
+	${2}
+end
+endsnippet
+
+snippet cont "cont"
+context "${1:message}" do
+	${2}
+end
+endsnippet
+
+snippet bef "bef"
+before do
+	${1}
+end
+endsnippet
+
+snippet aft "aft"
+after do
+	${1}
+end
+endsnippet
+
+snippet befa "befa"
+before :all do
+	${1}
+end
+endsnippet
+
+snippet afta "afta"
+after :all do
+	${1}
+end
+endsnippet
+
+

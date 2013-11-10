@@ -112,7 +112,6 @@ set smarttab
 
 " Evaluate current line as a Ruby expression
 map <C-e> yyV:!ruby -e "puts <C-r>0"<CR>
-imap <C-e> <Esc><C-e>
 
 " Run selection as a Ruby script
 vmap <C-e> :!ruby<CR>
@@ -241,11 +240,9 @@ Bundle 'scrooloose/nerdcommenter'
   map <Leader>/ <plug>NERDCommenterToggle<CR>
   map <D-/> <plug>NERDCommenterToggle<CR>
 
-Bundle 'ervandew/supertab'
-
-Bundle 'tomtom/tlib_vim'
-Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle 'garbas/vim-snipmate'
+Bundle 'SirVer/ultisnips'
+  "let g:UltiSnipsSnippetDirectories=["snippets"]
+  let g:UltiSnipsExpandTrigger='<C-e>'
 
 Bundle 'jpalardy/vim-slime'
   let g:slime_target = 'tmux'
@@ -262,6 +259,11 @@ Bundle 'mjbrownie/swapit'
 
 Bundle 'godlygeek/csapprox'
 Bundle 'ConradIrwin/vim-bracketed-paste'
+
+Bundle 'Valloric/YouCompleteMe'
+  set completeopt-=preview
+
+Bundle 'nsf/gocode', {'rtp': 'vim/'}
 
 filetype plugin indent on
 

@@ -1,84 +1,122 @@
 # Array comprehension
-snippet fora
-	for ${1:name} in ${2:array}
-		${3:// body...}
+snippet fora "fora"
+for ${1:name} in ${2:array}
+	${3:// body...}
+endsnippet
+
 # Object comprehension
-snippet foro
-	for ${1:key}, ${2:value} of ${3:object}
-		${4:// body...}
+snippet foro "foro"
+for ${1:key}, ${2:value} of ${3:object}
+	${4:// body...}
+endsnippet
+
 # Range comprehension (inclusive)
-snippet forr
-	for ${1:name} in [${2:start}..${3:finish}]
-		${4:// body...}
-snippet forrb
-	for ${1:name} in [${2:start}..${3:finish}] by ${4:step}
-		${5:// body...}
+snippet forr "forr"
+for ${1:name} in [${2:start}..${3:finish}]
+	${4:// body...}
+endsnippet
+
+snippet forrb "forrb"
+for ${1:name} in [${2:start}..${3:finish}] by ${4:step}
+	${5:// body...}
+endsnippet
+
 # Range comprehension (exclusive)
-snippet forrex
-	for ${1:name} in [${2:start}...${3:finish}]
-		${4:// body...}
-snippet forrexb
-	for ${1:name} in [${2:start}...${3:finish}] by ${4:step}
-		${5:// body...}
+snippet forrex "forrex"
+for ${1:name} in [${2:start}...${3:finish}]
+	${4:// body...}
+endsnippet
+
+snippet forrexb "forrexb"
+for ${1:name} in [${2:start}...${3:finish}] by ${4:step}
+	${5:// body...}
+endsnippet
+
 # Function
-snippet fn
-	(${1:args}) ->
-		${2:// body...}
+snippet fn "fn"
+(${1:args}) ->
+	${2:// body...}
+endsnippet
+
 # Function (bound)
-snippet bfn
-	(${1:args}) =>
-		${2:// body...}
+snippet bfn "bfn"
+(${1:args}) =>
+	${2:// body...}
+endsnippet
+
 # Class
-snippet cla class ..
-	class ${1:`substitute(Filename(), '\(_\|^\)\(.\)', '\u\2', 'g')`}
-		${2}
-snippet cla class .. constructor: ..
-	class ${1:`substitute(Filename(), '\(_\|^\)\(.\)', '\u\2', 'g')`}
-		constructor: (${2:args}) ->
-			${3}
+snippet cla "class .."
+class ${1:`!v substitute(Filename(), '\(_\|^\)\(.\)', '\u\2', 'g')`}
+	${2}
+endsnippet
 
-		${4}
-snippet cla class .. extends ..
-	class ${1:`substitute(Filename(), '\(_\|^\)\(.\)', '\u\2', 'g')`} extends ${2:ParentClass}
+snippet cla "class .. constructor: .."
+class ${1:`!v substitute(Filename(), '\(_\|^\)\(.\)', '\u\2', 'g')`}
+	constructor: (${2:args}) ->
 		${3}
-snippet cla class .. extends .. constructor: ..
-	class ${1:`substitute(Filename(), '\(_\|^\)\(.\)', '\u\2', 'g')`} extends ${2:ParentClass}
-		constructor: (${3:args}) ->
-			${4}
+	${4}
+endsnippet
 
-		${5}
+snippet cla "class .. extends .."
+class ${1:`!v substitute(Filename(), '\(_\|^\)\(.\)', '\u\2', 'g')`} extends ${2:ParentClass}
+	${3}
+endsnippet
+
+snippet cla "class .. extends .. constructor: .."
+class ${1:`!v substitute(Filename(), '\(_\|^\)\(.\)', '\u\2', 'g')`} extends ${2:ParentClass}
+	constructor: (${3:args}) ->
+		${4}
+	${5}
+endsnippet
+
 # If
-snippet if
-	if ${1:condition}
-		${2:// body...}
+snippet if "if"
+if ${1:condition}
+	${2:// body...}
+endsnippet
+
 # If __ Else
-snippet ife
-	if ${1:condition}
-		${2:// body...}
-	else
-		${3:// body...}
+snippet ife "ife"
+if ${1:condition}
+	${2:// body...}
+else
+	${3:// body...}
+endsnippet
+
 # Else if
-snippet elif
-	else if ${1:condition}
-		${2:// body...}
+snippet elif "elif"
+else if ${1:condition}
+	${2:// body...}
+endsnippet
+
 # Ternary If
-snippet ifte
-	if ${1:condition} then ${2:value} else ${3:other}
+snippet ifte "ifte"
+if ${1:condition} then ${2:value} else ${3:other}
+endsnippet
+
 # Unless
-snippet unl
-	${1:action} unless ${2:condition}
+snippet unl "unl"
+${1:action} unless ${2:condition}
+endsnippet
+
 # Switch
-snippet swi
-	switch ${1:object}
-		when ${2:value}
-			${3:// body...}
+snippet swi "swi"
+switch ${1:object}
+	when ${2:value}
+		${3:// body...}
+endsnippet
 
 # Log
-snippet log
-	console.log ${1}
+snippet log "log"
+console.log ${1}
+endsnippet
+
 # Try __ Catch
-snippet try
-	try
-		${1}
-	catch ${2:error}
-		${3}
+snippet try "try"
+try
+	${1}
+catch ${2:error}
+	${3}
+endsnippet
+
+
