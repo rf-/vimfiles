@@ -259,9 +259,6 @@ Bundle 'xolox/vim-notes'
 Bundle 'mjbrownie/swapit'
   let g:swap_lists = [{'name':'todo_done', 'options': ['TODO', 'DONE']}]
 
-let g:vitality_always_assume_iterm = 1
-Bundle 'sjl/vitality.vim'
-
 Bundle 'ConradIrwin/vim-bracketed-paste'
 
 Bundle 'Valloric/YouCompleteMe'
@@ -288,7 +285,3 @@ au FileType css set shiftwidth=4 softtabstop=4
 au FileType scss set shiftwidth=4 softtabstop=4
 au FileType actionscript set smartindent noexpandtab tabstop=4 softtabstop=4 shiftwidth=4
 au FileType go set noexpandtab tabstop=4 shiftwidth=4
-
-" Different cursor for insert vs normal mode
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
