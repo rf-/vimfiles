@@ -5,11 +5,25 @@ set ambiwidth=single
 set number
 set ruler
 set hidden
-syntax on
-color Tomorrow
-hi SignColumn ctermbg=255
 set colorcolumn=80
 set showcmd
+syntax on
+
+function! DarkTheme()
+  let g:solarized_italic=1
+  let g:solarized_style='dark'
+  color solarized
+  hi VertSplit ctermfg=236 ctermbg=236
+  hi LineNr ctermfg=235 ctermbg=234
+endfunction
+
+function! LightTheme()
+  color Tomorrow
+  hi SignColumn ctermbg=255
+  hi Comment cterm=italic
+endfunction
+
+call DarkTheme()
 
 " Automatically load external changes to files that don't have unsaved changes
 set autoread

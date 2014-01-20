@@ -581,7 +581,7 @@ exe "let s:fmt_uopt     = ' cterm=NONE".s:ou." gui=NONE".s:ou.
 exe "let s:fmt_bopt     = ' cterm=NONE".s:ob." gui=NONE".s:ob.
             \" term=NONE".s:ob."'"
 exe "let s:fmt_curl     = ' cterm=NONE".s:c." gui=NONE".s:c." term=NONE".s:c."'"
-exe "let s:fmt_ital     = ' cterm=NONE".    " gui=NONE".s:i." term=NONE".    "'"
+exe "let s:fmt_ital     = ' cterm=NONE".s:i." gui=NONE".s:i." term=NONE".    "'"
 exe "let s:fmt_revr     = ' cterm=NONE".s:r." gui=NONE".s:r." term=NONE".s:r."'"
 exe "let s:fmt_stnd     = ' cterm=NONE".s:s." gui=NONE".s:s." term=NONE".s:s."'"
 "}}}
@@ -962,3 +962,7 @@ hi link pandocMetadataTitle             pandocMetadata
 " THE SOFTWARE.
 " 
 "}}}
+
+hi VertSplit ctermfg=236 ctermbg=236 guifg=#262626 guibg=#262626
+hi LineNr    ctermfg=235 ctermbg=234 guifg=#4e4e4e guibg=#262626
+hi link SignColumn LineNr
