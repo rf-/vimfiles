@@ -230,6 +230,7 @@ Bundle 'digitaltoad/vim-jade'
 Bundle 'guns/vim-clojure-static'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'wting/rust.vim'
+Bundle 'noprompt/vim-yardoc'
 
 "" Color schemes
 
@@ -303,9 +304,9 @@ au BufRead,BufNewFile *.txt set wrap wm=2 textwidth=72
 au FileType atlas set filetype=actionscript
 au FileType make set noexpandtab
 au FileType python set shiftwidth=4 softtabstop=4 textwidth=79
-au FileType javascript set shiftwidth=4 softtabstop=4
+au FileType javascript set shiftwidth=2 softtabstop=2
 au FileType coffee set shiftwidth=2 softtabstop=2
-au FileType css set shiftwidth=4 softtabstop=4
-au FileType scss set shiftwidth=4 softtabstop=4
+au FileType css set shiftwidth=2 softtabstop=2
+au FileType scss set shiftwidth=2 softtabstop=2
 au FileType actionscript set smartindent noexpandtab tabstop=4 softtabstop=4 shiftwidth=4
 au FileType go set noexpandtab tabstop=4 shiftwidth=4
