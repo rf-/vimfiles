@@ -250,7 +250,7 @@ Bundle 'jpalardy/vim-slime'
   let g:slime_target = 'tmux'
 
 let g:paredit_leader = '\'
-Bundle 'https://bitbucket.org/kovisoft/paredit'
+Bundle 'kovisoft/paredit'
 
 Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-notes'
