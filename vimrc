@@ -81,6 +81,10 @@ nnoremap <Space> @s
 " Map \h to remove search highlights
 map <Leader>h :noh<CR>
 
+" Map ; to :, map - to ;
+nnoremap ; :
+nnoremap - ;
+
 " Map \r to toggle relative line numbering
 function! ToggleNumbering()
   if &number
