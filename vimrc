@@ -158,6 +158,14 @@ nmap <Leader>p :registers<CR>:PasteRegister
 " \b to see buffers and pick by number
 nmap <Leader>b :buffers<CR>:b
 
+" Delete all modifiable buffers with no unsaved changes
+function! BcloseIfFile()
+  if &modifiable
+    silent! Bclose
+  endif
+endf
+nnoremap <Leader>BC :bufdo call BcloseIfFile()<CR>
+
 " TextMate-style indentation
 nmap <D-[> <<
 nmap <D-]> >>
