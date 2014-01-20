@@ -75,15 +75,15 @@ set directory=~/.vim/backup//
 " MacVIM shift+arrow-keys behavior (has to be in .vimrc)
 let macvim_hig_shift_movement = 1
 
-" Quick macros!
-nnoremap <Space> @s
-
 " Map \h to remove search highlights
 map <Leader>h :noh<CR>
 
 " Map ; to :, map - to ;
 nnoremap ; :
 nnoremap - ;
+
+" Remap Q to run macro in register q
+nnoremap Q @q
 
 " Map \r to toggle relative line numbering
 function! ToggleNumbering()
