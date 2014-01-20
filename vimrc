@@ -213,10 +213,8 @@ Bundle 'rf-/vim-bclose'
   nmap <D-W> :Bclose<CR>
   imap <D-W> <Esc>:Bclose<CR>
 
-Bundle 'scrooloose/nerdtree'
-  let NERDTreeIgnore=['\.rbc$', '\~$']
-  map <Leader>n :NERDTreeToggle<CR>
-  map <Leader>N :NERDTree<CR>
+Bundle 'tpope/vim-vinegar'
+  nmap _ <Plug>VinegarUp
 
 "" Syntax, etc.
 
