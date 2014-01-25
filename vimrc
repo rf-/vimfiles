@@ -78,6 +78,11 @@ let macvim_hig_shift_movement = 1
 " Map \h to remove search highlights
 map <Leader>h :noh<CR>
 
+" Map F10 to show syntax groups under cursor
+map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
 " Map ; to :, map - to ;
 nnoremap ; :
 nnoremap - ;
