@@ -79,10 +79,6 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
-" Map ; to :, map - to ;
-nnoremap ; :
-nnoremap - ;
-
 " Remap Q to run macro in register q
 nnoremap Q @q
 
@@ -215,7 +211,6 @@ Bundle 'rf-/vim-bclose'
   imap <D-W> <Esc>:Bclose<CR>
 
 Bundle 'tpope/vim-vinegar'
-  nmap _ <Plug>VinegarUp
 
 "" Syntax, etc.
 
