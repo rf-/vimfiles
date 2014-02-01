@@ -295,13 +295,13 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 	call <SID>X("VertSplit",    s:window,     s:window,       "")
 	call <SID>X("SignColumn",   s:gray4,      s:background,   "")
 	call <SID>X("Visual",       "",           s:selection,    "")
-	call <SID>X("Directory",    s:directory,  "",             "")
-	call <SID>X("Title",        s:comment,    "",             "bold")
-	call <SID>X("ModeMsg",      s:green,      "",             "bold")
-	call <SID>X("MoreMsg",      s:green,      "",             "bold")
-	call <SID>X("Question",     s:green,      "",             "bold")
-	call <SID>X("ErrorMsg",     s:red,        "",             "bold")
-	call <SID>X("WarningMsg",   s:red,        "",             "bold")
+	call <SID>X("Directory",    s:directory,  s:background,   "")
+	call <SID>X("Title",        s:comment,    s:background,   "bold")
+	call <SID>X("ModeMsg",      s:green,      s:background,   "bold")
+	call <SID>X("MoreMsg",      s:green,      s:background,   "bold")
+	call <SID>X("Question",     s:green,      s:background,   "bold")
+	call <SID>X("ErrorMsg",     s:red,        s:background,   "bold")
+	call <SID>X("WarningMsg",   s:red,        s:background,   "bold")
 	call <SID>X("MatchParen",   "",           s:selection,    "")
 	call <SID>X("Folded",       s:comment,    s:background,   "")
 	call <SID>X("FoldColumn",   "",           s:background,   "")
@@ -339,7 +339,8 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 	call <SID>X("Include",     s:purple,     "",           "none")
 
 	" Vim Highlighting
-	call <SID>X("vimCommand", s:purple, "", "none")
+	call <SID>X("vimCommand",     s:purple,  "",           "none")
+	call <SID>X("vimLineComment", s:comment, s:background, "italic")
 
 	" Ruby Highlighting
 	call <SID>X("rubySymbol", s:blue, "", "")

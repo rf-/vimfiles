@@ -10,17 +10,13 @@ set showcmd
 syntax on
 
 function! DarkTheme()
-  let g:solarized_italic=1
-  let g:solarized_style='dark'
-  color solarized
-  hi VertSplit ctermfg=236 ctermbg=236
-  hi LineNr ctermfg=235 ctermbg=234
+  set background=dark
+  color x
 endfunction
 
 function! LightTheme()
-  color Tomorrow
-  hi SignColumn ctermbg=255
-  hi Comment cterm=italic
+  set background=light
+  color x
 endfunction
 
 call DarkTheme()
