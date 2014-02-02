@@ -21,6 +21,9 @@ endfunction
 
 call DarkTheme()
 
+" Use space as leader
+let mapleader=" "
+
 " Automatically load external changes to files that don't have unsaved changes
 set autoread
 
@@ -84,10 +87,10 @@ nnoremap Q @q
 
 " Map \r to toggle relative line numbering
 function! ToggleNumbering()
-  if &number
-    set relativenumber
+  if &relativenumber
+    set norelativenumber
   else
-    set number
+    set relativenumber
   endif
 endf
 nmap <silent> <Leader>r :call ToggleNumbering()<CR>
