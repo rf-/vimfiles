@@ -67,7 +67,7 @@ let s:comment = s:gray5
 hi clear
 syntax reset
 
-let g:colors_name = 'x'
+let g:colors_name = 'miami'
 
 if has("gui_running") || &t_Co == 88 || &t_Co == 256
 	" Returns an approximate grey index for the given grey level
@@ -322,7 +322,7 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 
 	" Standard Highlighting
 	call <SID>X("Comment",     s:comment,    s:background, "italic")
-	call <SID>X("Todo",        s:comment,    s:background, "italic")
+	call <SID>X("Todo",        s:lime,       s:background, "italic")
 	call <SID>X("Identifier",  s:yellow,     "",           "none")
 	call <SID>X("Statement",   s:purple,     "",           "none")
 	call <SID>X("Conditional", s:purple,     "",           "none")

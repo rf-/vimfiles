@@ -11,12 +11,12 @@ syntax on
 
 function! DarkTheme()
   set background=dark
-  color x
+  color miami
 endfunction
 
 function! LightTheme()
   set background=light
-  color x
+  color miami
 endfunction
 
 call DarkTheme()
