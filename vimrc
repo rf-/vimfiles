@@ -78,7 +78,7 @@ set directory=~/.vim/backup//
 " MacVIM shift+arrow-keys behavior (has to be in .vimrc)
 let macvim_hig_shift_movement = 1
 
-" Map \h to remove search highlights
+" Map <Leader>h to remove search highlights
 map <Leader>h :noh<CR>
 
 " Map F10 to show syntax groups under cursor
@@ -89,7 +89,7 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 " Remap Q to run macro in register q
 nnoremap Q @q
 
-" Map \r to toggle relative line numbering
+" Map <Leader>r to toggle relative line numbering
 function! ToggleNumbering()
   if &relativenumber
     set norelativenumber
@@ -152,7 +152,7 @@ set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*,.idea
 " % to bounce from do to end etc.
 runtime! macros/matchit.vim
 
-" \p to see registers and pick by number
+" <Leader>p to see registers and pick by number
 function! PasteRegister(register)
   silent exec "normal \"" . a:register . "p"
 endf
@@ -165,6 +165,7 @@ function! BcloseIfFile()
     silent! Bclose
   endif
 endf
+nnoremap <Leader>bc :Bclose<CR>
 nnoremap <Leader>BC :bufdo call BcloseIfFile()<CR>
 
 " TextMate-style indentation
@@ -183,6 +184,20 @@ map <C-w><C-o> <Nop>
 
 " Fix highlighting in SignColumn
 highlight clear SignColumn
+
+" <Leader>1 to run the given shell command and load it into a split
+command! -nargs=* -complete=shellcmd ReadCmd
+      \ vnew |
+      \ setlocal buftype=nofile bufhidden=hide noswapfile |
+      \ silent read !<args>
+nmap <Leader>1 :ReadCmd 
+
+" <Leader>2 to run `tree` on the given dir and load it into a split
+command! -nargs=* -complete=dir ReadTree
+      \ vnew |
+      \ setlocal buftype=nofile bufhidden=hide noswapfile |
+      \ silent read !tree <args>
+nmap <Leader>2 :ReadTree 
 
 "" Vundle
 
@@ -207,7 +222,7 @@ Bundle 'wincent/Command-T'
 Bundle 'epmatsw/ag.vim'
   map <D-F> :Ag<space>
   imap <D-F> <Esc>:Ag<space>
-  " \a to Ag for word under cursor
+  " <Leader>a to Ag for word under cursor
   map <Leader>a "zyw:exe "Ag! ".@z.""<CR>
 
 Bundle 'rf-/vim-bclose'
