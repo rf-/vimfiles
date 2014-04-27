@@ -378,6 +378,9 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 	call <SID>X("htmlTagName", s:purple, "", "")
 	call <SID>X("htmlArg", s:blue, "", "")
 	call <SID>X("htmlScriptTag", s:purple, "", "")
+	call <SID>X("xmlTag", s:purple, "", "")
+	call <SID>X("xmlTagName", s:purple, "", "")
+	call <SID>X("xmlEndTag", s:purple, "", "")
 
 	" Diff Highlighting
 	call <SID>X("diffAdded", s:green, "", "")
