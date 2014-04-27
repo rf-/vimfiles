@@ -231,6 +231,9 @@ Bundle 'rf-/vim-bclose'
 
 Bundle 'tpope/vim-vinegar'
 
+Bundle 'scrooloose/nerdtree'
+  let g:NERDTreeHijackNetrw='0'
+
 "" Syntax, etc.
 
 Bundle 'kchmck/vim-coffee-script'
@@ -246,6 +249,7 @@ Bundle 'guns/vim-clojure-static'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'wting/rust.vim'
 Bundle 'noprompt/vim-yardoc'
+Bundle 'mxw/vim-jsx'
 
 "" Color schemes
 
