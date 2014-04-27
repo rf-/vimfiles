@@ -159,9 +159,6 @@ endf
 command! -nargs=1 PasteRegister :call PasteRegister(<f-args>)
 nmap <Leader>p :registers<CR>:PasteRegister 
 
-" \b to see buffers and pick by number
-nmap <Leader>b :buffers<CR>:b
-
 " Delete all modifiable buffers with no unsaved changes
 function! BcloseIfFile()
   if &modifiable
