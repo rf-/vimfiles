@@ -27,6 +27,10 @@ let mapleader=" "
 " Automatically load external changes to files that don't have unsaved changes
 set autoread
 
+" Keep the current split at a min width of 88 cols and min height of 10 rows
+set winwidth=88
+set winheight=10
+
 " Keep some padding between the cursor and the edge of the screen
 set scrolloff=1
 set sidescrolloff=5
