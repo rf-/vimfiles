@@ -287,7 +287,6 @@ Bundle 'scrooloose/nerdcommenter'
   map <D-/> <plug>NERDCommenterToggle<CR>
 
 Bundle 'SirVer/ultisnips'
-  "let g:UltiSnipsSnippetDirectories=["snippets"]
   let g:UltiSnipsExpandTrigger='<C-e>'
 
 Bundle 'jpalardy/vim-slime'
