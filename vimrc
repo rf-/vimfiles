@@ -316,6 +316,9 @@ Bundle 'Valloric/YouCompleteMe'
 
 Bundle 'nsf/gocode', {'rtp': 'vim/'}
 
+Bundle 'AndrewRadev/splitjoin.vim'
+Bundle 'godlygeek/tabular'
+
 filetype plugin indent on
 
 "" File Types
