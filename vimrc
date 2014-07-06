@@ -150,7 +150,7 @@ endif
 
 " Tab completion and Command-T ignores
 set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*,.idea
+set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*,.idea,node_modules
 
 " % to bounce from do to end etc.
 runtime! macros/matchit.vim
