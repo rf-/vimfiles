@@ -194,7 +194,8 @@ highlight clear SignColumn
 " <Leader>1 to run the given shell command and load it into a split
 command! -nargs=* -complete=shellcmd ReadCmd
       \ vnew |
-      \ setlocal buftype=nofile bufhidden=hide noswapfile |
+      \ setlocal buftype=nofile bufhidden=hide noswapfile filetype=railslog |
+      \ setlocal modifiable noreadonly |
       \ silent read !<args>
 nmap <Leader>1 :ReadCmd 
 
