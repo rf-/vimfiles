@@ -21,6 +21,9 @@ endfunction
 
 call DarkTheme()
 
+" Map jj to <Esc> (for pairing)
+inoremap jj <Esc>
+
 " Use space as leader
 let mapleader=" "
 
@@ -181,6 +184,9 @@ vmap <Leader>] >gv
 " Disable annoying :only bindings
 map <C-w>o <Nop>
 map <C-w><C-o> <Nop>
+
+" Save easily
+nnoremap <Leader>w :w<CR>
 
 " Fix highlighting in SignColumn
 highlight clear SignColumn
