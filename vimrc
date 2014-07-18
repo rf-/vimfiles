@@ -19,7 +19,7 @@ function! LightTheme()
   color miami
 endfunction
 
-call DarkTheme()
+call LightTheme()
 
 " Map jj to <Esc> (for pairing)
 inoremap jj <Esc>
@@ -317,6 +317,9 @@ Bundle 'Valloric/YouCompleteMe'
 Bundle 'nsf/gocode', {'rtp': 'vim/'}
 
 Bundle 'AndrewRadev/splitjoin.vim'
+  nmap <Leader>j :SplitjoinJoin<cr>
+  nmap <Leader>s :SplitjoinSplit<cr>
+
 Bundle 'godlygeek/tabular'
 
 filetype plugin indent on
