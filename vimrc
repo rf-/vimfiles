@@ -257,6 +257,7 @@ Bundle 'vim-ruby/vim-ruby'
 Bundle 'wting/rust.vim'
 Bundle 'noprompt/vim-yardoc'
 Bundle 'mxw/vim-jsx'
+Bundle 'jdonaldson/vaxe'
 
 "" Color schemes
 
@@ -341,3 +342,4 @@ au FileType css set shiftwidth=2 softtabstop=2
 au FileType scss set shiftwidth=2 softtabstop=2
 au FileType actionscript set smartindent noexpandtab tabstop=4 softtabstop=4 shiftwidth=4
 au FileType go set noexpandtab tabstop=4 shiftwidth=4
+au FileType haxe set tabstop=4 shiftwidth=4 softtabstop=4
