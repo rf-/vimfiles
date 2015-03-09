@@ -24,6 +24,15 @@ call LightTheme()
 " Map jj to <Esc> (for pairing)
 inoremap jj <Esc>
 
+" Format options:
+" * c: Autowrap comments using textwidth
+" * r: Insert comment leader after hitting enter
+" * o: Insert comment leader after hitting o or O
+" * q: Allow formatting of comments with `gq`
+" * j: Remove comment leader on join
+set formatoptions=croqj
+set textwidth=79
+
 " Use space as leader
 let mapleader=" "
 
@@ -240,6 +249,7 @@ Bundle 'tpope/vim-vinegar'
 
 Bundle 'scrooloose/nerdtree'
   let g:NERDTreeHijackNetrw='0'
+  map <Leader>n :NERDTreeToggle<CR>
 
 "" Syntax, etc.
 
@@ -248,7 +258,19 @@ Bundle 'tpope/vim-git'
 Bundle 'tpope/vim-haml'
 Bundle 'tpope/vim-markdown'
 Bundle 'slim-template/vim-slim'
+
+  let javascript_enable_domhtmlcss   = '1'
+  let g:javascript_conceal_function  = "ƒ"
+  let g:javascript_conceal_null      = "ø"
+  "let g:javascript_conceal_this      = "@"
+  let g:javascript_conceal_return    = "⇚"
+  let g:javascript_conceal_undefined = "¿"
+  "let g:javascript_conceal_NaN       = "ℕ"
+  "let g:javascript_conceal_prototype = "¶"
+  "let g:javascript_conceal_static    = "•"
+  "let g:javascript_conceal_super     = "Ω"
 Bundle 'pangloss/vim-javascript'
+
 Bundle 'briancollins/vim-jst'
 Bundle 'jnwhiteh/vim-golang'
 Bundle 'digitaltoad/vim-jade'
@@ -256,7 +278,7 @@ Bundle 'guns/vim-clojure-static'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'wting/rust.vim'
 Bundle 'noprompt/vim-yardoc'
-Bundle 'mxw/vim-jsx'
+"Bundle 'mxw/vim-jsx'
 Bundle 'jdonaldson/vaxe'
 
 "" Color schemes
@@ -333,10 +355,13 @@ au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru} set ft=r
 " Wrapping for text files
 au BufRead,BufNewFile *.txt set wrap wm=2 textwidth=72
 
+" Override stupid l option (TODO: figure out where it's coming from)
+au BufRead,BufNewFile * set formatoptions-=l
+
 au FileType atlas set filetype=actionscript
 au FileType make set noexpandtab
 au FileType python set shiftwidth=4 softtabstop=4 textwidth=79
-au FileType javascript set shiftwidth=2 softtabstop=2
+au FileType javascript set shiftwidth=2 softtabstop=2 conceallevel=1
 au FileType coffee set shiftwidth=2 softtabstop=2
 au FileType css set shiftwidth=2 softtabstop=2
 au FileType scss set shiftwidth=2 softtabstop=2

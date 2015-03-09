@@ -305,7 +305,7 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 	call <SID>X("MatchParen",   "",           s:selection,    "")
 	call <SID>X("Folded",       s:comment,    s:background,   "")
 	call <SID>X("FoldColumn",   "",           s:background,   "")
-	call <SID>X("Conceal",      s:gray4,      "",             "")
+	call <SID>X("Conceal",      s:gray4,      s:background,   "")
 	call <SID>X("Cursor",       "",           s:background,   "reverse")
 
 	if version >= 700
