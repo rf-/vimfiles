@@ -345,6 +345,9 @@ Bundle 'AndrewRadev/splitjoin.vim'
 
 Bundle 'godlygeek/tabular'
 
+  nmap <Leader>i :ImportJSImport<cr>
+Bundle 'trotzig/import-js'
+
 filetype plugin indent on
 
 "" File Types
