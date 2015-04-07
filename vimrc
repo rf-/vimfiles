@@ -93,6 +93,9 @@ let macvim_hig_shift_movement = 1
 " Map <Leader>h to remove search highlights
 map <Leader>h :noh<CR>
 
+" Map <Leader>q to close the current split (or quit Vim)
+map <Leader>q :q<CR>
+
 " Map F10 to show syntax groups under cursor
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
