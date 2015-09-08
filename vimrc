@@ -367,7 +367,7 @@ au BufRead,BufNewFile * set formatoptions-=l
 au FileType atlas set filetype=actionscript
 au FileType make set noexpandtab
 au FileType python set shiftwidth=4 softtabstop=4 textwidth=79
-au FileType javascript set shiftwidth=2 softtabstop=2 conceallevel=1
+au FileType javascript set shiftwidth=2 softtabstop=2
 au FileType coffee set shiftwidth=2 softtabstop=2
 au FileType css set shiftwidth=2 softtabstop=2
 au FileType scss set shiftwidth=2 softtabstop=2
