@@ -245,8 +245,7 @@ if has("nvim")
   endfor
 
   " In terminal buffers, make <Enter> automatically jump into insert mode
-  nnoremap <expr> <Enter> (match(bufname('%'), 'term://') == 0)
-    \ ? 'i<CR>' : '<CR>'
+  nnoremap <expr> <Enter> &buftype == 'terminal' ? 'i<CR>' : '<CR>'
 end
 
 "" Vundle
