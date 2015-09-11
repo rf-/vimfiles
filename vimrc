@@ -216,6 +216,39 @@ command! -nargs=* -complete=dir ReadTree
       \ silent read !tree <args>
 nmap <Leader>2 :ReadTree 
 
+if has("nvim")
+  " Bind <C-\><C-\> to exit terminal in nvim
+  tnoremap <C-\><C-\> <C-\><C-n>
+
+  " Bind <C-\><C-k> to <C-k> for line editing
+  tnoremap <C-\><C-k> <C-k>
+
+  " Increase scrollback
+  let g:terminal_scrollback_buffer_size=100000
+
+  " Allow tab navigation directly from terminal
+  tnoremap <C-h> <C-\><C-n><C-w>h
+  tnoremap <C-j> <C-\><C-n><C-w>j
+  tnoremap <C-k> <C-\><C-n><C-w>k
+  tnoremap <C-l> <C-\><C-n><C-w>l
+
+  " On entering a terminal buffer, automatically focus
+  autocmd BufWinEnter,WinEnter term://* startinsert
+
+  " Fix meta bindings in terminal
+  for c in range(0, 25)
+    let char=nr2char(c + char2nr("a"))
+    exec "tnoremap <M-" . char . "> <Esc>" . char
+
+    let char=nr2char(c + char2nr("A"))
+    exec "tnoremap <M-" . char . "> <Esc>" . char
+  endfor
+
+  " In terminal buffers, make <Enter> automatically jump into insert mode
+  nnoremap <expr> <Enter> (match(bufname('%'), 'term://') == 0)
+    \ ? 'i<CR>' : '<CR>'
+end
+
 "" Vundle
 
 filetype off
