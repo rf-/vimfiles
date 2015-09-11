@@ -48,7 +48,7 @@ set scrolloff=1
 set sidescrolloff=5
 
 " Mouse support in the terminal
-if !has("gui_running")
+if !has("gui_running") && !has("nvim")
   set mouse=a
   set ttymouse=xterm2
 end
@@ -155,10 +155,8 @@ map <C-e> yyV:!ruby -e "puts <C-r>0"<CR>
 vmap <C-e> :!ruby<CR>
 
 " Remember last location in file
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
-    \| exe "normal g'\"" | endif
-endif
+autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+  \| exe "normal g'\"" | endif
 
 " Tab completion and Command-T ignores
 set wildmode=list:longest,list:full
@@ -229,14 +227,20 @@ Bundle 'gmarik/vundle'
 
 "" Navigation and search
 
-Bundle 'wincent/Command-T'
-  let g:CommandTMaxHeight=20
-  map <D-t> :CommandTBuffer<CR>
-  imap <D-t> <Esc>:CommandTBuffer<CR>
-  map <D-T> :CommandT<CR>
-  imap <D-T> <Esc>:CommandT<CR>
-  map <Leader>t :CommandTBuffer<CR>
-  map <Leader>T :CommandT<CR>
+if has("nvim")
+  Bundle 'ctrlpvim/ctrlp.vim'
+    map <Leader>t :CtrlPBuffer<CR>
+    map <Leader>T :CtrlP<CR>
+else
+  Bundle 'wincent/Command-T'
+    let g:CommandTMaxHeight=20
+    map <D-t> :CommandTBuffer<CR>
+    imap <D-t> <Esc>:CommandTBuffer<CR>
+    map <D-T> :CommandT<CR>
+    imap <D-T> <Esc>:CommandT<CR>
+    map <Leader>t :CommandTBuffer<CR>
+    map <Leader>T :CommandT<CR>
+end
 
 Bundle 'epmatsw/ag.vim'
   map <D-F> :Ag<space>
