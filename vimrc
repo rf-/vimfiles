@@ -358,9 +358,6 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'SirVer/ultisnips'
   let g:UltiSnipsExpandTrigger='<C-e>'
 
-Bundle 'jpalardy/vim-slime'
-  let g:slime_target = 'tmux'
-
 let g:paredit_leader = '\'
 Bundle 'kovisoft/paredit'
 
