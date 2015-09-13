@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import os, sys, neovim, time
+import neovim, os, re, sys, time
 
 # Get a list of buffers that haven't been deleted. `nvim.buffers` includes
 # buffers that have had `:bdelete` called on them and aren't in the buffer
@@ -13,7 +13,8 @@ def get_listed_buffers(nvim):
 # is good enough to recognize '-f' and `+11`, which is all this script really
 # needs right now.
 filenames = [
-    os.path.abspath(arg) for arg in sys.argv[1:] if not arg[0] in ['-', '+']
+    re.sub(' ', '\ ', os.path.abspath(arg))
+        for arg in sys.argv[1:] if not arg[0] in ['-', '+']
 ]
 
 try:
