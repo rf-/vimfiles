@@ -21,9 +21,6 @@ endfunction
 
 call LightTheme()
 
-" Map jj to <Esc> (for pairing)
-inoremap jj <Esc>
-
 " Format options:
 " * c: Autowrap comments using textwidth
 " * r: Insert comment leader after hitting enter
@@ -260,16 +257,24 @@ Bundle 'gmarik/vundle'
 "" Navigation and search
 
 if has("nvim")
-  Bundle 'ctrlpvim/ctrlp.vim'
-    map <Leader>t :CtrlPBuffer<CR>
-    map <Leader>T :CtrlP<CR>
+  Bundle 'Shougo/unite.vim'
+    call unite#filters#matcher_default#use(['matcher_fuzzy'])
+    nnoremap <Leader>t :<C-u>Unite -no-split -start-insert buffer<CR>
+    nnoremap <Leader>T :<C-u>Unite -no-split -start-insert file_rec/neovim<CR>
+
+    let g:unite_source_history_yank_enable = 1
+    nnoremap <Leader>y :Unite history/yank<CR>
+
+    " Make it easier to leave insert mode
+    au FileType unite imap <buffer> <Space> <Plug>(unite_insert_leave)
+
+    " Disable bindings for unite_choose_action
+    au FileType unite nunmap <buffer> a
+    au FileType unite nunmap <buffer> <Tab>
+    au FileType unite iunmap <buffer> <Tab>
 else
   Bundle 'wincent/Command-T'
     let g:CommandTMaxHeight=20
-    map <D-t> :CommandTBuffer<CR>
-    imap <D-t> <Esc>:CommandTBuffer<CR>
-    map <D-T> :CommandT<CR>
-    imap <D-T> <Esc>:CommandT<CR>
     map <Leader>t :CommandTBuffer<CR>
     map <Leader>T :CommandT<CR>
 end
