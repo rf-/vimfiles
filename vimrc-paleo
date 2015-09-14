@@ -13,11 +13,10 @@ map <C-e> yyV:!ruby -e "puts <C-r>0"<CR>
 " Run selection as a Ruby script
 vmap <C-e> :!ruby<CR>
 
-"" Plugins
+" Command-T
+let g:CommandTMaxHeight=20
+map <Leader>t :CommandTBuffer<CR>
+map <Leader>T :CommandT<CR>
 
-Bundle 'wincent/Command-T'
-  let g:CommandTMaxHeight=20
-  map <Leader>t :CommandTBuffer<CR>
-  map <Leader>T :CommandT<CR>
-
-Bundle 'ConradIrwin/vim-bracketed-paste'
+" import-js
+nmap <Leader>i :ImportJSImport<cr>

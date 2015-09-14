@@ -1,8 +1,6 @@
 .DS_Store
-bundle/*
+plugged/*
 backup/*
 undo/*
 .netrwhist
 notes/*
-
-!bundle/vundle

@@ -151,95 +151,112 @@ highlight clear SignColumn
 
 "" Plugins
 
-filetype off
-
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-Bundle 'gmarik/vundle'
+call plug#begin()
 
 "" Navigation and search
 
-Bundle 'epmatsw/ag.vim'
-  map <D-F> :Ag<space>
-  imap <D-F> <Esc>:Ag<space>
-  " <Leader>a to Ag for word under cursor
-  map <Leader>a "zyw:exe "Ag! ".@z.""<CR>
-
-Bundle 'rf-/vim-bclose'
-  nnoremap <Leader>bc :Bclose<CR>
-
-Bundle 'tpope/vim-vinegar'
-
-Bundle 'scrooloose/nerdtree'
-  let g:NERDTreeHijackNetrw = '0'
-  map <Leader>n :NERDTreeToggle<CR>
+Plug 'epmatsw/ag.vim'
+Plug 'rf-/vim-bclose'
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-vinegar'
 
 "" Languages
 
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'tpope/vim-git'
-Bundle 'tpope/vim-haml'
-Bundle 'tpope/vim-markdown'
-Bundle 'slim-template/vim-slim'
-
-  let javascript_enable_domhtmlcss = '1'
-Bundle 'pangloss/vim-javascript'
-
-Bundle 'jnwhiteh/vim-golang'
-Bundle 'guns/vim-clojure-static'
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'noprompt/vim-yardoc'
-"Bundle 'mxw/vim-jsx'
-Bundle 'jdonaldson/vaxe'
-Bundle 'nsf/gocode', {'rtp': 'vim/'}
+Plug 'guns/vim-clojure-static'
+Plug 'jdonaldson/vaxe'
+Plug 'jnwhiteh/vim-golang'
+Plug 'kchmck/vim-coffee-script'
+Plug 'mxw/vim-jsx'
+Plug 'noprompt/vim-yardoc'
+Plug 'nsf/gocode', {'rtp': 'vim/'}
+Plug 'pangloss/vim-javascript'
+Plug 'slim-template/vim-slim'
+Plug 'tpope/vim-git'
+Plug 'tpope/vim-haml'
+Plug 'tpope/vim-markdown'
+Plug 'vim-ruby/vim-ruby'
 
 "" Misc.
 
-Bundle 'airblade/vim-gitgutter'
-  nmap ]g :GitGutterNextHunk<CR>
-  nmap [g :GitGutterPrevHunk<CR>
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'SirVer/ultisnips'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
+Plug 'airblade/vim-gitgutter'
+Plug 'godlygeek/tabular'
+Plug 'kovisoft/paredit'
+Plug 'mjbrownie/swapit'
+Plug 'scrooloose/nerdcommenter'
+Plug 'sjl/gundo.vim'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-speeddating'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
 
-Bundle 'tpope/vim-fugitive'
-  nmap <Leader>gs :Gstatus<CR>
-  nmap <Leader>gc :Gcommit<CR>
+"" Platform-specific
 
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-unimpaired'
-Bundle 'tpope/vim-speeddating'
-Bundle 'tpope/vim-dispatch'
+if has("nvim")
+  Plug 'Shougo/unite.vim'
+else
+  Plug 'ConradIrwin/vim-bracketed-paste'
+  Plug 'trotzig/import-js'
 
-Bundle 'sjl/gundo.vim'
-  nnoremap <Leader>u :GundoToggle<CR>
-  let g:gundo_right = 1
-  let g:gundo_help = 0
+  function! BuildCommandT(info)
+    if a:info.status == 'installed' || a:info.force
+      ruby VIM.command("let g:ruby_executable_path = '#{RbConfig.ruby}'")
+      exec "!cd ruby/command-t && " . g:ruby_executable_path . " extconf.rb && make"
+    endif
+  endfunction
 
-Bundle 'scrooloose/nerdcommenter'
-  map <Leader>/ <plug>NERDCommenterToggle<CR>
+  Plug 'wincent/Command-T', { 'do': function('BuildCommandT') }
+end
 
-Bundle 'SirVer/ultisnips'
-  let g:UltiSnipsExpandTrigger='<C-e>'
+call plug#end()
 
+" ag.vim
+map <Leader>f :Ag<Space>
+map <Leader>a "zyiw:exe "Ag! ".@z.""<CR>
+
+" gundo.vim
+nnoremap <Leader>u :GundoToggle<CR>
+let g:gundo_right = 1
+let g:gundo_help = 0
+
+" nerdcommenter
+map <Leader>/ <plug>NERDCommenterToggle<CR>
+
+" nerdtree
+let g:NERDTreeHijackNetrw = '0'
+map <Leader>n :NERDTreeToggle<CR>
+
+" paredit
 let g:paredit_leader = '\'
-Bundle 'kovisoft/paredit'
 
-Bundle 'mjbrownie/swapit'
+" splitjoin.vim
+nmap <Leader>j :SplitjoinJoin<cr>
+nmap <Leader>s :SplitjoinSplit<cr>
 
-Bundle 'Valloric/YouCompleteMe'
-  set completeopt-=preview
+" ultisnips
+let g:UltiSnipsExpandTrigger='<C-e>'
 
-Bundle 'AndrewRadev/splitjoin.vim'
-  nmap <Leader>j :SplitjoinJoin<cr>
-  nmap <Leader>s :SplitjoinSplit<cr>
+" vim-bclose
+nnoremap <Leader>bc :Bclose<CR>
 
-Bundle 'godlygeek/tabular'
+" vim-fugitive
+nmap <Leader>gs :Gstatus<CR>
+nmap <Leader>gc :Gcommit<CR>
 
-  nmap <Leader>i :ImportJSImport<cr>
-Bundle 'trotzig/import-js'
+" vim-gitgutter
+nmap ]g :GitGutterNextHunk<CR>
+nmap [g :GitGutterPrevHunk<CR>
 
-filetype plugin indent on
+" vim-jsx
+let g:jsx_ext_required = 0
+
+" YouCompleteMe
+set completeopt-=preview
 
 "" File Types
 
