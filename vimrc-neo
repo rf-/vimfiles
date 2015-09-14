@@ -1,8 +1,8 @@
 " Quickly open a Ruby REPL
-nnoremap <C-e> :bel 10split term://pry<CR>
+nnoremap <Leader>e :bel 10split term://pry<CR>
 
 " Run selection in a Ruby REPL
-vnoremap <C-e> y:bel 10split term://pry<CR><C-\><C-n>pi<CR>
+vnoremap <Leader>e y:bel 10split term://pry<CR><C-\><C-n>pi<CR>
 
 """ Terminal-related config
 

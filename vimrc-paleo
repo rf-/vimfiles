@@ -8,10 +8,10 @@ end
 runtime! macros/matchit.vim
 
 " Evaluate current line as a Ruby expression
-map <C-e> yyV:!ruby -e "puts <C-r>0"<CR>
+map <Leader>e yyV:!ruby -e "puts <C-r>0"<CR>
 
 " Run selection as a Ruby script
-vmap <C-e> :!ruby<CR>
+vmap <Leader>e :!ruby<CR>
 
 " Command-T
 let g:CommandTMaxHeight=20
