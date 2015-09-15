@@ -50,10 +50,10 @@ if '-f' in sys.argv and len(new_buffers) > 0:
     # hides one of the buffers.
     channel_id = nvim.channel_id
     for buffer in new_buffers:
-        nvim.command(
-            'autocmd BufDelete,BufHidden <buffer=%d> ' + \
-            'call rpcnotify(%d, "check_buffers")' % (buffer, channel_id)
-        )
+        nvim.command((
+            'autocmd BufDelete,BufHidden <buffer=%d> ' +
+            'call rpcnotify(%d, "check_buffers")'
+        ) % (buffer, channel_id))
 
     stay_open = True
     while stay_open:
