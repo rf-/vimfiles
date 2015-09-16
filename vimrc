@@ -74,6 +74,9 @@ set laststatus=2
 set backupdir=~/.vim/backup//
 set directory=~/.vim/backup//
 
+" Copy and paste to/from system clipboard
+set clipboard=unnamedplus
+
 " Map <Leader>h to remove search highlights
 map <Leader>h :noh<CR>
 
