@@ -9,6 +9,10 @@ vnoremap <Leader>e y:bel 10split term://pry<CR><C-\><C-n>pi<CR>
 
 """ Terminal-related config
 
+" Bind <C-\><C-t> to open a new terminal split in normal and terminal modes
+tnoremap <C-\><C-t> <C-\><C-n>:split<CR><C-\><C-n>:term<CR>
+nnoremap <C-\><C-t> <C-\><C-n>:split<CR><C-\><C-n>:term<CR>
+
 " Bind <C-\><C-\> to exit terminal
 tnoremap <C-\><C-\> <C-\><C-n>
 
