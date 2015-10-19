@@ -388,6 +388,22 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 	call <SID>X("diffAdded", s:green, "", "")
 	call <SID>X("diffRemoved", s:red, "", "")
 
+        " FZF Colors
+        let g:fzf_color_map = {
+        \ 'fg': <SID>rgb(s:foreground),
+        \ 'bg': <SID>rgb(s:background),
+        \ 'hl': <SID>rgb(s:lime),
+        \ 'fg+': <SID>rgb(s:green),
+        \ 'bg+': <SID>rgb(s:background),
+        \ 'hl+': <SID>rgb(s:lime),
+        \ 'info': <SID>rgb(s:linenum),
+        \ 'prompt': <SID>rgb(s:purple),
+        \ 'pointer': <SID>rgb(s:red),
+        \ 'marker': <SID>rgb(s:orange),
+        \ 'spinner': <SID>rgb(s:purple),
+        \ 'header': <SID>rgb(s:orange),
+        \}
+
 	" Delete Functions
 	delf <SID>X
 	delf <SID>rgb

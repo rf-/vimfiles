@@ -158,7 +158,6 @@ call plug#begin()
 
 "" Navigation and search
 
-Plug 'epmatsw/ag.vim'
 Plug 'rf-/vim-bclose'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-vinegar'
@@ -188,6 +187,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'godlygeek/tabular'
 Plug 'kovisoft/paredit'
 Plug 'mjbrownie/swapit'
+Plug 'rf-/YankRing.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'sjl/gundo.vim'
 Plug 'tpope/vim-dispatch'
@@ -198,12 +198,15 @@ Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 
+
 "" Platform-specific
 
 if has("nvim")
-  Plug 'Shougo/unite.vim'
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+  Plug 'junegunn/fzf.vim'
 else
   Plug 'ConradIrwin/vim-bracketed-paste'
+  Plug 'epmatsw/ag.vim'
   Plug 'trotzig/import-js'
 
   function! BuildCommandT(info)
@@ -217,10 +220,6 @@ else
 end
 
 call plug#end()
-
-" ag.vim
-map <Leader>f :Ag<Space>
-map <Leader>a "zyiw:exe "Ag! ".@z.""<CR>
 
 " gundo.vim
 nnoremap <Leader>u :GundoToggle<CR>

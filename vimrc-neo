@@ -43,20 +43,24 @@ endfor
 " In terminal buffers, make <Enter> automatically jump into insert mode
 nnoremap <expr> <Enter> &buftype == 'terminal' ? 'i<CR>' : '<CR>'
 
-""" unite.vim
+""" FZF configuration
 
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-let g:unite_source_buffer_time_format = ''
-nnoremap <Leader>t :<C-u>Unite -no-split -start-insert buffer<CR>
-nnoremap <Leader>T :<C-u>Unite -no-split -start-insert file_rec/neovim<CR>
+let g:fzf_command_prefix = 'Fzf'
+let g:fzf_nvim_statusline = 0
+autocmd TermOpen *bin/fzf* setlocal statusline=\ 
 
-let g:unite_source_history_yank_enable = 1
-nnoremap <Leader>y :Unite history/yank<CR>
+function! s:fzf_set_color_options()
+  if !exists('g:fzf_color_map')
+    return
+  endif
+  let $FZF_DEFAULT_OPTS = '--color=' .
+    \ join(values(map(copy(g:fzf_color_map), 'v:key . ":" . v:val')), ',')
+endfunction
 
-" Make it easier to leave insert mode
-au FileType unite imap <buffer> <Space> <Plug>(unite_insert_leave)
+autocmd ColorScheme * call s:fzf_set_color_options()
+call s:fzf_set_color_options()
 
-" Disable bindings for unite_choose_action
-au FileType unite nunmap <buffer> a
-au FileType unite nunmap <buffer> <Tab>
-au FileType unite iunmap <buffer> <Tab>
+nnoremap <Leader>a "zyiw:exe "FzfAg ".@z.""<CR>
+nnoremap <Leader>f :FzfAg<Space>
+nnoremap <Leader>t :FzfBuffers<CR>
+nnoremap <Leader>T :FzfFiles<CR>
