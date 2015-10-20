@@ -3,4 +3,4 @@ plugged/*
 backup/*
 undo/*
 .netrwhist
-notes/*
+/notes

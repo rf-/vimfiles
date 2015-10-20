@@ -197,7 +197,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-
+Plug 'vimoutliner/vimoutliner'
 
 "" Platform-specific
 
@@ -257,29 +257,32 @@ nmap [g :GitGutterPrevHunk<CR>
 " vim-jsx
 let g:jsx_ext_required = 0
 
+" vimoutliner
+autocmd FileType votl silent! unmap <buffer> <C-k>
+
 " YouCompleteMe
 set completeopt-=preview
 
 "" File Types
 
 " Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
-au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru}
+autocmd BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru}
   \ set filetype=ruby
 
 " Wrapping for text files
-au BufRead,BufNewFile *.txt set wrap wrapmargin=2 textwidth=72
+autocmd BufRead,BufNewFile *.txt set wrap wrapmargin=2 textwidth=72
 
 " Override stupid l option (TODO: figure out where it's coming from)
-au BufRead,BufNewFile * set formatoptions-=l
+autocmd BufRead,BufNewFile * set formatoptions-=l
 
-au FileType coffee set shiftwidth=2 softtabstop=2
-au FileType css set shiftwidth=2 softtabstop=2
-au FileType go set noexpandtab tabstop=4 shiftwidth=4
-au FileType haxe set tabstop=4 shiftwidth=4 softtabstop=4
-au FileType javascript set shiftwidth=2 softtabstop=2
-au FileType make set noexpandtab
-au FileType python set shiftwidth=4 softtabstop=4 textwidth=79
-au FileType scss set shiftwidth=2 softtabstop=2
+autocmd FileType coffee set shiftwidth=2 softtabstop=2
+autocmd FileType css set shiftwidth=2 softtabstop=2
+autocmd FileType go set noexpandtab tabstop=4 shiftwidth=4
+autocmd FileType haxe set tabstop=4 shiftwidth=4 softtabstop=4
+autocmd FileType javascript set shiftwidth=2 softtabstop=2
+autocmd FileType make set noexpandtab
+autocmd FileType python set shiftwidth=4 softtabstop=4 textwidth=79
+autocmd FileType scss set shiftwidth=2 softtabstop=2
 
 " Load implementation-specific config
 let s:vimdir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
