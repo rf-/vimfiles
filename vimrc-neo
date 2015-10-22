@@ -47,6 +47,7 @@ nnoremap <expr> <Enter> &buftype == 'terminal' ? 'i<CR>' : '<CR>'
 
 let g:fzf_command_prefix = 'Fzf'
 let g:fzf_nvim_statusline = 0
+let g:fzf_layout = { 'down': '~20' }
 autocmd TermOpen *bin/fzf* setlocal statusline=\ 
 
 function! s:fzf_set_color_options()
@@ -60,7 +61,50 @@ endfunction
 autocmd ColorScheme * call s:fzf_set_color_options()
 call s:fzf_set_color_options()
 
+let s:notes_dir = resolve(fnamemodify('~/.vim/notes/', ':p'))
+
+function! s:fzf_notes_handler(lines)
+  let lines = len(a:lines) > 1 ? a:lines[1:] : a:lines
+  let filenames = map(lines,
+    \ 'substitute(s:notes_dir . v:val . ".otl", " ", "\\\\ ", "g")')
+  exec 'args ' . join(filenames, ' ')
+endfunction
+
+function! s:fzf_find_notes(...)
+  let dir_len = strlen(s:notes_dir)
+  let filenames = split(glob(s:notes_dir . '**/*.otl'), '\n')
+  let notes = map(filenames,
+    \ 'strpart(v:val, ' . dir_len . ', strlen(v:val) - ' . dir_len . ' - 4)')
+
+  call fzf#run({
+  \ 'source':  notes,
+  \ 'sink*':   function('s:fzf_notes_handler'),
+  \ 'options': '--multi --prompt "Notes> " --print-query ' .
+  \            '--bind ctrl-a:select-all,ctrl-d:deselect-all',
+  \ 'down':    '~10',
+  \})
+endfunction
+
+command! FzfNotes :call s:fzf_find_notes()
+
 nnoremap <Leader>a "zyiw:exe "FzfAg ".@z.""<CR>
 nnoremap <Leader>f :FzfAg<Space>
 nnoremap <Leader>t :FzfBuffers<CR>
 nnoremap <Leader>T :FzfFiles<CR>
+nnoremap <Leader>` :FzfNotes<CR>
+
+" VimOutliner
+
+function! s:votl_statusline(filename)
+  let filename = resolve(fnamemodify(a:filename, ':p'))
+
+  " If the file is inside the notes directory, clean up the statusline.
+  if filename[:strlen(s:notes_dir) - 1] == s:notes_dir
+    let filename = filename[strlen(s:notes_dir):]        " remove notes dir
+    let filename = fnamemodify(filename, ':r')           " remove extension
+    let filename = substitute(filename, ' ', '\\ ', 'g') " escape spaces
+
+    exec 'setlocal statusline=[Note]\ ' . filename
+  end
+endfunction
+autocmd FileType votl call s:votl_statusline(@%)
