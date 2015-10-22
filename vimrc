@@ -38,7 +38,7 @@ set scrolloff=1
 set sidescrolloff=5
 
 " Set encoding
-set encoding=utf-8
+silent! set encoding=utf-8
 
 " Whitespace stuff
 set nowrap
