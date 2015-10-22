@@ -152,6 +152,9 @@ nnoremap <Leader>w :w<CR>
 " Fix highlighting in SignColumn
 highlight clear SignColumn
 
+" Reload all changed files
+command! ReloadAll :split <Bar> exec 'bufdo edit' <Bar> syntax on <Bar> quit
+
 "" Plugins
 
 call plug#begin()
