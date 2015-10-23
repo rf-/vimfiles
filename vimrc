@@ -155,6 +155,11 @@ highlight clear SignColumn
 " Reload all changed files
 command! ReloadAll :split <Bar> exec 'bufdo edit' <Bar> syntax on <Bar> quit
 
+" Use <C-d> and <C-u> to scroll by 25% of window size
+autocmd WinEnter * exec 'set scroll=' . (winheight(0) / 4)
+nnoremap <C-d> :exec 'normal ' . &scroll . 'j'<CR>
+nnoremap <C-u> :exec 'normal ' . &scroll . 'k'<CR>
+
 "" Plugins
 
 call plug#begin()
