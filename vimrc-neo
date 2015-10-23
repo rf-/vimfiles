@@ -67,6 +67,7 @@ function! s:fzf_notes_handler(lines)
   let lines = len(a:lines) > 1 ? a:lines[1:] : a:lines
   let filenames = map(lines,
     \ 'substitute(s:notes_dir . v:val . ".otl", " ", "\\\\ ", "g")')
+  split
   exec 'args ' . join(filenames, ' ')
 endfunction
 
