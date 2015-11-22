@@ -293,9 +293,10 @@ autocmd FileType python setlocal shiftwidth=4 softtabstop=4 textwidth=79
 autocmd FileType scss setlocal shiftwidth=2 softtabstop=2
 
 " Load implementation-specific config
-let s:vimdir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
+let g:vimfiles_dir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
+let g:notes_dir = resolve(fnamemodify(g:vimfiles_dir . '/notes/', ':p'))
 if has("nvim")
-  exec "source " . s:vimdir . "/vimrc-neo"
+  exec "source " . g:vimfiles_dir . "/vimrc-neo"
 else
-  exec "source " . s:vimdir . "/vimrc-paleo"
+  exec "source " . g:vimfiles_dir . "/vimrc-paleo"
 end

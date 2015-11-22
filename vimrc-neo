@@ -66,126 +66,18 @@ endfunction
 autocmd ColorScheme * call s:fzf_set_color_options()
 call s:fzf_set_color_options()
 
-let s:notes_dir = resolve(fnamemodify('~/.vim/notes/', ':p'))
+nnoremap <Leader>t :FzfBuffers<CR>
+nnoremap <Leader>T :FzfFiles<CR>
 
-function! s:fzf_notes_handler(lines)
-  let query = a:lines[0]
-  let key   = a:lines[1]
-  let lines = len(a:lines) > 2 ? a:lines[2:] : [query]
+" Load and bind custom FZF functions
+exec "source " . g:vimfiles_dir . "/lib/custom_fzf_funcs.vim"
 
-  let filenames = map(lines,
-    \ 'substitute(s:notes_dir . v:val . ".otl", " ", "\\\\ ", "g")')
-
-  exec get(g:fzf_action, key, '')
-  exec 'args ' . join(filenames, ' ')
-endfunction
-
-function! s:fzf_find_notes()
-  let dir_len = strlen(s:notes_dir)
-  let filenames = split(glob(s:notes_dir . '**/*.otl'), '\n')
-  let notes = map(filenames,
-    \ 'strpart(v:val, ' . dir_len . ', strlen(v:val) - ' . dir_len . ' - 4)')
-
-  call fzf#run({
-  \ 'source':  notes,
-  \ 'sink*':   function('s:fzf_notes_handler'),
-  \ 'options': '--multi --prompt "Notes> " --print-query ' .
-  \            '--bind ctrl-a:select-all,ctrl-d:deselect-all ' .
-  \            '--expect=' . join(keys(g:fzf_action), ','),
-  \ 'down':    '~10',
-  \})
-endfunction
-
-function! s:fzf_ag_to_qf(line)
-  let parts = split(a:line, ':')
-  return {'filename': parts[0], 'lnum': parts[1], 'col': parts[2],
-        \ 'text': join(parts[3:], ':')}
-endfunction
-
-function! s:fzf_ag_handler(lines)
-  if len(a:lines) < 2
-    return
-  endif
-
-  let cmd = get(g:fzf_action, a:lines[0], 'e')
-  let list = map(a:lines[1:], 's:fzf_ag_to_qf(v:val)')
-
-  let first = list[0]
-  execute cmd escape(first.filename, ' %#''"\')
-  execute first.lnum
-  execute 'normal!' first.col.'|zz'
-
-  if len(list) > 1
-    call setqflist(list)
-    copen
-    wincmd p
-  endif
-endfunction
-
-function! s:fzf_ag(query)
-  call fzf#run({
-  \ 'source':  printf('ag --nogroup --column --color %s', a:query),
-  \ 'sink*':   function('s:fzf_ag_handler'),
-  \ 'options': '--ansi --delimiter : --nth 4..,.. --prompt "Ag> " ' .
-  \            '--multi --bind ctrl-a:select-all,ctrl-d:deselect-all ' .
-  \            '--expect=' . join(keys(g:fzf_action), ','),
-  \ 'down':    '~20'
-  \})
-endfunction
-
-command! FzfNotes
-  \ call s:fzf_find_notes()
-command! -bang -nargs=* -complete=dir
-  \ Ag call s:fzf_ag(<q-args>)
-
-function! s:get_registers()
-  function! s:get_registers_inner()
-    redir => output
-    registers
-    redir END
-    return output
-  endfunction
-
-  silent let registers_output = s:get_registers_inner()
-  let register_list = split(registers_output, "\n")[1:]
-  let register_list = map(register_list, 'v:val[1:]')
-  let uniq_register_list = []
-  let seen_register_contents = {}
-
-  for line in register_list
-    if !get(seen_register_contents, line[1:], 0)
-      let seen_register_contents[line[1:]] = 1
-      call add(uniq_register_list, line)
-    end
-  endfor
-
-  return uniq_register_list
-endfunction
-
-function! s:fzf_paste_handler(line)
-  let register = a:line[0]
-  exec 'normal "' . register . 'p'
-endfunction
-
-function! s:fzf_paste()
-  let registers = s:get_registers()
-
-  call fzf#run({
-  \ 'source':  s:get_registers(),
-  \ 'sink':    function('s:fzf_paste_handler'),
-  \ 'options': '--ansi --prompt "Paste> " ',
-  \ 'down':    '~20'
-  \})
-endfunction
-
-command! FzfPaste call s:fzf_paste()
+command! -bang -nargs=* -complete=dir Ag call custom_fzf_funcs#ag(<q-args>)
 
 nnoremap <Leader>a "zyiw:exe "Ag ".@z.""<CR>
 nnoremap <Leader>f :Ag<Space>
-nnoremap <Leader>t :FzfBuffers<CR>
-nnoremap <Leader>T :FzfFiles<CR>
-nnoremap <Leader>` :FzfNotes<CR>
-nnoremap <Leader>p :FzfPaste<CR>
+nnoremap <Leader>` :call custom_fzf_funcs#notes()<CR>
+nnoremap <Leader>p :call custom_fzf_funcs#paste()<CR>
 
 " VimOutliner
 
@@ -197,8 +89,8 @@ function! s:votl_setup(filename)
   let filename = resolve(fnamemodify(a:filename, ':p'))
 
   " If the file is inside the notes directory, clean up the statusline.
-  if filename[:strlen(s:notes_dir) - 1] == s:notes_dir
-    let filename = filename[strlen(s:notes_dir):]        " remove notes dir
+  if filename[:strlen(g:notes_dir) - 1] == g:notes_dir
+    let filename = filename[strlen(g:notes_dir):]        " remove notes dir
     let filename = fnamemodify(filename, ':r')           " remove extension
     let filename = substitute(filename, ' ', '\\ ', 'g') " escape spaces
 
@@ -206,7 +98,7 @@ function! s:votl_setup(filename)
 
     " Set view file location to also be inside the notes directory, so it gets
     " synced between computers.
-    exec 'setlocal viewdir=' .  substitute(s:notes_dir, ' ', '\\ ', 'g') . '/.views'
+    exec 'setlocal viewdir=' .  substitute(g:notes_dir, ' ', '\\ ', 'g') . '/.views'
     silent! loadview
   end
 
