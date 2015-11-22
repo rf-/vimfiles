@@ -22,6 +22,7 @@ LightTheme
 " * j: Remove comment leader on join
 set formatoptions=croqj
 set textwidth=79
+set nojoinspaces " don't use two spaces after periods
 
 " Use space as leader
 let mapleader=" "
