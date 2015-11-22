@@ -279,19 +279,19 @@ autocmd BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru}
   \ set filetype=ruby
 
 " Wrapping for text files
-autocmd BufRead,BufNewFile *.txt set wrap wrapmargin=2 textwidth=72
+autocmd BufRead,BufNewFile *.txt setlocal wrap wrapmargin=2 textwidth=72
 
 " Override stupid l option (TODO: figure out where it's coming from)
-autocmd BufRead,BufNewFile * set formatoptions-=l
+autocmd BufRead,BufNewFile * setlocal formatoptions-=l
 
-autocmd FileType coffee set shiftwidth=2 softtabstop=2
-autocmd FileType css set shiftwidth=2 softtabstop=2
-autocmd FileType go set noexpandtab tabstop=4 shiftwidth=4
-autocmd FileType haxe set tabstop=4 shiftwidth=4 softtabstop=4
-autocmd FileType javascript set shiftwidth=2 softtabstop=2
-autocmd FileType make set noexpandtab
-autocmd FileType python set shiftwidth=4 softtabstop=4 textwidth=79
-autocmd FileType scss set shiftwidth=2 softtabstop=2
+autocmd FileType coffee setlocal shiftwidth=2 softtabstop=2
+autocmd FileType css setlocal shiftwidth=2 softtabstop=2
+autocmd FileType go setlocal noexpandtab tabstop=4 shiftwidth=4
+autocmd FileType haxe setlocal tabstop=4 shiftwidth=4 softtabstop=4
+autocmd FileType javascript setlocal shiftwidth=2 softtabstop=2
+autocmd FileType make setlocal noexpandtab
+autocmd FileType python setlocal shiftwidth=4 softtabstop=4 textwidth=79
+autocmd FileType scss setlocal shiftwidth=2 softtabstop=2
 
 " Load implementation-specific config
 let s:vimdir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
