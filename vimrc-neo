@@ -128,7 +128,6 @@ function! s:fzf_ag(query)
   \ 'sink*':   function('s:fzf_ag_handler'),
   \ 'options': '--ansi --delimiter : --nth 4..,.. --prompt "Ag> " ' .
   \            '--multi --bind ctrl-a:select-all,ctrl-d:deselect-all ' .
-  \            '--color hl:68,hl+:110 ' .
   \            '--expect=' . join(keys(g:fzf_action), ','),
   \ 'down':    '~20'
   \})
@@ -139,11 +138,54 @@ command! FzfNotes
 command! -bang -nargs=* -complete=dir
   \ Ag call s:fzf_ag(<q-args>)
 
+function! s:get_registers()
+  function! s:get_registers_inner()
+    redir => output
+    registers
+    redir END
+    return output
+  endfunction
+
+  silent let registers_output = s:get_registers_inner()
+  let register_list = split(registers_output, "\n")[1:]
+  let register_list = map(register_list, 'v:val[1:]')
+  let uniq_register_list = []
+  let seen_register_contents = {}
+
+  for line in register_list
+    if !get(seen_register_contents, line[1:], 0)
+      let seen_register_contents[line[1:]] = 1
+      call add(uniq_register_list, line)
+    end
+  endfor
+
+  return uniq_register_list
+endfunction
+
+function! s:fzf_paste_handler(line)
+  let register = a:line[0]
+  exec 'normal "' . register . 'p'
+endfunction
+
+function! s:fzf_paste()
+  let registers = s:get_registers()
+
+  call fzf#run({
+  \ 'source':  s:get_registers(),
+  \ 'sink':    function('s:fzf_paste_handler'),
+  \ 'options': '--ansi --prompt "Paste> " ',
+  \ 'down':    '~20'
+  \})
+endfunction
+
+command! FzfPaste call s:fzf_paste()
+
 nnoremap <Leader>a "zyiw:exe "Ag ".@z.""<CR>
 nnoremap <Leader>f :Ag<Space>
 nnoremap <Leader>t :FzfBuffers<CR>
 nnoremap <Leader>T :FzfFiles<CR>
 nnoremap <Leader>` :FzfNotes<CR>
+nnoremap <Leader>p :FzfPaste<CR>
 
 " VimOutliner
 
