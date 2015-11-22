@@ -1,4 +1,3 @@
-set nocompatible
 set ambiwidth=single
 
 " The basics
