@@ -198,7 +198,7 @@ Plug 'kovisoft/paredit'
 Plug 'mjbrownie/swapit'
 Plug 'rf-/YankRing.vim'
 Plug 'scrooloose/nerdcommenter'
-Plug 'sjl/gundo.vim'
+Plug 'simnalamburt/vim-mundo'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rails'
@@ -230,7 +230,7 @@ end
 
 call plug#end()
 
-" gundo.vim
+" mundo
 nnoremap <Leader>u :GundoToggle<CR>
 let g:gundo_right = 1
 let g:gundo_help = 0
