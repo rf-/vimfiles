@@ -33,6 +33,10 @@ set autoread
 set winwidth=88
 set winheight=10
 
+" Open new splits below and to the right
+set splitbelow
+set splitright
+
 " Keep some padding between the cursor and the edge of the screen
 set scrolloff=1
 set sidescrolloff=5
