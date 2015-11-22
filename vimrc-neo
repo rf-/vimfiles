@@ -50,6 +50,11 @@ let g:fzf_nvim_statusline = 0
 let g:fzf_layout = { 'down': '~20' }
 autocmd TermOpen *bin/fzf* setlocal statusline=\ 
 
+let s:fzf_actions = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-s': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
 function! s:fzf_set_color_options()
   if !exists('g:fzf_color_map')
     return
@@ -64,19 +69,18 @@ call s:fzf_set_color_options()
 let s:notes_dir = resolve(fnamemodify('~/.vim/notes/', ':p'))
 
 function! s:fzf_notes_handler(lines)
-  let lines = len(a:lines) > 1 ? a:lines[1:] : a:lines
+  let query = a:lines[0]
+  let key   = a:lines[1]
+  let lines = len(a:lines) > 2 ? a:lines[2:] : [query]
+
   let filenames = map(lines,
     \ 'substitute(s:notes_dir . v:val . ".otl", " ", "\\\\ ", "g")')
 
+  exec get(s:fzf_actions, key, '')
   exec 'args ' . join(filenames, ' ')
 endfunction
 
-function! s:fzf_notes_handler_s(lines)
-  split
-  call s:fzf_notes_handler(a:lines)
-endfunction
-
-function! s:fzf_find_notes(split)
+function! s:fzf_find_notes()
   let dir_len = strlen(s:notes_dir)
   let filenames = split(glob(s:notes_dir . '**/*.otl'), '\n')
   let notes = map(filenames,
@@ -84,22 +88,59 @@ function! s:fzf_find_notes(split)
 
   call fzf#run({
   \ 'source':  notes,
-  \ 'sink*':   function(a:split ? 's:fzf_notes_handler_s' : 's:fzf_notes_handler'),
+  \ 'sink*':   function('s:fzf_notes_handler'),
   \ 'options': '--multi --prompt "Notes> " --print-query ' .
-  \            '--bind ctrl-a:select-all,ctrl-d:deselect-all',
+  \            '--bind ctrl-a:select-all,ctrl-d:deselect-all ' .
+  \            '--expect=' . join(keys(s:fzf_actions), ','),
   \ 'down':    '~10',
   \})
 endfunction
 
-command! FzfNotes            :call s:fzf_find_notes(1)
-command! FzfNotesInSameSplit :call s:fzf_find_notes(0)
+function! s:fzf_ag_to_qf(line)
+  let parts = split(a:line, ':')
+  return {'filename': parts[0], 'lnum': parts[1], 'col': parts[2],
+        \ 'text': join(parts[3:], ':')}
+endfunction
 
-nnoremap <Leader>a "zyiw:exe "FzfAg ".@z.""<CR>
-nnoremap <Leader>f :FzfAg<Space>
+function! s:fzf_ag_handler(lines)
+  if len(a:lines) < 2
+    return
+  endif
+
+  let cmd = get(s:fzf_actions, a:lines[0], 'e')
+  let list = map(a:lines[1:], 's:fzf_ag_to_qf(v:val)')
+
+  let first = list[0]
+  execute cmd escape(first.filename, ' %#''"\')
+  execute first.lnum
+  execute 'normal!' first.col.'|zz'
+
+  if len(list) > 1
+    call setqflist(list)
+    copen
+    wincmd p
+  endif
+endfunction
+
+function! s:fzf_ag(query)
+  call fzf#run({
+  \ 'source':  printf('ag --nogroup --column --color %s', a:query),
+  \ 'sink*':   function('s:fzf_ag_handler'),
+  \ 'options': '--ansi --delimiter : --nth 4..,.. --prompt "Ag> " ' .
+  \            '--multi --bind ctrl-a:select-all,ctrl-d:deselect-all ' .
+  \            '--color hl:68,hl+:110 ' .
+  \            '--expect=' . join(keys(s:fzf_actions), ',')
+  \})
+endfunction
+
+command! FzfNotes          call s:fzf_find_notes()
+command! -bang -nargs=* Ag call s:fzf_ag(<q-args>)
+
+nnoremap <Leader>a "zyiw:exe "Ag ".@z.""<CR>
+nnoremap <Leader>f :Ag<Space>
 nnoremap <Leader>t :FzfBuffers<CR>
 nnoremap <Leader>T :FzfFiles<CR>
 nnoremap <Leader>` :FzfNotes<CR>
-nnoremap <Leader>~ :FzfNotesInSameSplit<CR>
 
 " VimOutliner
 
