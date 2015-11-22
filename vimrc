@@ -266,11 +266,6 @@ nmap [g :GitGutterPrevHunk<CR>
 " vim-jsx
 let g:jsx_ext_required = 0
 
-" vimoutliner
-autocmd FileType votl
-  \  silent! unmap <buffer> <C-k>
-  \| setlocal nowrap
-
 " YouCompleteMe
 set completeopt-=preview
 

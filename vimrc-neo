@@ -67,11 +67,16 @@ function! s:fzf_notes_handler(lines)
   let lines = len(a:lines) > 1 ? a:lines[1:] : a:lines
   let filenames = map(lines,
     \ 'substitute(s:notes_dir . v:val . ".otl", " ", "\\\\ ", "g")')
-  split
+
   exec 'args ' . join(filenames, ' ')
 endfunction
 
-function! s:fzf_find_notes(...)
+function! s:fzf_notes_handler_s(lines)
+  split
+  call s:fzf_notes_handler(a:lines)
+endfunction
+
+function! s:fzf_find_notes(split)
   let dir_len = strlen(s:notes_dir)
   let filenames = split(glob(s:notes_dir . '**/*.otl'), '\n')
   let notes = map(filenames,
@@ -79,24 +84,30 @@ function! s:fzf_find_notes(...)
 
   call fzf#run({
   \ 'source':  notes,
-  \ 'sink*':   function('s:fzf_notes_handler'),
+  \ 'sink*':   function(a:split ? 's:fzf_notes_handler_s' : 's:fzf_notes_handler'),
   \ 'options': '--multi --prompt "Notes> " --print-query ' .
   \            '--bind ctrl-a:select-all,ctrl-d:deselect-all',
   \ 'down':    '~10',
   \})
 endfunction
 
-command! FzfNotes :call s:fzf_find_notes()
+command! FzfNotes            :call s:fzf_find_notes(1)
+command! FzfNotesInSameSplit :call s:fzf_find_notes(0)
 
 nnoremap <Leader>a "zyiw:exe "FzfAg ".@z.""<CR>
 nnoremap <Leader>f :FzfAg<Space>
 nnoremap <Leader>t :FzfBuffers<CR>
 nnoremap <Leader>T :FzfFiles<CR>
 nnoremap <Leader>` :FzfNotes<CR>
+nnoremap <Leader>~ :FzfNotesInSameSplit<CR>
 
 " VimOutliner
 
-function! s:votl_statusline(filename)
+function! s:votl_setup(filename)
+  setlocal nowrap
+  setlocal viewoptions=folds,cursor " only save folds and cursor pos
+  silent! unmap <buffer> <C-k>
+
   let filename = resolve(fnamemodify(a:filename, ':p'))
 
   " If the file is inside the notes directory, clean up the statusline.
@@ -106,6 +117,16 @@ function! s:votl_statusline(filename)
     let filename = substitute(filename, ' ', '\\ ', 'g') " escape spaces
 
     exec 'setlocal statusline=[Note]\ ' . filename
+
+    " Set view file location to also be inside the notes directory, so it gets
+    " synced between computers.
+    exec 'setlocal viewdir=' .  substitute(s:notes_dir, ' ', '\\ ', 'g') . '/.views'
+    silent! loadview
   end
+
+  augroup votlFolds
+    autocmd! * <buffer>
+    autocmd BufWinLeave <buffer> mkview
+  augroup END
 endfunction
-autocmd FileType votl call s:votl_statusline(@%)
+autocmd FileType votl call s:votl_setup(@%)
