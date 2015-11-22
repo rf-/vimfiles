@@ -48,12 +48,12 @@ nnoremap <expr> <Enter> &buftype == 'terminal' ? 'i<CR>' : '<CR>'
 let g:fzf_command_prefix = 'Fzf'
 let g:fzf_nvim_statusline = 0
 let g:fzf_layout = { 'down': '~20' }
-autocmd TermOpen *bin/fzf* setlocal statusline=\ 
-
-let s:fzf_actions = {
+let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-s': 'split',
   \ 'ctrl-v': 'vsplit' }
+
+autocmd TermOpen *bin/fzf* setlocal statusline=\ 
 
 function! s:fzf_set_color_options()
   if !exists('g:fzf_color_map')
@@ -76,7 +76,7 @@ function! s:fzf_notes_handler(lines)
   let filenames = map(lines,
     \ 'substitute(s:notes_dir . v:val . ".otl", " ", "\\\\ ", "g")')
 
-  exec get(s:fzf_actions, key, '')
+  exec get(g:fzf_action, key, '')
   exec 'args ' . join(filenames, ' ')
 endfunction
 
@@ -91,7 +91,7 @@ function! s:fzf_find_notes()
   \ 'sink*':   function('s:fzf_notes_handler'),
   \ 'options': '--multi --prompt "Notes> " --print-query ' .
   \            '--bind ctrl-a:select-all,ctrl-d:deselect-all ' .
-  \            '--expect=' . join(keys(s:fzf_actions), ','),
+  \            '--expect=' . join(keys(g:fzf_action), ','),
   \ 'down':    '~10',
   \})
 endfunction
@@ -107,7 +107,7 @@ function! s:fzf_ag_handler(lines)
     return
   endif
 
-  let cmd = get(s:fzf_actions, a:lines[0], 'e')
+  let cmd = get(g:fzf_action, a:lines[0], 'e')
   let list = map(a:lines[1:], 's:fzf_ag_to_qf(v:val)')
 
   let first = list[0]
@@ -129,12 +129,15 @@ function! s:fzf_ag(query)
   \ 'options': '--ansi --delimiter : --nth 4..,.. --prompt "Ag> " ' .
   \            '--multi --bind ctrl-a:select-all,ctrl-d:deselect-all ' .
   \            '--color hl:68,hl+:110 ' .
-  \            '--expect=' . join(keys(s:fzf_actions), ',')
+  \            '--expect=' . join(keys(g:fzf_action), ','),
+  \ 'down':    '~20'
   \})
 endfunction
 
-command! FzfNotes          call s:fzf_find_notes()
-command! -bang -nargs=* Ag call s:fzf_ag(<q-args>)
+command! FzfNotes
+  \ call s:fzf_find_notes()
+command! -bang -nargs=* -complete=dir
+  \ Ag call s:fzf_ag(<q-args>)
 
 nnoremap <Leader>a "zyiw:exe "Ag ".@z.""<CR>
 nnoremap <Leader>f :Ag<Space>
