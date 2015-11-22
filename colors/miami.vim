@@ -404,6 +404,27 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
         \ 'header': <SID>rgb(s:orange),
         \}
 
+        " Terminal colors
+        let g:terminal_color_0  = "#" . s:black
+        let g:terminal_color_1  = "#" . s:red
+        let g:terminal_color_2  = "#" . s:green
+        let g:terminal_color_3  = "#" . s:yellow
+        let g:terminal_color_4  = "#" . s:blue
+        let g:terminal_color_5  = "#" . s:purple
+        let g:terminal_color_6  = "#" . s:blue " fixme
+        let g:terminal_color_7  = "#" . s:white
+
+        " FIXME: light colors are the same as dark ones
+        let g:terminal_color_8  = "#" . s:black
+        let g:terminal_color_9  = "#" . s:red
+        let g:terminal_color_10 = "#" . s:green
+        let g:terminal_color_11 = "#" . s:yellow
+        let g:terminal_color_12 = "#" . s:blue
+        let g:terminal_color_13 = "#" . s:purple
+        let g:terminal_color_14 = "#" . s:blue " fixme
+        let g:terminal_color_15 = "#" . s:black
+        let g:terminal_color_16 = "#" . s:red
+
 	" Delete Functions
 	delf <SID>X
 	delf <SID>rgb
