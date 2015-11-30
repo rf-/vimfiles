@@ -176,6 +176,7 @@ Plug 'tpope/vim-vinegar'
 
 "" Languages
 
+Plug 'elixir-lang/vim-elixir'
 Plug 'guns/vim-clojure-static'
 "Plug 'jdonaldson/vaxe'
 Plug 'jnwhiteh/vim-golang'
