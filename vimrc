@@ -172,7 +172,6 @@ call plug#begin()
 
 Plug 'rf-/vim-bclose'
 Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-vinegar'
 
 "" Languages
 
@@ -244,6 +243,7 @@ map <Leader>/ <plug>NERDCommenterToggle<CR>
 " nerdtree
 let g:NERDTreeHijackNetrw = '0'
 map <Leader>n :NERDTreeToggle<CR>
+nmap - :NERDTreeFind<CR>
 
 " paredit
 let g:paredit_leader = '\'
