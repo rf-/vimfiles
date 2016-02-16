@@ -1,6 +1,9 @@
 " Enable true color
 let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
 
+" Quickly open Google
+nnoremap <Leader>g :bel 30split term://links\ google.com<CR>
+
 " Quickly open a Ruby REPL
 nnoremap <Leader>e :bel 10split term://pry<CR>
 
