@@ -9,6 +9,15 @@ vnoremap <Leader>e y:bel 10split term://pry<CR><C-\><C-n>pi<CR>
 
 """ Terminal-related config
 
+" Fix meta bindings in terminal
+for c in range(0, 25)
+  let char=nr2char(c + char2nr("a"))
+  exec "tnoremap <M-" . char . "> <Esc>" . char
+
+  let char=nr2char(c + char2nr("A"))
+  exec "tnoremap <M-" . char . "> <Esc>" . char
+endfor
+
 " Bind <C-\><C-t> to open a new terminal split in normal and terminal modes
 tnoremap <C-\><C-t> <C-\><C-n>:split<CR><C-\><C-n>:term<CR>
 nnoremap <C-\><C-t> <C-\><C-n>:split<CR><C-\><C-n>:term<CR>
@@ -16,8 +25,8 @@ nnoremap <C-\><C-t> <C-\><C-n>:split<CR><C-\><C-n>:term<CR>
 " Bind <C-\><C-\> to exit terminal
 tnoremap <C-\><C-\> <C-\><C-n>
 
-" Bind <C-\><C-k> to <C-k> for line editing
-tnoremap <C-\><C-k> <C-k>
+" Bind <M-k> to <C-k> for line editing
+tnoremap <M-k> <C-k>
 
 " Increase scrollback
 let g:terminal_scrollback_buffer_size=100000
@@ -30,15 +39,6 @@ tnoremap <C-l> <C-\><C-n><C-w>l
 
 " On entering a terminal buffer, automatically focus
 autocmd BufWinEnter,WinEnter term://* startinsert
-
-" Fix meta bindings in terminal
-for c in range(0, 25)
-  let char=nr2char(c + char2nr("a"))
-  exec "tnoremap <M-" . char . "> <Esc>" . char
-
-  let char=nr2char(c + char2nr("A"))
-  exec "tnoremap <M-" . char . "> <Esc>" . char
-endfor
 
 " In terminal buffers, make <Enter> automatically jump into insert mode
 nnoremap <expr> <Enter> &buftype == 'terminal' ? 'i<CR>' : '<CR>'
