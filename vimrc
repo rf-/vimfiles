@@ -189,6 +189,7 @@ Plug 'tpope/vim-git'
 Plug 'tpope/vim-haml'
 Plug 'tpope/vim-markdown'
 Plug 'vim-ruby/vim-ruby'
+Plug 'derekwyatt/vim-scala'
 
 "" Misc.
 
@@ -291,7 +292,9 @@ autocmd FileType haxe setlocal tabstop=4 shiftwidth=4 softtabstop=4
 autocmd FileType javascript setlocal shiftwidth=2 softtabstop=2
 autocmd FileType make setlocal noexpandtab
 autocmd FileType python setlocal shiftwidth=4 softtabstop=4 textwidth=79
+autocmd FileType scala setlocal colorcolumn=100
 autocmd FileType scss setlocal shiftwidth=2 softtabstop=2
+autocmd FileType jsx setlocal filetype=javascript
 
 " Load implementation-specific config
 let g:vimfiles_dir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
