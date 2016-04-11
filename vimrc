@@ -191,6 +191,10 @@ Plug 'tpope/vim-markdown'
 Plug 'vim-ruby/vim-ruby'
 Plug 'derekwyatt/vim-scala'
 
+"" Text objects
+Plug 'kana/vim-textobj-user'
+Plug 'glts/vim-textobj-comment'
+
 "" Misc.
 
 Plug 'AndrewRadev/splitjoin.vim'
