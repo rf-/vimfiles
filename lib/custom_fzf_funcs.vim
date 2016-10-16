@@ -48,6 +48,8 @@ function! s:ag_handler(lines)
   if len(list) > 1
     call setqflist(list)
     copen
+    wincmd J
+    10 wincmd _
     wincmd p
   endif
 endfunction
