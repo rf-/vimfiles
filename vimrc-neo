@@ -28,12 +28,25 @@ for c in range(0, 25)
   exec "tnoremap <M-" . char . "> <Esc>" . char
 endfor
 
+" Bind <C-\><C-[> and <C-\><C-]> to switch tabs in all modes
+tnoremap <C-\><C-[> <C-\><C-n>gT
+tnoremap <C-\><C-]> <C-\><C-n>gt
+nnoremap <C-\><C-[> gT
+nnoremap <C-\><C-]> gt
+vnoremap <C-\><C-[> gT
+vnoremap <C-\><C-]> gt
+inoremap <C-\><C-[> <C-o>gT
+inoremap <C-\><C-]> <C-o>gt
+
 " Bind <C-\><C-t> to open a new terminal split in normal and terminal modes
 tnoremap <C-\><C-t> <C-\><C-n>:split<CR><C-\><C-n>:term<CR>
 nnoremap <C-\><C-t> <C-\><C-n>:split<CR><C-\><C-n>:term<CR>
 
 " Bind <C-\><C-\> to exit terminal
 tnoremap <C-\><C-\> <C-\><C-n>
+
+" Bind <C-Space> in terminal to run leader commands
+tnoremap <C-@> <C-\><C-n><Leader>
 
 " Bind <M-k> to <C-k> for line editing
 tnoremap <M-k> <C-k>

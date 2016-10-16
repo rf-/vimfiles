@@ -262,6 +262,7 @@ map <Leader>/ <plug>NERDCommenterToggle<CR>
 " nerdtree
 let g:NERDTreeHijackNetrw = '0'
 map <Leader>n :NERDTreeToggle<CR>
+map <Leader>N :NERDTree<CR>
 nmap - :NERDTreeFind<CR>
 
 " paredit
@@ -276,6 +277,7 @@ let g:UltiSnipsExpandTrigger='<C-e>'
 
 " vim-bclose
 nnoremap <Leader>bc :Bclose<CR>
+nnoremap <Leader>BC :Bclose!<CR>
 
 " vim-fugitive
 nmap <Leader>gs :Gstatus<CR>
