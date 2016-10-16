@@ -198,8 +198,13 @@ Plug 'tpope/vim-haml'
 Plug 'tpope/vim-markdown'
 Plug 'vim-ruby/vim-ruby'
 Plug 'derekwyatt/vim-scala'
+Plug 'solarnz/thrift.vim'
+Plug 'rust-lang/rust.vim'
+Plug 'rhysd/vim-crystal'
+Plug 'leafgarland/typescript-vim'
 
 "" Text objects
+
 Plug 'kana/vim-textobj-user'
 Plug 'glts/vim-textobj-comment'
 
