@@ -391,10 +391,10 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
         " FZF Colors
         let g:fzf_color_map = {
         \ 'fg': <SID>rgb(s:foreground),
-        \ 'bg': <SID>rgb(s:background),
+        \ 'bg': '-1',
         \ 'hl': <SID>rgb(s:lime),
         \ 'fg+': <SID>rgb(s:green),
-        \ 'bg+': <SID>rgb(s:background),
+        \ 'bg+': '-1',
         \ 'hl+': <SID>rgb(s:lime),
         \ 'info': <SID>rgb(s:linenum),
         \ 'prompt': <SID>rgb(s:purple),
