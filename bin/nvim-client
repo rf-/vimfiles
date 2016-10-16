@@ -22,7 +22,6 @@ try:
 except KeyError:
     # If we aren't running inside a `:terminal`, just exec nvim.
     os.execvp('nvim', sys.argv)
-    sys.exit()
 
 nvim = neovim.attach('socket', path=nvim_socket)
 
@@ -57,7 +56,7 @@ if '-f' in sys.argv and len(new_buffers) > 0:
 
     stay_open = True
     while stay_open:
-        nvim.session.next_message() # block until `rpcnotify` is called
+        nvim.next_message() # block until `rpcnotify` is called
         open_buffers = [window.buffer.number for window in nvim.windows]
         stay_open = any([buffer in open_buffers for buffer in new_buffers])
 
