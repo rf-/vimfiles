@@ -10,6 +10,13 @@ nnoremap <Leader>e :bel 10split term://pry<CR>
 " Run selection in a Ruby REPL
 vnoremap <Leader>e y:bel 10split term://pry<CR><C-\><C-n>pi<CR>
 
+" Enable deoplete; override enter behavior with popup open
+let g:deoplete#enable_at_startup = 1
+inoremap <silent> <CR> <C-r>=<SID>close_popup_and_insert_cr()<CR>
+function! s:close_popup_and_insert_cr() abort
+  return deoplete#close_popup() . "\<CR>"
+endfunction
+
 """ Terminal-related config
 
 " Fix meta bindings in terminal

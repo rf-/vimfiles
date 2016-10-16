@@ -212,7 +212,6 @@ Plug 'glts/vim-textobj-comment'
 
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'SirVer/ultisnips'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
 Plug 'airblade/vim-gitgutter'
 Plug 'godlygeek/tabular'
 Plug 'kovisoft/paredit'
@@ -233,6 +232,7 @@ Plug 'vimoutliner/vimoutliner'
 if has("nvim")
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
   Plug 'junegunn/fzf.vim'
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
   Plug 'ConradIrwin/vim-bracketed-paste'
   Plug 'epmatsw/ag.vim'
@@ -286,9 +286,6 @@ nmap [g :GitGutterPrevHunk<CR>
 
 " vim-jsx
 let g:jsx_ext_required = 0
-
-" YouCompleteMe
-set completeopt-=preview
 
 "" File Types
 
