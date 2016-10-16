@@ -232,6 +232,7 @@ Plug 'vimoutliner/vimoutliner'
 if has("nvim")
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
   Plug 'junegunn/fzf.vim'
+  Plug 'ludovicchabant/vim-gutentags'
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
   Plug 'ConradIrwin/vim-bracketed-paste'
