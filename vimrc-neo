@@ -46,16 +46,13 @@ nnoremap <C-\><C-t> <C-\><C-n>:split<CR><C-\><C-n>:term<CR>
 " Bind <C-\><C-\> to exit terminal
 tnoremap <C-\><C-\> <C-\><C-n>
 
-" Bind <C-Space> in terminal to run leader commands
-tnoremap <C-@> <C-\><C-n><Leader>
-
 " Bind <M-k> to <C-k> for line editing
 tnoremap <M-k> <C-k>
 
 " Increase scrollback
 let g:terminal_scrollback_buffer_size=100000
 
-" Allow tab navigation directly from terminal
+" Allow split navigation directly from terminal
 tnoremap <C-h> <C-\><C-n><C-w>h
 tnoremap <C-j> <C-\><C-n><C-w>j
 tnoremap <C-k> <C-\><C-n><C-w>k
