@@ -100,6 +100,15 @@ nnoremap <Leader>f :Ag<Space>
 nnoremap <Leader>` :call custom_fzf_funcs#notes()<CR>
 nnoremap <Leader>p :call custom_fzf_funcs#paste()<CR>
 
+" gutentags
+
+let g:gutentags_define_advanced_commands = 1
+let g:gutentags_project_info = []
+call add(g:gutentags_project_info, { "type": "crystal", "file": "shard.yml" })
+
+" See https://gist.github.com/rf-/2b74152aae77a147a0dd1b7f102ea2ee
+let g:gutentags_ctags_executable_crystal = "crystal-tags"
+
 " VimOutliner
 
 function! s:votl_setup(filename)
