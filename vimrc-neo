@@ -102,7 +102,7 @@ command! -bang -nargs=* -complete=dir Ag call custom_fzf_funcs#ag(<q-args>)
 
 nnoremap <Leader>a "zyiw:exe "Ag ".@z.""<CR>
 nnoremap <Leader>f :Ag<Space>
-nnoremap <Leader>` :call custom_fzf_funcs#notes()<CR>
+nnoremap <Leader>` :call custom_fzf_funcs#wiki()<CR>
 nnoremap <Leader>p :call custom_fzf_funcs#paste()<CR>
 
 " gutentags
@@ -113,33 +113,3 @@ call add(g:gutentags_project_info, { "type": "crystal", "file": "shard.yml" })
 
 " See https://gist.github.com/rf-/2b74152aae77a147a0dd1b7f102ea2ee
 let g:gutentags_ctags_executable_crystal = "crystal-tags"
-
-" VimOutliner
-
-function! s:votl_setup(filename)
-  setlocal nowrap
-  setlocal viewoptions=folds,cursor " only save folds and cursor pos
-  silent! unmap <buffer> <C-k>
-
-  let filename = resolve(fnamemodify(a:filename, ':p'))
-
-  " If the file is inside the notes directory, clean up the statusline.
-  if filename[:strlen(g:notes_dir) - 1] == g:notes_dir
-    let filename = filename[strlen(g:notes_dir):]        " remove notes dir
-    let filename = fnamemodify(filename, ':r')           " remove extension
-    let filename = substitute(filename, ' ', '\\ ', 'g') " escape spaces
-
-    exec 'setlocal statusline=[Note]\ ' . filename
-
-    " Set view file location to also be inside the notes directory, so it gets
-    " synced between computers.
-    exec 'setlocal viewdir=' .  substitute(g:notes_dir, ' ', '\\ ', 'g') . '/.views'
-    silent! loadview
-  end
-
-  augroup votlFolds
-    autocmd! * <buffer>
-    autocmd BufWinLeave <buffer> mkview
-  augroup END
-endfunction
-autocmd FileType votl call s:votl_setup(@%)

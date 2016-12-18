@@ -3,5 +3,5 @@
 /backup/*
 /undo/*
 .netrwhist
-/notes
 /autoload/plug.vim.old
+/wiki

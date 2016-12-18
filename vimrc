@@ -184,7 +184,6 @@ Plug 'scrooloose/nerdtree'
 
 Plug 'elixir-lang/vim-elixir'
 Plug 'guns/vim-clojure-static'
-"Plug 'jdonaldson/vaxe'
 Plug 'jnwhiteh/vim-golang'
 Plug 'kchmck/vim-coffee-script'
 Plug 'mxw/vim-jsx'
@@ -224,7 +223,8 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'vimoutliner/vimoutliner'
+Plug 'vimwiki/vimwiki'
+Plug 'mattn/calendar-vim'
 
 "" Platform-specific
 
@@ -289,6 +289,20 @@ nmap [g :GitGutterPrevHunk<CR>
 " vim-jsx
 let g:jsx_ext_required = 0
 
+" vimwiki
+let wiki = {}
+let wiki.path = '~/.vim/wiki'
+let wiki.auto_tags = 1
+let wiki.syntax = 'markdown'
+let wiki.ext = '.md'
+let wiki.diary_rel_path = '.'
+let wiki.index = 'Home'
+let g:vimwiki_list = [wiki]
+let g:vimwiki_hl_cb_checked = 1
+let g:vimwiki_folding = 'expr'
+let g:vimwiki_map_prefix = '<Leader><Leader>'
+nmap <Leader><Leader>c :Calendar<CR>
+
 "" File Types
 
 " Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
@@ -300,6 +314,16 @@ autocmd BufRead,BufNewFile *.txt setlocal wrap wrapmargin=2 textwidth=72
 
 " Override stupid l option (TODO: figure out where it's coming from)
 autocmd BufRead,BufNewFile * setlocal formatoptions-=l
+
+" Remove unimpaired.vim mappings that interfere with =
+autocmd BufRead,BufNewFile {*.md,*.wiki} silent! nunmap =p
+autocmd BufRead,BufNewFile {*.md,*.wiki} silent! nunmap =P
+
+" Default to open folds for note files
+autocmd BufRead,BufNewFile {*.md,*.wiki} set foldlevel=2
+
+" Turn on text wrapping in note files
+autocmd BufRead,BufNewFile {*.md,*.wiki} setlocal formatoptions+=t
 
 " Include ? and ! in 'words' in Ruby, so that tags work correctly with bang and
 " question mark methods
@@ -318,7 +342,6 @@ autocmd FileType jsx setlocal filetype=javascript
 
 " Load implementation-specific config
 let g:vimfiles_dir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
-let g:notes_dir = resolve(fnamemodify(g:vimfiles_dir . '/notes/', ':p'))
 if has("nvim")
   exec "source " . g:vimfiles_dir . "/vimrc-neo"
 else

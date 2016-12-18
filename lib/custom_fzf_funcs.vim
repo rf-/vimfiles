@@ -1,25 +1,25 @@
-function! s:notes_handler(lines)
+function! s:wiki_handler(lines)
   let query = a:lines[0]
   let key   = a:lines[1]
   let lines = len(a:lines) > 2 ? a:lines[2:] : [query]
 
   let filenames = map(lines,
-    \ 'substitute(g:notes_dir . v:val . ".otl", " ", "\\\\ ", "g")')
+    \ 'substitute(VimwikiGet("path") . v:val . ".md", " ", "\\\\ ", "g")')
 
   exec get(g:fzf_action, key, '')
   exec 'args ' . join(filenames, ' ')
 endfunction
 
-function! custom_fzf_funcs#notes()
-  let dir_len = strlen(g:notes_dir)
-  let filenames = split(glob(g:notes_dir . '**/*.otl'), '\n')
-  let notes = map(filenames,
-    \ 'strpart(v:val, ' . dir_len . ', strlen(v:val) - ' . dir_len . ' - 4)')
+function! custom_fzf_funcs#wiki()
+  let dir_len = strlen(VimwikiGet('path'))
+  let filenames = vimwiki#base#find_files(0, 0)
+  let pages = map(filenames,
+    \ 'strpart(v:val, ' . dir_len . ', strlen(v:val) - ' . dir_len . ' - 3)')
 
   call fzf#run({
-  \ 'source':  notes,
-  \ 'sink*':   function('s:notes_handler'),
-  \ 'options': '--multi --prompt "Notes> " --print-query ' .
+  \ 'source':  pages,
+  \ 'sink*':   function('s:wiki_handler'),
+  \ 'options': '--multi --prompt "Wiki> " --print-query ' .
   \            '--bind ctrl-a:select-all,ctrl-d:deselect-all ' .
   \            '--expect=' . join(keys(g:fzf_action), ','),
   \ 'down':    '~10',
