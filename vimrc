@@ -301,6 +301,10 @@ autocmd BufRead,BufNewFile *.txt setlocal wrap wrapmargin=2 textwidth=72
 " Override stupid l option (TODO: figure out where it's coming from)
 autocmd BufRead,BufNewFile * setlocal formatoptions-=l
 
+" Include ? and ! in 'words' in Ruby, so that tags work correctly with bang and
+" question mark methods
+autocmd FileType ruby setlocal iskeyword+=!,?
+
 autocmd FileType coffee setlocal shiftwidth=2 softtabstop=2
 autocmd FileType css setlocal shiftwidth=2 softtabstop=2
 autocmd FileType go setlocal noexpandtab tabstop=4 shiftwidth=4
