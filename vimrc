@@ -126,10 +126,6 @@ inoremap <C-j> <Esc><C-j>
 inoremap <C-k> <Esc><C-k>
 inoremap <C-l> <Esc><C-l>
 
-" Map <Tab> in normal/visual mode to fix indentation
-nnoremap <Tab> ==
-vnoremap <Tab> =
-
 " Map <Leader>3 or <Leader># to go to alternate file
 nnoremap <Leader># :e#<CR>
 nnoremap <Leader>3 :e#<CR>
