@@ -58,6 +58,9 @@ set smarttab
 " Normalize the behavior of Y to match other capital letters
 nnoremap Y y$
 
+" Improve ergonomics of global marks
+nnoremap ~ `
+
 " History and persistent undo
 set history=1000
 set undofile
