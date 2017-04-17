@@ -1,5 +1,7 @@
 " Enable true color and special cursor for insert mode
-set termguicolors
+if $TERM_PROGRAM == "iTerm.app"
+  set termguicolors
+endif
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
 
 " Quickly open Google
