@@ -301,7 +301,7 @@ let g:vimwiki_list = [wiki]
 let g:vimwiki_hl_cb_checked = 1
 let g:vimwiki_folding = 'expr'
 let g:vimwiki_map_prefix = '<Leader><Leader>'
-nmap <Leader><Leader>c :Calendar<CR>
+nnoremap <Leader><Leader>c :Calendar<CR>
 
 "" File Types
 
@@ -316,14 +316,18 @@ autocmd BufRead,BufNewFile *.txt setlocal wrap wrapmargin=2 textwidth=72
 autocmd BufRead,BufNewFile * setlocal formatoptions-=l
 
 " Remove unimpaired.vim mappings that interfere with =
-autocmd BufRead,BufNewFile {*.md,*.wiki} silent! nunmap =p
-autocmd BufRead,BufNewFile {*.md,*.wiki} silent! nunmap =P
+autocmd FileType vimwiki silent! nunmap =p
+autocmd FileType vimwiki silent! nunmap =P
 
 " Default to open folds for note files
-autocmd BufRead,BufNewFile {*.md,*.wiki} set foldlevel=2
+autocmd FileType vimwiki set foldlevel=2
 
 " Turn on text wrapping in note files
-autocmd BufRead,BufNewFile {*.md,*.wiki} setlocal formatoptions+=t
+autocmd FileType vimwiki setlocal formatoptions+=t
+
+" Add custom mappings for note files
+autocmd FileType vimwiki inoremap <buffer> <C-h> <Esc>hhmz<<`za
+autocmd FileType vimwiki inoremap <buffer> <C-l> <Esc>llmz>>`za
 
 " Include ? and ! in 'words' in Ruby, so that tags work correctly with bang and
 " question mark methods
