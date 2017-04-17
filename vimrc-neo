@@ -60,8 +60,14 @@ tnoremap <C-j> <C-\><C-n><C-w>j
 tnoremap <C-k> <C-\><C-n><C-w>k
 tnoremap <C-l> <C-\><C-n><C-w>l
 
-" On entering a terminal buffer, automatically focus
-autocmd BufWinEnter,WinEnter term://* startinsert
+" On entering a terminal buffer, automatically enter insert mode unless we're
+" scrolled up
+function! s:start_insert_if_at_bottom()
+  if (line('w$') >= line('$'))
+    startinsert
+  endif
+endfunction
+autocmd BufWinEnter,WinEnter term://* call s:start_insert_if_at_bottom()
 
 " In terminal buffers, make <Enter> automatically jump into insert mode
 nnoremap <expr> <Enter> &buftype == 'terminal' ? 'i<CR>' : '<CR>'
