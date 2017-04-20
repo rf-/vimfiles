@@ -1,6 +1,5 @@
 " Mouse support in the terminal
 if !has("gui_running")
-  set mouse=a
   set ttymouse=xterm2
 end
 

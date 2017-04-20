@@ -13,6 +13,9 @@ command! LightTheme :set background=light | color miami
 
 LightTheme
 
+" Enable mouse support
+set mouse=a
+
 " Format options:
 " * c: Autowrap comments using textwidth
 " * r: Insert comment leader after hitting enter
