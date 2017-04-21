@@ -256,9 +256,9 @@ end
 call plug#end()
 
 " mundo
-nnoremap <Leader>u :GundoToggle<CR>
-let g:gundo_right = 1
-let g:gundo_help = 0
+nnoremap <Leader>u :MundoToggle<CR>
+let g:mundo_right = 1
+let g:mundo_help = 0
 
 " nerdcommenter
 map <Leader>/ <plug>NERDCommenterToggle<CR>
