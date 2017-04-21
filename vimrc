@@ -216,6 +216,7 @@ Plug 'SirVer/ultisnips'
 Plug 'airblade/vim-gitgutter'
 Plug 'godlygeek/tabular'
 Plug 'kovisoft/paredit'
+Plug 'mattn/calendar-vim'
 Plug 'mjbrownie/swapit'
 Plug 'scrooloose/nerdcommenter'
 Plug 'simnalamburt/vim-mundo'
@@ -227,7 +228,6 @@ Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'vimwiki/vimwiki'
-Plug 'mattn/calendar-vim'
 
 "" Platform-specific
 
