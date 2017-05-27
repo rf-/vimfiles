@@ -203,6 +203,7 @@ Plug 'solarnz/thrift.vim'
 Plug 'rust-lang/rust.vim'
 Plug 'rhysd/vim-crystal'
 Plug 'leafgarland/typescript-vim'
+Plug 'reasonml/vim-reason-loader'
 
 "" Text objects
 
