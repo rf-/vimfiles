@@ -75,6 +75,10 @@ function! s:start_insert_if_at_bottom()
 endfunction
 autocmd BufWinEnter,WinEnter term://* call s:start_insert_if_at_bottom()
 
+" When opening a term, disable line numbers; when leaving one, enable them
+autocmd TermOpen,BufWinEnter term://* setlocal nonumber
+autocmd BufWinLeave term://* setlocal number
+
 " In terminal buffers, make <Enter> automatically jump into insert mode
 nnoremap <expr> <Enter> &buftype == 'terminal' ? 'i<CR>' : '<CR>'
 
