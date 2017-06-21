@@ -187,11 +187,10 @@ Plug 'scrooloose/nerdtree'
 
 Plug 'elixir-lang/vim-elixir'
 Plug 'guns/vim-clojure-static'
-Plug 'jnwhiteh/vim-golang'
+Plug 'fatih/vim-go'
 Plug 'kchmck/vim-coffee-script'
 Plug 'mxw/vim-jsx'
 Plug 'noprompt/vim-yardoc'
-Plug 'nsf/gocode', {'rtp': 'vim/'}
 Plug 'pangloss/vim-javascript'
 Plug 'slim-template/vim-slim'
 Plug 'tpope/vim-git'
@@ -238,6 +237,7 @@ if has("nvim")
   Plug 'junegunn/fzf.vim'
   Plug 'ludovicchabant/vim-gutentags'
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'zchee/deoplete-go', { 'do': 'make' }
   Plug 'sebastianmarkow/deoplete-rust'
   Plug 'w0rp/ale'
 else
