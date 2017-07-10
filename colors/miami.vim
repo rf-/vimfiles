@@ -388,6 +388,10 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 	call <SID>X("diffAdded", s:green, "", "")
 	call <SID>X("diffRemoved", s:red, "", "")
 
+        " Linter Highlighting
+        call <SID>X("SpellCap", "", "faf3f3", "NONE")
+        call <SID>X("SpellBad", "", "fae0e0", "NONE")
+
         " FZF Colors
         let g:fzf_color_map = {
         \ 'fg': <SID>rgb(s:foreground),

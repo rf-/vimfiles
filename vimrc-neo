@@ -15,16 +15,20 @@ vnoremap <Leader>e y:bel 10split term://pry<CR><C-\><C-n>pi<CR>
 
 " Enable deoplete; override enter behavior with popup open
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#omni_patterns = {}
+let g:deoplete#sources = {}
 inoremap <silent> <CR> <C-r>=<SID>close_popup_and_insert_cr()<CR>
 function! s:close_popup_and_insert_cr() abort
   return deoplete#close_popup() . "\<CR>"
 endfunction
 
 " Enable deoplete support for Reason
-let g:deoplete#omni_patterns = {}
 let g:deoplete#omni_patterns.reason = '[^. *\t]\.\w*\|\h\w*|#'
-let g:deoplete#sources = {}
 let g:deoplete#sources.reason = ['omni', 'buffer']
+
+" Enable deoplete support for Rust
+let g:deoplete#sources#rust#racer_binary = $HOME . '/.cargo/bin/racer'
+let g:deoplete#sources#rust#rust_source_path = $HOME . '/src/vendor/rust/src'
 
 """ Terminal-related config
 

@@ -238,6 +238,8 @@ if has("nvim")
   Plug 'junegunn/fzf.vim'
   Plug 'ludovicchabant/vim-gutentags'
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'sebastianmarkow/deoplete-rust'
+  Plug 'w0rp/ale'
 else
   Plug 'ConradIrwin/vim-bracketed-paste'
   Plug 'epmatsw/ag.vim'
@@ -271,6 +273,9 @@ nmap - :NERDTreeFind<CR>
 
 " paredit
 let g:paredit_leader = '\'
+
+" rust.vim
+let g:rustfmt_autosave = 1
 
 " splitjoin.vim
 nmap <Leader>j :SplitjoinJoin<cr>
@@ -348,6 +353,9 @@ autocmd FileType python setlocal shiftwidth=4 softtabstop=4 textwidth=79
 autocmd FileType scala setlocal colorcolumn=100
 autocmd FileType scss setlocal shiftwidth=2 softtabstop=2
 autocmd FileType jsx setlocal filetype=javascript
+
+" Fix highlighting of Rust doc comments
+highlight link rustCommentLineDoc Comment
 
 " Load implementation-specific config
 let g:vimfiles_dir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
