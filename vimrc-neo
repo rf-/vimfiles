@@ -135,3 +135,7 @@ call add(g:gutentags_project_info, { "type": "crystal", "file": "shard.yml" })
 
 " See https://gist.github.com/rf-/2b74152aae77a147a0dd1b7f102ea2ee
 let g:gutentags_ctags_executable_crystal = "crystal-tags"
+
+" ale
+
+let g:ale_lint_on_text_changed = 'never'
