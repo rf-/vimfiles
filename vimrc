@@ -209,6 +209,7 @@ Plug 'zah/nim.vim'
 
 Plug 'kana/vim-textobj-user'
 Plug 'glts/vim-textobj-comment'
+Plug 'nelstrom/vim-textobj-rubyblock'
 
 "" Misc.
 
