@@ -67,7 +67,7 @@ endfunction
 
 function! s:tag_line_to_tag_obj(tag_line)
   let line = substitute(a:tag_line, "\\e[38;5;245m|\\e[0m", "", "g")
-  let parts = split(line, "\t")
+  let parts = split(line, "\t", 1)
   return { 'kind': parts[0], 'cmd': parts[1], 'filename': parts[2] }
 endfunction
 

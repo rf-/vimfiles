@@ -112,10 +112,10 @@ call s:fzf_set_color_options()
 nnoremap <Leader>t :FzfBuffers<CR>
 nnoremap <Leader>T :FzfFiles<CR>
 
-nnoremap <C-]> "zyiw:call custom_fzf_funcs#tags(@z, '1')<CR>
-vnoremap <C-]> "zy:call custom_fzf_funcs#tags(@z, '1')<CR>
-nnoremap g<C-]> "zyiw:call custom_fzf_funcs#tags(@z, '0')<CR>
-vnoremap g<C-]> "zy:call custom_fzf_funcs#tags(@z, '0')<CR>
+nnoremap <silent> <C-]> :call search("\\k")<CR>"zyiw:call custom_fzf_funcs#tags(@z, '1')<CR>
+vnoremap <silent> <C-]> "zy:call custom_fzf_funcs#tags(@z, '1')<CR>
+nnoremap <silent> g<C-]> :call search("\\k")<CR>"zyiw:call custom_fzf_funcs#tags(@z, '0')<CR>
+vnoremap <silent> g<C-]> "zy:call custom_fzf_funcs#tags(@z, '0')<CR>
 
 " Load and bind custom FZF functions
 exec "source " . g:vimfiles_dir . "/lib/custom_fzf_funcs.vim"

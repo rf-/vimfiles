@@ -339,7 +339,7 @@ autocmd FileType vimwiki setlocal formatoptions+=t
 autocmd FileType vimwiki inoremap <buffer> <C-h> <Esc>hhmz<<`za
 autocmd FileType vimwiki inoremap <buffer> <C-l> <Esc>llmz>>`za
 
-" Include ? and ! in 'words' in Ruby, so that tags work correctly with bang and
+" Include ? and ! in "words" in Ruby, so that tags work correctly with bang and
 " question mark methods
 autocmd FileType ruby setlocal iskeyword+=!,?
 
