@@ -77,7 +77,7 @@ function! s:start_insert_if_at_bottom()
     startinsert
   endif
 endfunction
-autocmd BufWinEnter,WinEnter term://* call s:start_insert_if_at_bottom()
+autocmd TermOpen,BufWinEnter,WinEnter term://* call s:start_insert_if_at_bottom()
 
 " When opening a term, disable line numbers; when leaving one, enable them
 autocmd TermOpen,BufWinEnter term://* setlocal nonumber
