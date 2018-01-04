@@ -187,7 +187,6 @@ Plug 'scrooloose/nerdtree'
 
 Plug 'elixir-lang/vim-elixir'
 Plug 'guns/vim-clojure-static'
-Plug 'fatih/vim-go'
 Plug 'kchmck/vim-coffee-script'
 Plug 'mxw/vim-jsx'
 Plug 'noprompt/vim-yardoc'
@@ -242,6 +241,7 @@ if has("nvim")
   Plug 'zchee/deoplete-go', { 'do': 'make' }
   Plug 'sebastianmarkow/deoplete-rust'
   Plug 'w0rp/ale'
+  Plug 'fatih/vim-go'
 else
   Plug 'ConradIrwin/vim-bracketed-paste'
   Plug 'epmatsw/ag.vim'
