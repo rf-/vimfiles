@@ -100,7 +100,8 @@ let g:fzf_action = {
 
 nnoremap <C-e> :pclose<CR>
 
-autocmd TermOpen *bin/fzf* setlocal statusline=\ 
+autocmd! FileType fzf
+autocmd FileType fzf set laststatus=0 | autocmd BufLeave <buffer> set laststatus=2
 
 function! s:fzf_set_color_options()
   if !exists('g:fzf_color_map')
