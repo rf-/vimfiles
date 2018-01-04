@@ -355,6 +355,7 @@ autocmd FileType python setlocal shiftwidth=4 softtabstop=4 textwidth=79
 autocmd FileType scala setlocal colorcolumn=100
 autocmd FileType scss setlocal shiftwidth=2 softtabstop=2
 autocmd FileType jsx setlocal filetype=javascript
+autocmd FileType vimwiki setlocal tw=0 wrap linebreak
 
 " Fix highlighting of Rust doc comments
 highlight link rustCommentLineDoc Comment
