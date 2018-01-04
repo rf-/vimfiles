@@ -84,8 +84,9 @@ function! s:tag_obj_to_qf(tag)
 endfunction
 
 function! s:go_to_tag(cmd, tag)
-  execute a:cmd escape(a:tag.filename, ' %#''"\')
-  silent execute a:tag.cmd
+  " We have to use the + syntax to go to the tag so that it'll work with pedit,
+  " which doesn't focus the new window
+  execute a:cmd "+silent\\ " . escape(a:tag.cmd, ' !') escape(a:tag.filename, ' %#''"\')
 endfunction
 
 function! s:tag_handler(lines)

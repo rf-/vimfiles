@@ -94,7 +94,11 @@ let g:fzf_layout = { 'down': '~20' }
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-s': 'split',
-  \ 'ctrl-v': 'vsplit' }
+  \ 'ctrl-v': 'vsplit',
+  \ 'ctrl-e': 'pedit'
+  \ }
+
+nnoremap <C-e> :pclose<CR>
 
 autocmd TermOpen *bin/fzf* setlocal statusline=\ 
 
