@@ -186,6 +186,7 @@ Plug 'scrooloose/nerdtree'
 "" Languages
 
 Plug 'elixir-lang/vim-elixir'
+Plug 'slashmili/alchemist.vim'
 Plug 'guns/vim-clojure-static'
 Plug 'kchmck/vim-coffee-script'
 Plug 'mxw/vim-jsx'
@@ -203,6 +204,7 @@ Plug 'rhysd/vim-crystal'
 Plug 'leafgarland/typescript-vim'
 Plug 'reasonml/vim-reason-loader'
 Plug 'zah/nim.vim'
+Plug 'dleonard0/pony-vim-syntax'
 
 "" Text objects
 
