@@ -111,6 +111,10 @@ function! ToggleNumbering()
 endf
 nmap <silent> <Leader>r :call ToggleNumbering()<CR>
 
+" Make it possible to access digraphs despite remapping <C-k>
+" (e.g., <M-k>'9 to produce ’)
+inoremap <M-k> <C-k>
+
 " Arrow keys scroll by visible lines, not absolute lines
 nnoremap <Down> gj
 nnoremap <Up> gk
