@@ -5,3 +5,4 @@
 .netrwhist
 /autoload/plug.vim.old
 /wiki
+/per-project-rc-whitelist

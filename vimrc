@@ -1,3 +1,5 @@
+let g:vimfiles_dir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
+
 set ambiwidth=single
 
 " The basics
@@ -177,6 +179,10 @@ command! ReloadAll :split <Bar> exec 'bufdo edit' <Bar> syntax on <Bar> quit
 autocmd WinEnter * exec 'set scroll=' . (winheight(0) / 4)
 nnoremap <C-d> :exec 'normal ' . &scroll . 'j'<CR>
 nnoremap <C-u> :exec 'normal ' . &scroll . 'k'<CR>
+
+" Load per-project rc file if applicable
+exec "source " . g:vimfiles_dir . "/lib/per_project_rc_file.vim"
+call per_project_rc_file#load()
 
 "" Plugins
 
@@ -367,7 +373,6 @@ autocmd FileType vimwiki setlocal tw=0 wrap linebreak
 highlight link rustCommentLineDoc Comment
 
 " Load implementation-specific config
-let g:vimfiles_dir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 if has("nvim")
   exec "source " . g:vimfiles_dir . "/vimrc-neo"
 else
