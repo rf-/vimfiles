@@ -221,7 +221,6 @@ Plug 'nelstrom/vim-textobj-rubyblock'
 "" Misc.
 
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'SirVer/ultisnips'
 Plug 'airblade/vim-gitgutter'
 Plug 'godlygeek/tabular'
 Plug 'kovisoft/paredit'
@@ -290,9 +289,6 @@ let g:rustfmt_autosave = 1
 " splitjoin.vim
 nmap <Leader>j :SplitjoinJoin<cr>
 nmap <Leader>s :SplitjoinSplit<cr>
-
-" ultisnips
-let g:UltiSnipsExpandTrigger='<C-e>'
 
 " vim-bclose
 nnoremap <Leader>bc :Bclose<CR>
