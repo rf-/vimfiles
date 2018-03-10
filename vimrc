@@ -180,10 +180,6 @@ autocmd WinEnter * exec 'set scroll=' . (winheight(0) / 4)
 nnoremap <C-d> :exec 'normal ' . &scroll . 'j'<CR>
 nnoremap <C-u> :exec 'normal ' . &scroll . 'k'<CR>
 
-" Load per-project rc file if applicable
-exec "source " . g:vimfiles_dir . "/lib/per_project_rc_file.vim"
-call per_project_rc_file#load()
-
 "" Plugins
 
 call plug#begin()
@@ -378,3 +374,7 @@ if has("nvim")
 else
   exec "source " . g:vimfiles_dir . "/vimrc-paleo"
 end
+
+" Load per-project rc file if applicable
+exec "source " . g:vimfiles_dir . "/lib/per_project_rc_file.vim"
+call per_project_rc_file#load()
