@@ -302,6 +302,9 @@ nmap <Leader>gc :Gcommit<CR>
 nmap ]g :GitGutterNextHunk<CR>
 nmap [g :GitGutterPrevHunk<CR>
 
+" vim-javascript
+let g:javascript_plugin_flow = 1
+
 " vim-jsx
 let g:jsx_ext_required = 0
 
