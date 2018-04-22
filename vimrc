@@ -136,7 +136,7 @@ inoremap <C-k> <Esc><C-k>
 inoremap <C-l> <Esc><C-l>
 
 " Map <C-w><C-p> to close preview window, since <C-w><C-z> is very awkward
-nnoremap <C-w><C-p> <C-w><C-z>
+nnoremap <C-w><C-p> :pclose!<CR>
 
 " Map <Leader>3 or <Leader># to go to alternate file
 nnoremap <Leader># :e#<CR>

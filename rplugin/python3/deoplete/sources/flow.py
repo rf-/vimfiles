@@ -6,26 +6,7 @@
 
 import os
 from .base import Base
-
-CONFIG_FILE = '.flowconfig'
-
-
-def find_project_root(dir):
-    if CONFIG_FILE in os.listdir(dir):
-        return dir
-    elif dir == '/':
-        return None
-    else:
-        return find_project_root(os.path.dirname(dir))
-
-
-def find_flow_bin(dir):
-    local_flow = dir + '/node_modules/.bin/flow'
-
-    if os.access(local_flow, os.X_OK):
-        return local_flow
-    else:
-        return 'flow'
+from flow_utils import FlowUtils
 
 
 class Source(Base):
@@ -39,18 +20,13 @@ class Source(Base):
         self.input_pattern = '((?:\.|(?:,|:|->)\s+)\w*|\()'
         self._projects = {}
         self._completer = Completer(vim)
+        self._flow_utils = FlowUtils(vim)
 
     def get_complete_position(self, context):
         return self._completer.determine_completion_position(context)
 
     def gather_candidates(self, context):
-        filename = self.vim.eval("expand('%:p')")
-        project_root, flow_bin = self.get_flow_context(filename)
-
-        if project_root is None:
-            return None
-
-        relative_path = os.path.relpath(filename, project_root)
+        project_root, flow_bin, relative_path = self._flow_utils.get_flow_context()
 
         return self._completer.find_candidates(
             context,
@@ -58,19 +34,6 @@ class Source(Base):
             flow_bin,
             relative_path
         )
-
-    def get_flow_context(self, filename):
-        for project_root in self._projects:
-            if filename.startswith(project_root):
-                return (project_root, self._projects[project_root])
-
-        project_root = find_project_root(os.path.dirname(filename))
-        if not project_root:
-            return (None, None)
-
-        flow_bin = find_flow_bin(project_root)
-        self._projects[project_root] = flow_bin
-        return (project_root, flow_bin)
 
 
 class Completer(object):

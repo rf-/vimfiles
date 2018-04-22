@@ -144,3 +144,7 @@ let g:gutentags_ctags_executable_crystal = "crystal-tags"
 " ale
 
 let g:ale_lint_on_text_changed = 'never'
+
+" Flow utils
+
+autocmd FileType javascript nnoremap <buffer> <silent> <C-p> :call FlowType()<CR>
