@@ -214,6 +214,7 @@ Plug 'leafgarland/typescript-vim'
 Plug 'reasonml/vim-reason-loader'
 Plug 'zah/nim.vim'
 Plug 'dleonard0/pony-vim-syntax'
+Plug 'galooshi/vim-import-js'
 
 "" Text objects
 
@@ -255,7 +256,6 @@ if has("nvim")
 else
   Plug 'ConradIrwin/vim-bracketed-paste'
   Plug 'epmatsw/ag.vim'
-  Plug 'trotzig/import-js'
 
   function! BuildCommandT(info)
     if a:info.status == 'installed' || a:info.force
@@ -266,6 +266,11 @@ else
 
   Plug 'wincent/Command-T', { 'do': function('BuildCommandT') }
 end
+
+" vim-import-js -- configure above plug#end to avoid double mappings
+autocmd FileType javascript nnoremap <buffer> <silent> <Leader>ii :ImportJSWord<CR>
+autocmd FileType javascript nnoremap <buffer> <silent> <Leader>if :ImportJSFix<CR>
+autocmd FileType javascript nnoremap <buffer> <silent> <Leader>ig :ImportJSGoto<CR>
 
 call plug#end()
 
