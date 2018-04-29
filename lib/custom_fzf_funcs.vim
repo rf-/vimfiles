@@ -171,3 +171,35 @@ function! custom_fzf_funcs#paste()
   \ 'down':    '~20'
   \})
 endfunction
+
+function! s:files_handler(lines)
+  if len(a:lines) < 2
+    return
+  endif
+
+  let filenames = map(a:lines[1:], 'substitute(v:val, " ", "\\\\ ", "g")')
+
+  exec get(g:fzf_action, a:lines[0], '')
+  exec 'args ' . join(filenames, ' ')
+endfunction
+
+" Borrowed from fzf.vim
+function! s:shortpath()
+  let short = pathshorten(fnamemodify(getcwd(), ':~:.'))
+  let slash = '/'
+  let result = empty(short) ? '~'.slash : short . (short =~ escape(slash, '\').'$' ? '' : slash)
+  return strwidth(result) < &columns / 2 - 20 ? result : '> '
+endfunction
+
+function! custom_fzf_funcs#files()
+  call fzf#run({
+  \ 'sink*':   function('s:files_handler'),
+  \ 'options': [
+  \              '--multi',
+  \              '--prompt', s:shortpath(),
+  \              '--bind', 'ctrl-a:select-all,ctrl-d:deselect-all',
+  \              '--expect=' . join(keys(g:fzf_action), ',')
+  \            ],
+  \ 'down':    '~10',
+  \})
+endfunction

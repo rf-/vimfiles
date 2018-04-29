@@ -115,7 +115,7 @@ autocmd ColorScheme * call s:fzf_set_color_options()
 call s:fzf_set_color_options()
 
 nnoremap <Leader>t :FzfBuffers<CR>
-nnoremap <Leader>T :FzfFiles<CR>
+nnoremap <silent> <Leader>T :call custom_fzf_funcs#files()<CR>
 
 nnoremap <silent> <C-]> :call search("\\k")<CR>"zyiw:call custom_fzf_funcs#tags(@z, '1')<CR>
 vnoremap <silent> <C-]> "zy:call custom_fzf_funcs#tags(@z, '1')<CR>
@@ -127,10 +127,10 @@ exec "source " . g:vimfiles_dir . "/lib/custom_fzf_funcs.vim"
 
 command! -bang -nargs=* -complete=dir Ag call custom_fzf_funcs#ag(<q-args>)
 
-nnoremap <Leader>a "zyiw:exe "Ag ".@z.""<CR>
+nnoremap <silent> <Leader>a "zyiw:exe "Ag ".@z.""<CR>
 nnoremap <Leader>f :Ag<Space>
-nnoremap <Leader>` :call custom_fzf_funcs#wiki()<CR>
-nnoremap <Leader>p :call custom_fzf_funcs#paste()<CR>
+nnoremap <silent> <Leader>` :call custom_fzf_funcs#wiki()<CR>
+nnoremap <silent> <Leader>p :call custom_fzf_funcs#paste()<CR>
 
 " gutentags
 
