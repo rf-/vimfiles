@@ -53,12 +53,6 @@ class Completer(object):
     def abbreviate_if_needed(self, text):
         return (text[:47] + '...') if len(text) > 50 else text
 
-    def build_completion_word(self, json):
-        if json['func_details']:
-            return json['name'] + '('
-        else:
-            return json['name']
-
     def find_candidates(self, context, project_root, flow_bin, relative_path):
         from subprocess import Popen, PIPE
         import json
@@ -89,7 +83,7 @@ class Completer(object):
             results = json.loads(stdout.decode('utf-8'))
 
             return [{
-                'word': self.build_completion_word(x),
+                'word': x['x'],
                 'abbr': self.abbreviate_if_needed(x['name']),
                 'info': x['type'],
                 'kind': self.abbreviate_if_needed(x['type'])} for x in results['result']]
