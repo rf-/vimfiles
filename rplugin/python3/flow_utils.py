@@ -2,7 +2,7 @@
 # coding: utf-8
 
 import os
-import neovim
+import pynvim
 
 CONFIG_FILE = '.flowconfig'
 
@@ -28,13 +28,13 @@ def _find_flow_bin(dir):
         return 'flow'
 
 
-@neovim.plugin
+@pynvim.plugin
 class FlowUtils(object):
     def __init__(self, vim):
         self.vim = vim
         self._projects = {}
 
-    @neovim.function('FlowType', sync=True)
+    @pynvim.function('FlowType', sync=True)
     def flow_type(self, args):
         project_root, flow_bin, relative_path = self.get_flow_context()
 
