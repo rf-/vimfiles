@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import neovim, os, re, sys, time
+import pynvim, os, re, sys, time
 
 # Get a list of buffers that haven't been deleted. `nvim.buffers` includes
 # buffers that have had `:bdelete` called on them and aren't in the buffer
@@ -23,7 +23,7 @@ except KeyError:
     # If we aren't running inside a `:terminal`, just exec nvim.
     os.execvp('nvim', sys.argv)
 
-nvim = neovim.attach('socket', path=nvim_socket)
+nvim = pynvim.attach('socket', path=nvim_socket)
 
 existing_buffers = get_listed_buffers(nvim)
 
