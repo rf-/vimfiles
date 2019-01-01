@@ -30,6 +30,23 @@ let g:deoplete#sources.reason = ['omni', 'buffer']
 let g:deoplete#sources#rust#racer_binary = $HOME . '/.cargo/bin/racer'
 let g:deoplete#sources#rust#rust_source_path = $HOME . '/src/vendor/rust/src'
 
+" Configure nvim-typescript
+set shortmess+=c
+set noshowmode
+set updatetime=2000
+autocmd BufEnter *.ts,*.tsx nnoremap <buffer> <silent> K :TSDoc<CR>
+autocmd BufEnter *.ts,*.tsx nnoremap <buffer> <silent> <Leader>tsp :TSDefPreview<CR>
+autocmd BufEnter *.ts,*.tsx nnoremap <buffer> <silent> <C-]> :TSTypeDef<CR>
+
+" Configure Reason plugin
+let g:LanguageClient_serverCommands = {
+  \ 'reason': ['ocaml-language-server', '--stdio'],
+  \ 'ocaml': ['ocaml-language-server', '--stdio'],
+  \ }
+
+" Enable EchoDoc (e.g., for TypeScript)
+let g:echodoc#enable_at_startup = 1
+
 """ Terminal-related config
 
 " Fix meta bindings in terminal

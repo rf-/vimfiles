@@ -193,7 +193,6 @@ Plug 'rf-/vim-bclose'
 Plug 'scrooloose/nerdtree'
 
 "" Languages
-
 Plug 'elixir-lang/vim-elixir'
 Plug 'slashmili/alchemist.vim'
 Plug 'guns/vim-clojure-static'
@@ -210,8 +209,7 @@ Plug 'derekwyatt/vim-scala'
 Plug 'solarnz/thrift.vim'
 Plug 'rust-lang/rust.vim'
 Plug 'rhysd/vim-crystal'
-Plug 'leafgarland/typescript-vim'
-Plug 'reasonml/vim-reason-loader'
+Plug 'HerringtonDarkholme/yats.vim'
 Plug 'zah/nim.vim'
 Plug 'dleonard0/pony-vim-syntax'
 Plug 'galooshi/vim-import-js'
@@ -249,10 +247,16 @@ if has("nvim")
   Plug 'junegunn/fzf.vim'
   Plug 'ludovicchabant/vim-gutentags'
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'Shougo/echodoc.vim'
   Plug 'zchee/deoplete-go', { 'do': 'make' }
   Plug 'sebastianmarkow/deoplete-rust'
   Plug 'w0rp/ale'
   Plug 'fatih/vim-go'
+  Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+  Plug 'reasonml-editor/vim-reason-plus'
+
+  let g:nvim_typescript#type_info_on_hold = 1
+  Plug 'mhartington/nvim-typescript', { 'do': './install.sh' }
 else
   Plug 'ConradIrwin/vim-bracketed-paste'
   Plug 'epmatsw/ag.vim'
