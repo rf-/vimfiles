@@ -4,6 +4,9 @@ if $TERM_PROGRAM == "iTerm.app"
 endif
 set guicursor=i:ver1
 
+" See instant feedback when entering commands
+set inccommand=nosplit
+
 " Quickly open Google
 nnoremap <Leader>g :bel 30split term://links\ google.com<CR>
 
