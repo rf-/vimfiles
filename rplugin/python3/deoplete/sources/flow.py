@@ -28,6 +28,9 @@ class Source(Base):
     def gather_candidates(self, context):
         project_root, flow_bin, relative_path = self._flow_utils.get_flow_context()
 
+        if flow_bin is None:
+            return []
+
         return self._completer.find_candidates(
             context,
             project_root,
@@ -83,7 +86,7 @@ class Completer(object):
             results = json.loads(stdout.decode('utf-8'))
 
             return [{
-                'word': x['x'],
+                'word': x['name'],
                 'abbr': self.abbreviate_if_needed(x['name']),
                 'info': x['type'],
                 'kind': self.abbreviate_if_needed(x['type'])} for x in results['result']]

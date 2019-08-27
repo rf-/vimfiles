@@ -34,7 +34,7 @@ class FlowUtils(object):
         self.vim = vim
         self._projects = {}
 
-    @pynvim.function('FlowType', sync=True)
+    @pynvim.function('FlowType', sync=False)
     def flow_type(self, args):
         project_root, flow_bin, relative_path = self.get_flow_context()
 
