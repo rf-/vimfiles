@@ -4,14 +4,14 @@ function! s:wiki_handler(lines)
   let lines = len(a:lines) > 2 ? a:lines[2:] : [query]
 
   let filenames = map(lines,
-    \ 'substitute(VimwikiGet("path") . v:val . ".md", " ", "\\\\ ", "g")')
+    \ 'substitute(vimwiki#vars#get_wikilocal("path") . v:val . ".md", " ", "\\\\ ", "g")')
 
   exec get(g:fzf_action, key, '')
   exec 'args ' . join(filenames, ' ')
 endfunction
 
 function! custom_fzf_funcs#wiki()
-  let dir_len = strlen(VimwikiGet('path'))
+  let dir_len = strlen(vimwiki#vars#get_wikilocal('path'))
   let filenames = vimwiki#base#find_files(0, 0)
   let pages = map(filenames,
     \ 'strpart(v:val, ' . dir_len . ', strlen(v:val) - ' . dir_len . ' - 3)')
