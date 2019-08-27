@@ -35,6 +35,8 @@ if &background == "dark"
   let s:linenum      = s:gray2
   let s:linenum_hl   = s:gray5
   let s:directory    = s:gray6
+  let s:lintwarning  = s:gray1
+  let s:linterror    = "541212"
 else
   let s:orange       = "ff5f00"
   let s:green        = "5f8700"
@@ -60,6 +62,8 @@ else
   let s:linenum      = s:gray7
   let s:linenum_hl   = s:gray5
   let s:directory    = s:gray3
+  let s:lintwarning  = "faf3f3"
+  let s:linterror    = "fae0e0"
 endif
 
 let s:comment = s:gray5
@@ -392,8 +396,8 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 	call <SID>X("diffRemoved", s:red, "", "")
 
         " Linter Highlighting
-        call <SID>X("SpellCap", "", "faf3f3", "NONE")
-        call <SID>X("SpellBad", "", "fae0e0", "NONE")
+        call <SID>X("SpellCap", "", s:lintwarning, "NONE")
+        call <SID>X("SpellBad", "", s:linterror, "NONE")
 
         " FZF Colors
         let g:fzf_color_map = {
