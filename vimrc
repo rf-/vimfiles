@@ -197,7 +197,7 @@ Plug 'elixir-lang/vim-elixir'
 Plug 'slashmili/alchemist.vim'
 Plug 'guns/vim-clojure-static'
 Plug 'kchmck/vim-coffee-script'
-Plug 'mxw/vim-jsx'
+Plug 'amadeus/vim-jsx'
 Plug 'noprompt/vim-yardoc'
 Plug 'pangloss/vim-javascript'
 Plug 'slim-template/vim-slim'
@@ -213,6 +213,7 @@ Plug 'HerringtonDarkholme/yats.vim'
 Plug 'zah/nim.vim'
 Plug 'dleonard0/pony-vim-syntax'
 Plug 'galooshi/vim-import-js'
+Plug 'dag/vim-fish'
 
 "" Text objects
 
@@ -250,7 +251,7 @@ if has("nvim")
   Plug 'Shougo/echodoc.vim'
   Plug 'zchee/deoplete-go', { 'do': 'make' }
   Plug 'sebastianmarkow/deoplete-rust'
-  Plug 'w0rp/ale'
+  Plug 'dense-analysis/ale'
   Plug 'fatih/vim-go'
   Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
   Plug 'reasonml-editor/vim-reason-plus'
