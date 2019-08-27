@@ -75,6 +75,9 @@ inoremap <C-\><C-]> <C-o>gt
 tnoremap <C-\><C-t> <C-\><C-n>:split<CR><C-\><C-n>:term<CR>
 nnoremap <C-\><C-t> <C-\><C-n>:split<CR><C-\><C-n>:term<CR>
 
+" Bind <C-\><C-p> to paste for convenience
+tnoremap <C-\><C-p> <C-\><C-n>p
+
 " Bind <C-\><C-\> to exit terminal
 tnoremap <C-\><C-\> <C-\><C-n>
 
