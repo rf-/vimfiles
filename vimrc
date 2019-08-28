@@ -189,10 +189,14 @@ call plug#begin()
 
 "" Navigation and search
 
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+Plug 'junegunn/fzf.vim'
+Plug 'ludovicchabant/vim-gutentags'
 Plug 'rf-/vim-bclose'
 Plug 'scrooloose/nerdtree'
 
 "" Languages
+
 Plug 'elixir-lang/vim-elixir'
 Plug 'slashmili/alchemist.vim'
 Plug 'guns/vim-clojure-static'
@@ -242,9 +246,6 @@ Plug 'tpope/vim-unimpaired'
 "" Platform-specific
 
 if has("nvim")
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
-  Plug 'junegunn/fzf.vim'
-  Plug 'ludovicchabant/vim-gutentags'
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'Shougo/echodoc.vim'
   Plug 'zchee/deoplete-go', { 'do': 'make' }
@@ -258,16 +259,6 @@ if has("nvim")
   Plug 'mhartington/nvim-typescript', { 'do': './install.sh' }
 else
   Plug 'ConradIrwin/vim-bracketed-paste'
-  Plug 'epmatsw/ag.vim'
-
-  function! BuildCommandT(info)
-    if a:info.status == 'installed' || a:info.force
-      ruby VIM.command("let g:ruby_executable_path = '#{RbConfig.ruby}'")
-      exec "!cd ruby/command-t && " . g:ruby_executable_path . " extconf.rb && make"
-    endif
-  endfunction
-
-  Plug 'wincent/Command-T', { 'do': function('BuildCommandT') }
 end
 
 " vim-import-js -- configure above plug#end to avoid double mappings
@@ -318,6 +309,57 @@ let g:javascript_plugin_flow = 1
 
 " vim-jsx
 let g:jsx_ext_required = 0
+
+" fzf.vim
+let g:fzf_command_prefix = 'Fzf'
+let g:fzf_nvim_statusline = 0
+let g:fzf_layout = { 'down': '~20' }
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-s': 'split',
+  \ 'ctrl-v': 'vsplit',
+  \ 'ctrl-e': 'pedit'
+  \ }
+
+nnoremap <C-e> :pclose<CR>
+
+autocmd! FileType fzf
+autocmd FileType fzf set laststatus=0 | autocmd BufLeave <buffer> set laststatus=2
+
+function! s:fzf_set_color_options()
+  if !exists('g:fzf_color_map')
+    return
+  endif
+  let $FZF_DEFAULT_OPTS = '--color=' .
+    \ join(values(map(copy(g:fzf_color_map), 'v:key . ":" . v:val')), ',')
+endfunction
+
+autocmd ColorScheme * call s:fzf_set_color_options()
+call s:fzf_set_color_options()
+
+nnoremap <Leader>t :FzfBuffers<CR>
+nnoremap <silent> <Leader>T :call custom_fzf_funcs#files()<CR>
+
+nnoremap <silent> <C-]> :call search("\\k")<CR>"zyiw:call custom_fzf_funcs#tags(@z, '1')<CR>
+vnoremap <silent> <C-]> "zy:call custom_fzf_funcs#tags(@z, '1')<CR>
+nnoremap <silent> g<C-]> :call search("\\k")<CR>"zyiw:call custom_fzf_funcs#tags(@z, '0')<CR>
+vnoremap <silent> g<C-]> "zy:call custom_fzf_funcs#tags(@z, '0')<CR>
+
+" Load and bind custom FZF functions
+exec "source " . g:vimfiles_dir . "/lib/custom_fzf_funcs.vim"
+
+command! -bang -nargs=* -complete=dir Ag call custom_fzf_funcs#ag(<q-args>)
+
+nnoremap <silent> <Leader>a "zyiw:exe "Ag ".@z.""<CR>
+nnoremap <Leader>f :Ag<Space>
+nnoremap <silent> <Leader>p :call custom_fzf_funcs#paste()<CR>
+
+" gutentags
+let g:gutentags_define_advanced_commands = 1
+let g:gutentags_project_info = []
+call add(g:gutentags_project_info, { "type": "crystal", "file": "shard.yml" })
+" See https://gist.github.com/rf-/2b74152aae77a147a0dd1b7f102ea2ee
+let g:gutentags_ctags_executable_crystal = "crystal-tags"
 
 "" File Types
 

@@ -11,15 +11,3 @@ map <Leader>e yyV:!ruby -e "puts <C-r>0"<CR>
 
 " Run selection as a Ruby script
 vmap <Leader>e :!ruby<CR>
-
-" ag.vim
-map <Leader>f :Ag<Space>
-map <Leader>a "zyiw:exe "Ag! ".@z.""<CR>
-
-" Command-T
-let g:CommandTMaxHeight=20
-map <Leader>t :CommandTBuffer<CR>
-map <Leader>T :CommandT<CR>
-
-" import-js
-nmap <Leader>i :ImportJSImport<cr>

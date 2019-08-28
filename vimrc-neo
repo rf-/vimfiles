@@ -109,60 +109,6 @@ autocmd BufWinLeave term://* setlocal number
 " In terminal buffers, make <Enter> automatically jump into insert mode
 nnoremap <expr> <Enter> &buftype == 'terminal' ? 'i<CR>' : '<CR>'
 
-""" FZF configuration
-
-let g:fzf_command_prefix = 'Fzf'
-let g:fzf_nvim_statusline = 0
-let g:fzf_layout = { 'down': '~20' }
-let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-s': 'split',
-  \ 'ctrl-v': 'vsplit',
-  \ 'ctrl-e': 'pedit'
-  \ }
-
-nnoremap <C-e> :pclose<CR>
-
-autocmd! FileType fzf
-autocmd FileType fzf set laststatus=0 | autocmd BufLeave <buffer> set laststatus=2
-
-function! s:fzf_set_color_options()
-  if !exists('g:fzf_color_map')
-    return
-  endif
-  let $FZF_DEFAULT_OPTS = '--color=' .
-    \ join(values(map(copy(g:fzf_color_map), 'v:key . ":" . v:val')), ',')
-endfunction
-
-autocmd ColorScheme * call s:fzf_set_color_options()
-call s:fzf_set_color_options()
-
-nnoremap <Leader>t :FzfBuffers<CR>
-nnoremap <silent> <Leader>T :call custom_fzf_funcs#files()<CR>
-
-nnoremap <silent> <C-]> :call search("\\k")<CR>"zyiw:call custom_fzf_funcs#tags(@z, '1')<CR>
-vnoremap <silent> <C-]> "zy:call custom_fzf_funcs#tags(@z, '1')<CR>
-nnoremap <silent> g<C-]> :call search("\\k")<CR>"zyiw:call custom_fzf_funcs#tags(@z, '0')<CR>
-vnoremap <silent> g<C-]> "zy:call custom_fzf_funcs#tags(@z, '0')<CR>
-
-" Load and bind custom FZF functions
-exec "source " . g:vimfiles_dir . "/lib/custom_fzf_funcs.vim"
-
-command! -bang -nargs=* -complete=dir Ag call custom_fzf_funcs#ag(<q-args>)
-
-nnoremap <silent> <Leader>a "zyiw:exe "Ag ".@z.""<CR>
-nnoremap <Leader>f :Ag<Space>
-nnoremap <silent> <Leader>p :call custom_fzf_funcs#paste()<CR>
-
-" gutentags
-
-let g:gutentags_define_advanced_commands = 1
-let g:gutentags_project_info = []
-call add(g:gutentags_project_info, { "type": "crystal", "file": "shard.yml" })
-
-" See https://gist.github.com/rf-/2b74152aae77a147a0dd1b7f102ea2ee
-let g:gutentags_ctags_executable_crystal = "crystal-tags"
-
 " ale
 
 let g:ale_lint_on_text_changed = 'never'
