@@ -1,31 +1,3 @@
-function! s:wiki_handler(lines)
-  let query = a:lines[0]
-  let key   = a:lines[1]
-  let lines = len(a:lines) > 2 ? a:lines[2:] : [query]
-
-  let filenames = map(lines,
-    \ 'substitute(vimwiki#vars#get_wikilocal("path") . v:val . ".md", " ", "\\\\ ", "g")')
-
-  exec get(g:fzf_action, key, '')
-  exec 'args ' . join(filenames, ' ')
-endfunction
-
-function! custom_fzf_funcs#wiki()
-  let dir_len = strlen(vimwiki#vars#get_wikilocal('path'))
-  let filenames = vimwiki#base#find_files(0, 0)
-  let pages = map(filenames,
-    \ 'strpart(v:val, ' . dir_len . ', strlen(v:val) - ' . dir_len . ' - 3)')
-
-  call fzf#run({
-  \ 'source':  pages,
-  \ 'sink*':   function('s:wiki_handler'),
-  \ 'options': '--multi --prompt "Wiki> " --print-query ' .
-  \            '--bind ctrl-a:select-all,ctrl-d:deselect-all ' .
-  \            '--expect=' . join(keys(g:fzf_action), ','),
-  \ 'down':    '~10',
-  \})
-endfunction
-
 function! s:ag_to_qf(line)
   let parts = split(a:line, ':')
   return {'filename': parts[0], 'lnum': parts[1], 'col': parts[2],

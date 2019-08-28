@@ -227,7 +227,6 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'godlygeek/tabular'
 Plug 'kovisoft/paredit'
-Plug 'mattn/calendar-vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'simnalamburt/vim-mundo'
 Plug 'tpope/vim-dispatch'
@@ -239,7 +238,6 @@ Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'vimwiki/vimwiki'
 
 "" Platform-specific
 
@@ -321,20 +319,6 @@ let g:javascript_plugin_flow = 1
 " vim-jsx
 let g:jsx_ext_required = 0
 
-" vimwiki
-let wiki = {}
-let wiki.path = '~/.vim/wiki'
-let wiki.auto_tags = 1
-let wiki.syntax = 'markdown'
-let wiki.ext = '.md'
-let wiki.diary_rel_path = '.'
-let wiki.index = 'Home'
-let g:vimwiki_list = [wiki]
-let g:vimwiki_hl_cb_checked = 1
-let g:vimwiki_folding = 'expr'
-let g:vimwiki_map_prefix = '<Leader><Leader>'
-nnoremap <Leader><Leader>c :Calendar<CR>
-
 "" File Types
 
 " Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
@@ -346,20 +330,6 @@ autocmd BufRead,BufNewFile *.txt setlocal wrap wrapmargin=2 textwidth=72
 
 " Override stupid l option (TODO: figure out where it's coming from)
 autocmd BufRead,BufNewFile * setlocal formatoptions-=l
-
-" Remove unimpaired.vim mappings that interfere with =
-autocmd FileType vimwiki silent! nunmap =p
-autocmd FileType vimwiki silent! nunmap =P
-
-" Default to open folds for note files
-autocmd FileType vimwiki set foldlevel=2
-
-" Turn on text wrapping in note files
-autocmd FileType vimwiki setlocal formatoptions+=t
-
-" Add custom mappings for note files
-autocmd FileType vimwiki inoremap <buffer> <C-h> <Esc>hhmz<<`za
-autocmd FileType vimwiki inoremap <buffer> <C-l> <Esc>llmz>>`za
 
 " Include ? and ! in "words" in Ruby, so that tags work correctly with bang and
 " question mark methods
@@ -375,7 +345,6 @@ autocmd FileType python setlocal shiftwidth=4 softtabstop=4 textwidth=79
 autocmd FileType scala setlocal colorcolumn=100
 autocmd FileType scss setlocal shiftwidth=2 softtabstop=2
 autocmd FileType jsx setlocal filetype=javascript
-autocmd FileType vimwiki setlocal tw=0 wrap linebreak
 
 " Fix highlighting of Rust doc comments
 highlight link rustCommentLineDoc Comment

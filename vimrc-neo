@@ -152,7 +152,6 @@ command! -bang -nargs=* -complete=dir Ag call custom_fzf_funcs#ag(<q-args>)
 
 nnoremap <silent> <Leader>a "zyiw:exe "Ag ".@z.""<CR>
 nnoremap <Leader>f :Ag<Space>
-nnoremap <silent> <Leader>` :call custom_fzf_funcs#wiki()<CR>
 nnoremap <silent> <Leader>p :call custom_fzf_funcs#paste()<CR>
 
 " gutentags
