@@ -85,6 +85,9 @@ class Completer(object):
 
             results = json.loads(stdout.decode('utf-8'))
 
+            if results.get('error') == 'not enough type information to autocomplete':
+                return []
+
             return [{
                 'word': x['name'],
                 'abbr': self.abbreviate_if_needed(x['name']),
