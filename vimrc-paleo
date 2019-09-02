@@ -3,6 +3,9 @@ if !has("gui_running")
   set ttymouse=xterm2
 end
 
+" Enable completion in command line (on by default in neovim)
+set wildmenu
+
 " % to bounce from do to end etc.
 runtime! macros/matchit.vim
 

@@ -159,9 +159,8 @@ set matchtime=1
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
   \| exe "normal g'\"" | endif
 
-" Tab completion and Command-T ignores
-set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*,.idea,node_modules
+" Complete longest common string first, then open menu
+set wildmode=longest:full
 
 " TextMate-style indentation
 nmap <Leader>[ <<

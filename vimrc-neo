@@ -4,6 +4,12 @@ if $TERM_PROGRAM == "iTerm.app"
 endif
 set guicursor=i:ver1,a:blinkon0
 
+" Use cool popup blending
+set pumblend=20
+
+" Use popup menu for command-line completion
+set wildoptions=pum
+
 " See instant feedback when entering commands
 set inccommand=nosplit
 
