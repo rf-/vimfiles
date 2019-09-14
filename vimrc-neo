@@ -115,10 +115,6 @@ autocmd BufWinLeave term://* setlocal number
 " In terminal buffers, make <Enter> automatically jump into insert mode
 nnoremap <expr> <Enter> &buftype == 'terminal' ? 'i<CR>' : '<CR>'
 
-" ale
-
-let g:ale_lint_on_text_changed = 'never'
-
 " Flow utils
 
 autocmd FileType javascript nnoremap <buffer> <silent> <C-p> :call FlowType()<CR>
