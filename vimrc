@@ -217,6 +217,8 @@ Plug 'zah/nim.vim'
 Plug 'dleonard0/pony-vim-syntax'
 Plug 'galooshi/vim-import-js'
 Plug 'dag/vim-fish'
+Plug 'reasonml-editor/vim-reason-plus'
+Plug 'fatih/vim-go'
 
 "" Text objects
 
@@ -245,17 +247,7 @@ Plug 'tpope/vim-unimpaired'
 "" Platform-specific
 
 if has("nvim")
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'Shougo/echodoc.vim'
-  Plug 'zchee/deoplete-go', { 'do': 'make' }
-  Plug 'sebastianmarkow/deoplete-rust'
   Plug 'dense-analysis/ale'
-  Plug 'fatih/vim-go'
-  Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
-  Plug 'reasonml-editor/vim-reason-plus'
-
-  let g:nvim_typescript#type_info_on_hold = 1
-  Plug 'mhartington/nvim-typescript', { 'do': './install.sh' }
 else
   Plug 'ConradIrwin/vim-bracketed-paste'
 end

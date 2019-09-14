@@ -22,40 +22,6 @@ nnoremap <Leader>e :bel 10split term://pry<CR>
 " Run selection in a Ruby REPL
 vnoremap <Leader>e y:bel 10split term://pry<CR><C-\><C-n>pi<CR>
 
-" Enable deoplete; override enter behavior with popup open
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#omni_patterns = {}
-let g:deoplete#sources = {}
-inoremap <silent> <CR> <C-r>=<SID>close_popup_and_insert_cr()<CR>
-function! s:close_popup_and_insert_cr() abort
-  return deoplete#close_popup() . "\<CR>"
-endfunction
-
-" Enable deoplete support for Reason
-let g:deoplete#omni_patterns.reason = '[^. *\t]\.\w*\|\h\w*|#'
-let g:deoplete#sources.reason = ['omni', 'buffer']
-
-" Enable deoplete support for Rust
-let g:deoplete#sources#rust#racer_binary = $HOME . '/.cargo/bin/racer'
-let g:deoplete#sources#rust#rust_source_path = $HOME . '/src/vendor/rust/src'
-
-" Configure nvim-typescript
-set shortmess+=c
-set noshowmode
-set updatetime=2000
-autocmd BufEnter *.ts,*.tsx nnoremap <buffer> <silent> K :TSDoc<CR>
-autocmd BufEnter *.ts,*.tsx nnoremap <buffer> <silent> <Leader>tsp :TSDefPreview<CR>
-autocmd BufEnter *.ts,*.tsx nnoremap <buffer> <silent> <C-]> :TSTypeDef<CR>
-
-" Configure Reason plugin
-let g:LanguageClient_serverCommands = {
-  \ 'reason': ['ocaml-language-server', '--stdio'],
-  \ 'ocaml': ['ocaml-language-server', '--stdio'],
-  \ }
-
-" Enable EchoDoc (e.g., for TypeScript)
-let g:echodoc#enable_at_startup = 1
-
 """ Terminal-related config
 
 " Fix meta bindings in terminal
@@ -114,7 +80,3 @@ autocmd BufWinLeave term://* setlocal number
 
 " In terminal buffers, make <Enter> automatically jump into insert mode
 nnoremap <expr> <Enter> &buftype == 'terminal' ? 'i<CR>' : '<CR>'
-
-" Flow utils
-
-autocmd FileType javascript nnoremap <buffer> <silent> <C-p> :call FlowType()<CR>
