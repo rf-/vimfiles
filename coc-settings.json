@@ -1,0 +1,10 @@
+{
+  "suggest.floatEnable": true,
+  "languageserver": {
+    "scry": {
+      "command": "/Users/rfitz/src/vendor/scry/bin/scry",
+      "args": [],
+      "filetypes": ["crystal"]
+    }
+  }
+}

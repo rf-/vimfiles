@@ -244,6 +244,14 @@ Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 
+"" coc and plugins
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-solargraph', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
+
 "" Platform-specific
 
 if has("nvim")
@@ -367,6 +375,9 @@ autocmd BufRead,BufNewFile * setlocal formatoptions-=l
 " Include ? and ! in "words" in Ruby, so that tags work correctly with bang and
 " question mark methods
 autocmd FileType ruby setlocal iskeyword+=!,?
+
+" Allow comments in JSON files (like coc config)
+autocmd FileType json syntax match Comment +\/\/.\+$+
 
 autocmd FileType coffee setlocal shiftwidth=2 softtabstop=2
 autocmd FileType css setlocal shiftwidth=2 softtabstop=2
