@@ -10,10 +10,13 @@ set colorcolumn=80
 set showcmd
 syntax on
 
-command! DarkTheme  :set background=dark  | color miami
-command! LightTheme :set background=light | color miami
-
-LightTheme
+" Choose theme depending on system dark mode
+if trim(system('defaults read "Apple Global Domain" AppleInterfaceStyle')) == 'Dark'
+  set background=dark
+else
+  set background=light
+endif
+color miami
 
 " Enable mouse support
 set mouse=a
