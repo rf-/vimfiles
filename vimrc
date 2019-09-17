@@ -165,6 +165,9 @@ autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
 " Complete longest common string first, then open menu
 set wildmode=longest:full
 
+" Never automatically select or insert autocomplete match
+set completeopt=menu,menuone,preview,noinsert,noselect
+
 " TextMate-style indentation
 nmap <Leader>[ <<
 nmap <Leader>] >>
