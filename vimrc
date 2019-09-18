@@ -11,7 +11,7 @@ set showcmd
 syntax on
 
 " Choose theme depending on system dark mode
-if trim(system('defaults read "Apple Global Domain" AppleInterfaceStyle')) == 'Dark'
+if trim(system('defaults read -g AppleInterfaceStyle')) == 'Dark'
   set background=dark
 else
   set background=light
