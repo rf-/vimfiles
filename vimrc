@@ -354,7 +354,7 @@ endfunction
 autocmd ColorScheme * call s:fzf_set_color_options()
 call s:fzf_set_color_options()
 
-nnoremap <Leader>t :FzfBuffers<CR>
+nnoremap <silent> <Leader>t :FzfBuffers<CR>
 nnoremap <silent> <Leader>T :call custom_fzf_funcs#files()<CR>
 
 nnoremap <silent> <C-]> :call search("\\k")<CR>"zyiw:call custom_fzf_funcs#tags(@z, '1')<CR>
