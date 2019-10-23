@@ -188,6 +188,10 @@ autocmd WinEnter * exec 'set scroll=' . (winheight(0) / 4)
 nnoremap <silent> <C-d> :exec 'normal ' . &scroll . 'j'<CR>
 nnoremap <silent> <C-u> :exec 'normal ' . &scroll . 'k'<CR>
 
+" Add visual mappings to paste from "0, which isn't replaced when deleting text
+vnoremap <Leader>p "0p
+vnoremap <Leader>P "0P
+
 "" Plugins
 
 call plug#begin()
