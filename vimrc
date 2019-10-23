@@ -192,6 +192,14 @@ nnoremap <silent> <C-u> :exec 'normal ' . &scroll . 'k'<CR>
 vnoremap <Leader>p "0p
 vnoremap <Leader>P "0P
 
+" Use custom paths for Python in Neovim if present
+if !empty($NEOVIM_PYTHON2_PATH)
+  let g:python_host_prog = $NEOVIM_PYTHON2_PATH
+endif
+if !empty($NEOVIM_PYTHON3_PATH)
+  let g:python3_host_prog = $NEOVIM_PYTHON3_PATH
+endif
+
 "" Plugins
 
 call plug#begin()
