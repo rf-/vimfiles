@@ -408,6 +408,9 @@ autocmd FileType jsx setlocal filetype=javascript
 " Fix highlighting of Rust doc comments
 highlight link rustCommentLineDoc Comment
 
+" Disable awful default mappings for SQL
+let g:omni_sql_no_default_maps = 1
+
 " Load implementation-specific config
 if has("nvim")
   exec "source " . g:vimfiles_dir . "/vimrc-neo"
