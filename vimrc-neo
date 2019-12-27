@@ -6,15 +6,13 @@ set guicursor=i:ver1,a:blinkon0
 
 " Use cool popup blending
 set pumblend=20
+set winblend=10
 
 " Use popup menu for command-line completion
 set wildoptions=pum
 
 " See instant feedback when entering commands
 set inccommand=nosplit
-
-" Quickly open Google
-nnoremap <Leader>g :bel 30split term://links\ google.com<CR>
 
 " Quickly open a Ruby REPL
 nnoremap <Leader>e :bel 10split term://pry<CR>
@@ -31,30 +29,16 @@ function! s:close_popup_and_insert_cr() abort
   return deoplete#close_popup() . "\<CR>"
 endfunction
 
-" Enable deoplete support for Reason
-let g:deoplete#omni_patterns.reason = '[^. *\t]\.\w*\|\h\w*|#'
-let g:deoplete#sources.reason = ['omni', 'buffer']
+" Configure LSP clients
+lua <<LUA
+lsp = require("nvim_lsp")
+lsp.flow.setup({})
+lsp.solargraph.setup({})
 
-" Enable deoplete support for Rust
-let g:deoplete#sources#rust#racer_binary = $HOME . '/.cargo/bin/racer'
-let g:deoplete#sources#rust#rust_source_path = $HOME . '/src/vendor/rust/src'
-
-" Configure nvim-typescript
-set shortmess+=c
-set noshowmode
-set updatetime=2000
-autocmd BufEnter *.ts,*.tsx nnoremap <buffer> <silent> K :TSDoc<CR>
-autocmd BufEnter *.ts,*.tsx nnoremap <buffer> <silent> <Leader>tsp :TSDefPreview<CR>
-autocmd BufEnter *.ts,*.tsx nnoremap <buffer> <silent> <C-]> :TSTypeDef<CR>
-
-" Configure Reason plugin
-let g:LanguageClient_serverCommands = {
-  \ 'reason': ['ocaml-language-server', '--stdio'],
-  \ 'ocaml': ['ocaml-language-server', '--stdio'],
-  \ }
-
-" Enable EchoDoc (e.g., for TypeScript)
-let g:echodoc#enable_at_startup = 1
+-- Don't set up TS by default, because it matches very aggressively and then
+-- breaks. Activate with project-specific vimrc files instead.
+-- lsp.tsserver.setup({})
+LUA
 
 """ Terminal-related config
 
@@ -114,7 +98,3 @@ autocmd BufWinLeave term://* setlocal number
 
 " In terminal buffers, make <Enter> automatically jump into insert mode
 nnoremap <expr> <Enter> &buftype == 'terminal' ? 'i<CR>' : '<CR>'
-
-" Flow utils
-
-autocmd FileType javascript nnoremap <buffer> <silent> <C-p> :call FlowType()<CR>

@@ -39,7 +39,7 @@ set autoread
 
 " Keep the current split at a min width of 88 cols and min height of 10 rows
 set winwidth=88
-set winheight=10
+"set winheight=10 " Disabled until I figure out how to turn it off in floats
 
 " Open new splits below and to the right
 set splitbelow
@@ -265,15 +265,8 @@ Plug 'tpope/vim-unimpaired'
 if has("nvim")
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'Shougo/echodoc.vim'
-  Plug 'zchee/deoplete-go', { 'do': 'make' }
-  Plug 'sebastianmarkow/deoplete-rust'
   Plug 'dense-analysis/ale'
-  Plug 'fatih/vim-go'
-  Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
-  Plug 'reasonml-editor/vim-reason-plus'
-
-  let g:nvim_typescript#type_info_on_hold = 1
-  Plug 'mhartington/nvim-typescript', { 'do': './install.sh' }
+  Plug 'neovim/nvim-lsp'
 else
   Plug 'ConradIrwin/vim-bracketed-paste'
 end
