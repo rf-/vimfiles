@@ -20,25 +20,23 @@ nnoremap <Leader>e :bel 10split term://pry<CR>
 " Run selection in a Ruby REPL
 vnoremap <Leader>e y:bel 10split term://pry<CR><C-\><C-n>pi<CR>
 
+" Enable echodoc for use with deoplete
+let g:echodoc#enable_at_startup = 1
+let g:echodoc#type = 'floating'
+
 " Enable deoplete; override enter behavior with popup open
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#omni_patterns = {}
-let g:deoplete#sources = {}
 inoremap <silent> <CR> <C-r>=<SID>close_popup_and_insert_cr()<CR>
 function! s:close_popup_and_insert_cr() abort
   return deoplete#close_popup() . "\<CR>"
 endfunction
 
-" Configure LSP clients
-lua <<LUA
-lsp = require("nvim_lsp")
-lsp.flow.setup({})
-lsp.solargraph.setup({})
-
--- Don't set up TS by default, because it matches very aggressively and then
--- breaks. Activate with project-specific vimrc files instead.
--- lsp.tsserver.setup({})
-LUA
+" Set up mappings for ALE LSP functionality
+autocmd FileType javascript,typescript,typescriptreact nnoremap <buffer> <silent> <C-p> :ALEHover<CR>
+autocmd FileType javascript,typescript,typescriptreact nnoremap <buffer> <silent> <C-]> :ALEGoToDefinition<CR>
+autocmd FileType javascript,typescript,typescriptreact nnoremap <buffer> <silent> <Leader><C-]> :ALEGoToTypeDefinition<CR>
+autocmd FileType javascript,typescript,typescriptreact nnoremap <buffer> <silent> K :ALEDocumentation<CR>
+autocmd FileType javascript,typescript,typescriptreact nnoremap <buffer> <silent> <Leader>ir :ALERename<CR>
 
 """ Terminal-related config
 

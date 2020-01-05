@@ -8,6 +8,7 @@ set ruler
 set hidden
 set colorcolumn=80
 set showcmd
+set noshowmode
 syntax on
 
 " Choose theme depending on system dark mode
@@ -153,6 +154,9 @@ set backspace=indent,eol,start
 
 " Don't try to complete included files
 set complete-=i
+
+" Don't show completion messages in status line
+set shortmess+=c
 
 " Show matching brackets (but not for very long)
 set showmatch
