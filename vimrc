@@ -276,9 +276,9 @@ else
 end
 
 " vim-import-js -- configure above plug#end to avoid double mappings
-autocmd FileType javascript nnoremap <buffer> <silent> <Leader>ii :ImportJSWord<CR>
-autocmd FileType javascript nnoremap <buffer> <silent> <Leader>if :ImportJSFix<CR>
-autocmd FileType javascript nnoremap <buffer> <silent> <Leader>ig :ImportJSGoto<CR>
+autocmd FileType javascript,typescript,typescriptreact nnoremap <buffer> <silent> <Leader>ii :ImportJSWord<CR>
+autocmd FileType javascript,typescript,typescriptreact nnoremap <buffer> <silent> <Leader>if :ImportJSFix<CR>
+autocmd FileType javascript,typescript,typescriptreact nnoremap <buffer> <silent> <Leader>ig :ImportJSGoto<CR>
 
 call plug#end()
 
@@ -395,7 +395,7 @@ autocmd FileType coffee setlocal shiftwidth=2 softtabstop=2
 autocmd FileType css setlocal shiftwidth=2 softtabstop=2
 autocmd FileType go setlocal noexpandtab tabstop=4 shiftwidth=4
 autocmd FileType haxe setlocal tabstop=4 shiftwidth=4 softtabstop=4
-autocmd FileType javascript setlocal shiftwidth=2 softtabstop=2
+autocmd FileType javascript,typescript,typescriptreact setlocal shiftwidth=2 softtabstop=2
 autocmd FileType make setlocal noexpandtab
 autocmd FileType python setlocal shiftwidth=4 softtabstop=4 textwidth=79
 autocmd FileType scala setlocal colorcolumn=100
