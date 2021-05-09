@@ -218,27 +218,9 @@ Plug 'scrooloose/nerdtree'
 
 "" Languages
 
-Plug 'elixir-lang/vim-elixir'
+Plug 'sheerun/vim-polyglot'
 Plug 'slashmili/alchemist.vim'
-Plug 'guns/vim-clojure-static'
-Plug 'kchmck/vim-coffee-script'
-Plug 'amadeus/vim-jsx'
-Plug 'noprompt/vim-yardoc'
-Plug 'pangloss/vim-javascript'
-Plug 'slim-template/vim-slim'
-Plug 'tpope/vim-git'
-Plug 'tpope/vim-haml'
-Plug 'tpope/vim-markdown'
-Plug 'vim-ruby/vim-ruby'
-Plug 'derekwyatt/vim-scala'
-Plug 'solarnz/thrift.vim'
-Plug 'rust-lang/rust.vim'
-Plug 'rhysd/vim-crystal'
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'zah/nim.vim'
-Plug 'dleonard0/pony-vim-syntax'
 Plug 'galooshi/vim-import-js'
-Plug 'dag/vim-fish'
 
 "" Text objects
 
