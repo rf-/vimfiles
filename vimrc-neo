@@ -20,23 +20,32 @@ nnoremap <Leader>e :bel 10split term://pry<CR>
 " Run selection in a Ruby REPL
 vnoremap <Leader>e y:bel 10split term://pry<CR><C-\><C-n>pi<CR>
 
-" Enable echodoc for use with deoplete
-let g:echodoc#enable_at_startup = 1
-let g:echodoc#type = 'floating'
-
-" Enable deoplete; override enter behavior with popup open
-let g:deoplete#enable_at_startup = 1
-inoremap <silent> <CR> <C-r>=<SID>close_popup_and_insert_cr()<CR>
-function! s:close_popup_and_insert_cr() abort
-  return deoplete#close_popup() . "\<CR>"
+" Re-implementation of K with coc.nvim compatibility, taken from docs
+function! ShowDocumentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
 endfunction
 
-" Set up mappings for ALE LSP functionality
-autocmd FileType javascript,typescript,typescriptreact nnoremap <buffer> <silent> <C-p> :ALEHover<CR>
-autocmd FileType javascript,typescript,typescriptreact nnoremap <buffer> <silent> <C-]> :ALEGoToDefinition<CR>
-autocmd FileType javascript,typescript,typescriptreact nnoremap <buffer> <silent> <Leader><C-]> :ALEGoToTypeDefinition<CR>
-autocmd FileType javascript,typescript,typescriptreact nnoremap <buffer> <silent> K :ALEDocumentation<CR>
-autocmd FileType javascript,typescript,typescriptreact nnoremap <buffer> <silent> <Leader>ir :ALERename<CR>
+" Set up mappings for ALE and coc.nvim
+function! s:set_up_coc_bindings()
+  nmap <buffer> <silent> <Leader>k :CocAction<CR>
+  vmap <buffer> <silent> <Leader>k <Plug>(coc-codeaction-selected)
+  nmap <buffer> <silent> <C-p> :call ShowDocumentation()<CR>
+  nmap <buffer> <silent> <C-]> <Plug>(coc-definition)
+  nmap <buffer> <silent> <Leader>gtd <Plug>(coc-type-definition)
+  nmap <buffer> <silent> <Leader>gi <Plug>(coc-implementation)
+  nmap <buffer> <silent> <Leader>gr <Plug>(coc-references)
+  nmap <buffer> <silent> <Leader>cr <Plug>(coc-rename)
+  nmap <buffer> <silent> [d <Plug>(coc-diagnostic-prev)
+  nmap <buffer> <silent> ]d <Plug>(coc-diagnostic-next)
+  nmap <buffer> <silent> K :call ShowDocumentation()<CR>
+endfunction
+autocmd FileType javascript,typescript,typescriptreact,ruby call s:set_up_coc_bindings()
 
 """ Terminal-related config
 

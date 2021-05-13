@@ -181,6 +181,9 @@ vmap <Leader>] >gv
 " Save easily
 nnoremap <Leader>w :w<CR>
 
+" Merge sign column with line numbers?
+set signcolumn=number
+
 " Fix highlighting in SignColumn
 highlight clear SignColumn
 
@@ -249,10 +252,9 @@ Plug 'tpope/vim-unimpaired'
 "" Platform-specific
 
 if has("nvim")
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'Shougo/echodoc.vim'
   Plug 'dense-analysis/ale'
-  Plug 'neovim/nvim-lsp'
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  let g:ale_disable_lsp = 1 " Delegate LSP to Coc
 else
   Plug 'ConradIrwin/vim-bracketed-paste'
 end
