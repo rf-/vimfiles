@@ -224,6 +224,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'sheerun/vim-polyglot'
 Plug 'slashmili/alchemist.vim'
 Plug 'galooshi/vim-import-js'
+Plug 'vale1410/vim-minizinc'
 
 "" Text objects
 
@@ -387,6 +388,14 @@ autocmd FileType python setlocal shiftwidth=4 softtabstop=4 textwidth=79
 autocmd FileType scala setlocal colorcolumn=100
 autocmd FileType scss setlocal shiftwidth=2 softtabstop=2
 autocmd FileType jsx setlocal filetype=javascript
+
+" Set up shortcuts for .dict files
+autocmd BufRead,BufNewFile *.dict set filetype=dict
+autocmd FileType dict nnoremap 1 0/\dciw0:noh
+autocmd FileType dict nnoremap 2 0/\dciw10:noh
+autocmd FileType dict nnoremap 3 0/\dciw21:noh
+autocmd FileType dict nnoremap 4 0/\dciw51:noh
+autocmd FileType dict nnoremap 5 0/\dciw61:noh
 
 " Fix highlighting of Rust doc comments
 highlight link rustCommentLineDoc Comment
