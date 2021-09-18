@@ -20,6 +20,9 @@ nnoremap <Leader>e :bel 10split term://pry<CR>
 " Run selection in a Ruby REPL
 vnoremap <Leader>e y:bel 10split term://pry<CR><C-\><C-n>pi<CR>
 
+" Work around https://github.com/neoclide/coc.nvim/issues/1775
+let g:coc_disable_transparent_cursor = 1
+
 " Re-implementation of K with coc.nvim compatibility, taken from docs
 function! ShowDocumentation()
   if (index(['vim','help'], &filetype) >= 0)
