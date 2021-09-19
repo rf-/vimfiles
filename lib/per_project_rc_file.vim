@@ -3,8 +3,8 @@ function! per_project_rc_file#load()
 
   if filereadable(whitelist_file)
     let whitelist = readfile(whitelist_file)
-    map(whitelist, "substitute(v:val, '[ \n\r\t]', '', 'g')")
-    filter(whitelist, "len(v:val > 0)")
+    call map(whitelist, "substitute(v:val, '[ \n\r\t]', '', 'g')")
+    call filter(whitelist, "len(v:val > 0)")
 
     let pwd = getcwd()
     let fname = expand("%:p")
