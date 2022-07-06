@@ -18,7 +18,7 @@ filenames = [
 ]
 
 try:
-    nvim_socket = os.environ["NVIM_LISTEN_ADDRESS"]
+    nvim_socket = os.environ["NVIM"]
 except KeyError:
     # If we aren't running inside a `:terminal`, just exec nvim.
     os.execvp('nvim', sys.argv)
